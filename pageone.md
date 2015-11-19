@@ -1,7 +1,7 @@
 ---
 layout: default
-title: About
-permalink: /new/
+title: One
+permalink: /One/
 ---
 
 This is my new markdown page
