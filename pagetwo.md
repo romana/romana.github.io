@@ -1,6 +1,6 @@
 ---
-layout: default
-title: Two
+layout: page
+title: Page Two
 permalink: /Two/
 ---
 

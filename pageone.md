@@ -1,6 +1,6 @@
 ---
-layout: default
-title: One
+layout: page
+title: Page One
 permalink: /One/
 ---
 
