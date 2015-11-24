@@ -1,25 +1,47 @@
----
+--- 
 layout: default
 ---
-<div class="post-ribbon"></div>
-<main class="post-main mdl-layout__content">
-  <div class="post-container mdl-grid">
-    <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
-    <div class="post-section mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-      <div class="mdl-color-text--grey-500">
-      {{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}{% if page.categories %} • {% for cat in page.categories %} {{ cat }} {% endfor %} {% endif %}
+<div class="page-content mdl-grid">
+  <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+  <div class="mdl-cell mdl-cell--8-col jekyll-mdl-content mdl-shadow--2dp">
+    <header>
+      <h2>{{ page.title }}</h2>
+      <span class="jekyll-mdl__supporting-text">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</span>
+    </header>
+
+    <article>
+      {{ content }}
+    </article>
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--12-col"></div>
+    </div>
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--12-col jekyll-mdl-pager-nav">
+        {% if page.previous.url %}
+        <a href="{{page.previous.url | prepend: site.baseurl}}">
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900">
+            <i class="material-icons">arrow_back</i>
+          </button>
+          <span>Previous</span>
+        </a>
+        {% else %}
+        <button disabled class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--icon mdl-color--white">
+          <i class="material-icons">arrow_back</i>
+        </button>
+        {% endif %}
+        {% if page.next.url %}
+        <a href="{{page.next.url | prepend: site.baseurl}}">
+          <span>Next</span>
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900">
+            <i class="material-icons">arrow_forward</i>
+          </button>
+        </a>
+        {% else %}
+        <button disabled class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--icon mdl-color--white">
+          <i class="material-icons">arrow_forward</i>
+        </button>
+        {% endif %}
       </div>
-      <h3>{{ page.title }}</h3>
-      <article class="post-content">
-        <p>{{ content }}</p>
-      </article>
-      <!-- Disqus comments -->
-      {% if site.disqus %}
-      <div>
-        <h3>Comments</h3>
-        {% include disqus.html %}
-      </div>
-      {% endif %}
     </div>
   </div>
-</main>
+</div>

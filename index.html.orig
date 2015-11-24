@@ -1,0 +1,35 @@
+---
+layout: home
+---
+
+{% for post in site.posts %}
+  <div class="jekyll-mdl-card mdl-card mdl-cell mdl-cell--12-col mdl-shadow--4dp">
+
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text">
+        {{ post.title }}
+      </h2>
+    </div>
+    <div class="mdl-card__subtitle-text">
+      
+    </div>
+    <div class="mdl-card__media">
+
+    </div>
+    <div class="mdl-card__supporting-text jekyll-mdl-center">
+      {% if forloop.index0 == 0 %}
+        {{ post.content | truncatewords:100 | strip_html }}
+      {% else %}
+        {{ post.content | truncatewords:50 | strip_html }}
+      {% endif %}
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+      <a href="{{ post.url | prepend: site.baseurl }}">
+        <button class="mdl-button mdl-js-button mdl-button--primary">
+            read more
+            <i class="material-icons">chevron_right</i>
+        </button>
+      </a>
+    </div>
+  </div>
+{% endfor %}

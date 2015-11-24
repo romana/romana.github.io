@@ -1,40 +1,45 @@
-# jekyll-mdl
-> A Jekyll theme based in Google Material Design Lite library.
+# Jekyll Material Lite _(WIP)_
 
-## The project site for Romana.
+> A [Jekyll](http://jekyllrb.com/) template based on Google's [Material Design Lite](http://www.getmdl.io/)
 
-## Post Options
+Jekyll Material Lite is a minimal Jekyll template with a few added features.  The design was created using Material Design Lite.  This template is meant to get you up and running quickly, and is easily customizable.
 
-All the post, require an image and maybe an author and declare if the post is highlighted or not, the image are used in the cards and the autor used for the footer in the cards, the highlighted post is used for make this 12 cols and not a card, if you want to use the custom images and set the author and the highlight post, just add a new key in the post config, something like this:
+## Getting Started
 
-    ---
-    layout: post
-    title:  "Welcome to jekyll-mdl"
-    date:   2015-07-11 11:34:20
-    categories: jekyll
-    highlight: true
-    image: http://www.wchs4pets.org/wp-content/uploads/2015/03/cat_1-jpg.jpg
-    author: Google Developers Group Managua
-    ---
+There is some great documentation provided on the Jekyll site that covers most everything you will need to know about using and setting up Jekyll.  
+* http://jekyllrb.com/docs/home/
 
-## Layout Configuration
-You can setup 4 types of layout
+Alternatively, there is also great documentation on the Github site, regarding using and host a Jekyll site on Github.
+* https://help.github.com/articles/using-jekyll-with-pages/
 
-- Fixed Nav + Simple Card Grid
-- Fixed Nav + Highlight Post + Card Grid
-- Drawer Nav + Simple Card Grid
-- Drawer Nav + Highlight Post + Card Grid
+### Download / Clone
 
-For use this in the [_config.yml](https://github.com/gdg-managua/jekyll-mdl/blob/master/_config.yml) select the type of layout, rebuild the website and voilà :smile:
+Clone the repo using Git:
 
+```bash
+git clone https://github.com/mudpuddle/jekyll-mdl.git
+```
+
+Alternatively you can [download](https://github.com/mudpuddle/jekyll-mdl/archive/master.zip)
+this repository.
+
+## Added Features
+
+### What's included
+
+| File/Folder     | Provides                                       |
+|-----------------|------------------------------------------------|
+| sharebutton.html| A simple include that can be added to post pages for simple sharing|
+| search          | Adding a search.md to the root folder will add a [AngularJS](https://angularjs.org/) enabled search page|
+| menu            | Any .md file in the root of the site shows up a page listed in the drawer menu, with a customizable icon|
+
+
+## Todo
+1. Finish search page functionality
+  1. filter list of articles based on search criteria
+  2. add a page to view all articles by tag
 
 ## License
 Licensed under the Apache 2.0 license.
 
-See the [LICENSE](https://github.com/gdg-managua/jekyll-mdl/blob/master/LICENSE.md) file for more details.
-
-Copyright © 2015 [Google Developers Group Managua](http://www.gdgmanagua.org).
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/gdg-managua/jekyll-mdl/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
+See the [LICENSE](https://github.com/mudpuddle/jekyll-mdl/blob/master/LICENSE) file for more details.
