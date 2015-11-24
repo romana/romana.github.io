@@ -11,7 +11,7 @@ twitter_username: romanaproject
 github_username:  romana
 
 # Layout settings
-header_type: drawer	# values [ drawer, default ]
+header_type: default	# values [ drawer, default ]
 post_type: default	# values [ highlight, default ]
 pagination_type: default  # values [ ops, default ]
 
