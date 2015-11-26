@@ -2,8 +2,8 @@
 # This file contains configuration flags to customize your site
 #
 
-# Site Title
-title: Romana Cloud Native SDN
+# Site Title (blank until I figure out logo spacing)
+title: Cloud Native SDN
 
 permalink: /:categories/:title
 
@@ -14,7 +14,7 @@ description: > # this means to ignore newlines until "baseurl:"
 
 # Your website URL (e.g. http://romana.github.io or http://romana.io)
 # Used for Sitemap.xml and your RSS feed
-url: 
+url: romana.io
 
 # If you're hosting your site at a Project repository on GitHub pages
 # (http://yourusername.github.io/repository-name)
@@ -24,18 +24,25 @@ baseurl:
 
 # Contact/Social Info
 email: info@romana.io
+
 # https://twitter.com/romanaproject
 twitter_username: romanaproject
+
 # https://github.com/romana
 github_username:  romana
+
 # https://www.linkedin.com/in/<linkedin_username>
 #linkedin_username:
+
 #https://www.facebook.com/<facebook_profile>
 #facebook_profile:
+
 # https://plus.google.com/u/0/<gplus_profile>
 #gplus_profile:
+
 # https://instagram.com/<instagram_username>
 #instagram_username:
+
 # https://www.pinterest.com/pintrest_username
 #pintrest_username:
 

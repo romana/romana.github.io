@@ -71,7 +71,7 @@ body::before {
 .jekyll-mdl-content {
   background-color: rgba(255,255,255, 0.85);
   min-height: 600px;
-  margin-bottom: 40%;
+  margin-bottom: 10%;
   padding: 20px;
 }
 .jekyll-mdl-center {
@@ -140,7 +140,7 @@ header > h2 {
     margin-bottom: 0;
 }
 header > .jekyll-mdl__supporting-text {
-  color: rgba(0,0,0, 0.54);
+  color: rgba(0,0,0, 0.90);
   margin-left: 40px;
 }
 
@@ -163,8 +163,11 @@ article > p {
   float: right;
 }
 .jekyll-mdl-card > .mdl-card__supporting-text {
-  font-size: 16px;
+  color: rgba(0,0,0, 0.90);
   line-height: 24px;
+}
+.jekyll-mdl-card > .mdl-card__supporting-text > p {
+  font-size: 16px;
 }
 
 // back button

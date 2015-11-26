@@ -6,7 +6,11 @@ layout: home
 
   <div class="jekyll-mdl-card mdl-card mdl-cell mdl-cell--12-col mdl-shadow--4dp">
 
-    
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text">
+        {{ post.title }}
+      </h2>
+    </div>
     <div class="mdl-card__subtitle-text">
       
     </div>
@@ -17,9 +21,9 @@ layout: home
  
 
       {% if forloop.index0 == 0 %}
-        {{ post.content }}
+        {{ post.content | truncatewords:100 | strip_html }}
       {% else %}
-        {{ post.content }}
+        {{ post.content | truncatewords:50 | strip_html }}
       {% endif %}
 
     </div>
