@@ -1,45 +1,20 @@
-# Jekyll Material Lite _(WIP)_
+---
+layout: page
+title: Project Pages Read Me
+permalink: /README/
+---
+These are the Romana Project Pages hosted on GitHub and available at [romana.github.io](romana.github.io). Also available at [romana.io](romana.io)
 
-> A [Jekyll](http://jekyllrb.com/) template based on Google's [Material Design Lite](http://www.getmdl.io/)
+The site is based on a Jekyll Material Lite blog [template]( https://github.com/mudpuddle/jekyll-mdl), with some slight modifications to accommodate our static content requirements.
 
-Jekyll Material Lite is a minimal Jekyll template with a few added features.  The design was created using Material Design Lite.  This template is meant to get you up and running quickly, and is easily customizable.
+The site is organized around content topics that are organized as Jekyll blog 'categories'. This way there is a separate folder is created in the repo that hold the various articles about that topic. 
 
-## Getting Started
+This also allows for a separate README.md file for each category that lets us review the content and add comments on Github directly.
 
-There is some great documentation provided on the Jekyll site that covers most everything you will need to know about using and setting up Jekyll.  
-* http://jekyllrb.com/docs/home/
+During the content drafting phase, all the content related a topic will be in the single README.md file in the topic folder. Once that reaches some level of stability, that file will be split up into several smaller chunks by copying the content in to sequential blog posts.
 
-Alternatively, there is also great documentation on the Github site, regarding using and host a Jekyll site on Github.
-* https://help.github.com/articles/using-jekyll-with-pages/
+The first topic being drafted is the 'How does it Work' section. If you go into that folder now you will see all the content included in the repo's README.md file. You will also find this same file with a date prepended to the filename. This is to let Jekyll render the html for display. Except for the file name, these two files are identical 
 
-### Download / Clone
-
-Clone the repo using Git:
-
-```bash
-git clone https://github.com/mudpuddle/jekyll-mdl.git
-```
-
-Alternatively you can [download](https://github.com/mudpuddle/jekyll-mdl/archive/master.zip)
-this repository.
-
-## Added Features
-
-### What's included
-
-| File/Folder     | Provides                                       |
-|-----------------|------------------------------------------------|
-| sharebutton.html| A simple include that can be added to post pages for simple sharing|
-| search          | Adding a search.md to the root folder will add a [AngularJS](https://angularjs.org/) enabled search page|
-| menu            | Any .md file in the root of the site shows up a page listed in the drawer menu, with a customizable icon|
+    There might be better ways to organize this content, so if you have any suggestions, please open an issue
 
 
-## Todo
-1. Finish search page functionality
-  1. filter list of articles based on search criteria
-  2. add a page to view all articles by tag
-
-## License
-Licensed under the Apache 2.0 license.
-
-See the [LICENSE](https://github.com/mudpuddle/jekyll-mdl/blob/master/LICENSE) file for more details.

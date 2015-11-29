@@ -3,7 +3,7 @@ layout: page
 title: Welcome to the Romana Project
 icon: explore
 categories:
-- home
+-
 ---
 
 ### Software Defined Networking for Cloud Native Applications
