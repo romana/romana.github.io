@@ -28,6 +28,13 @@ body::before {
   top: 0;
   position: fixed;
 }
+blockquote::before {
+  content: '';
+}
+blockquote::after {
+  content: '';
+  margin-left: 0;
+}
 @media screen and (min-width: 400px) and (max-width: 1024px) {
   body::before {
     background: rgb(255, 255, 255) ;
