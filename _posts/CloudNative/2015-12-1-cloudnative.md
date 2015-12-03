@@ -8,11 +8,8 @@ categories:
 ### Topics
 
 - [Introduction](/cloudnative/cloudnative/#introduction)
-
 - [Cloud Native Networks](/cloudnative/cloudnative/#cloud-native-networks)   
-
 - [SDN Flavors](/cloudnative/cloudnative/#sdn-flavors)   
-
 - [Cloud Native SDN](/cloudnative/cloudnative/#cloud-native-sdn)   
 
 ---

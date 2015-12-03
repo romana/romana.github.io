@@ -10,6 +10,18 @@
   text-decoration: none;
 }
 
+// less padding in footer
+.mdl-mini-footer {
+  padding: 15px 16px;
+}
+
+.mdl-mini-footer__link-list {
+  padding-top: 12px;
+}
+.mdl-mini-footer__right-section {
+  padding-top: 12px;
+}
+
 /*  This background was generated at this great site
     http://mudcu.be/bg/
  */
@@ -77,7 +89,7 @@ blockquote::after {
 
 .jekyll-mdl-content {
   background-color: rgba(255,255,255, 0.85);
-  min-height: 600px;
+  min-height: 630px;
   margin-bottom: 10%;
   padding: 20px;
 }
