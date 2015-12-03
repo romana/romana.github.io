@@ -5,6 +5,8 @@ permalink: /README/
 ---
 These are the Romana Project Pages hosted on GitHub and available at [romana.github.io](romana.github.io). Also available at [romana.io](romana.io)
 
+*(This is my comment!)*
+
 The site is based on a Jekyll Material Lite blog [template]( https://github.com/mudpuddle/jekyll-mdl), with some slight modifications to accommodate our static content requirements.
 
 The site is organized around content topics that are organized as Jekyll blog 'categories'. This way there a separate folder is created in the repo that holds the various articles about that topic. 
