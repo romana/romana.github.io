@@ -2,15 +2,15 @@
 # This file contains configuration flags to customize your site
 #
 
+host: 192.168.0.224
+
 # Site Title (blank until I figure out logo spacing)
 title: Cloud Native SDN
 
 permalink: /:categories/:title
 
 description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Romana is a new open source Software Defined Network (SDN) solution that lets data center operators design and deploy multi-tenant cloud computing networks directly on their physical infrastructure without a virtual network overlay. Romana based networks are less expensive to build, easier to operate and deliver higher performance than overlay-based virtual networks.
 
 # Your website URL (e.g. http://romana.github.io or http://romana.io)
 # Used for Sitemap.xml and your RSS feed
