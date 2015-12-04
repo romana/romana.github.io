@@ -19,9 +19,9 @@ categories:
 
 #### Introduction
 
-Romana is a new Software Defined Network (SDN) solution specifically designed for the [Cloud Native](https://cncf.io/) architectural style. The result of this focus is that Romana cloud networks are less expensive to build, easier to operate and deliver higher performance than cloud networks built using alternative SDN designs. 
+Romana is a new Software Defined Network (SDN) solution specifically designed for the [Cloud Native](https://cncf.io/) architectural style. *(Comment: We should have at least a brief intro into what 'cloud native' means right here, just one sentence. I know you're explaining it in the next chapter, but the two opening paragraphs will be lost if it's not introduced a little right here.)* The result of this focus is that Romana cloud networks are less expensive to build, easier to operate and deliver higher performance than cloud networks built using alternative SDN designs. 
 
-We call Romana *Cloud Native* SDN because of this specific application focus, and also because it can be deployed in a cloud native way. Deployed wherever applications need to run, Romana will provide a uniformly reachable network that lets cloud management systems like Kubernetes seamlessly and transparently scale Cloud Native applications across private and public clouds worldwide.
+We call Romana a *Cloud Native* SDN because of this specific application focus, and also because it can be deployed in a cloud native *(Comment: Need to define 'cloud native' before you can use it in an explanation.)* way. Deployed wherever applications need to run, Romana will provide a uniformly reachable network that lets cloud management systems like Kubernetes seamlessly and transparently scale Cloud Native applications across private and public clouds worldwide.
 
 [(^Back to Top^)](#topics)
 
@@ -31,9 +31,11 @@ We call Romana *Cloud Native* SDN because of this specific application focus, an
 
 *Cloud Native* is a term without a precise definition. The [Cloud Native Foundation](https://cncf.io/) avoids defining it at all, preferring to simply propose Kubernetes as the 'seed' technology for the architectural style. Here the term is used a little more broadly to include any newly developed application that is designed to run on popular IaaS platforms, such as [AWS]( http://aws.amazon.com/), [GCE]( https://cloud.google.com/compute/) or [OpenStack](http://www.openstack.org).
 
-This is important from a networking perspective because these IaaS platforms have networks that are nothing like traditional enterprise networks. Among other things, they only provide layer 3 connectivity, do not support multicast. 
+*(Comment: Why don't we just define 'cloud native' apps as those that don't require any L2 shenanigans?)*
 
-In AWS, each instance gets an IP address that can communicate with other instances. It optionally may also get a public IP address.  Beyond that, it provides load balancing and private addresses, but not much else. 
+This is important from a networking perspective because these IaaS platforms have networks that are nothing like traditional enterprise networks. Among other things, they only provide layer 3 connectivity and do not support multicast. 
+
+In AWS, each instance gets an IP address that can communicate with other instances. It optionally may also get a public IP address.  Beyond that, it provides load balancing and private addresses, but not much else. *(Comment: Actually, LB on AWS is just one of the many, many, many services that it provides. And it's outside of the EC2 instances. So, I would drop LB from the previous sentence, since that way you talk only about what the EC2 instance provides. If you mention LB, then you are opening up to all the many services that AWS provides and those are a LOT (the opposite of 'not much else').)*
 
 Kubernetes network requirements are simply that each [IP address be reachable](http://kubernetes.io/v1.0/docs/admin/networking.html#kubernetes-model). It also introduces the idea of a 'pod' and a 'service' to better support [microservice](http://martinfowler.com/articles/microservices.html) based applications. A pod is simply a collection of containers reachable by a single IP address, and a service is a collection of pods that all deliver the same function.
 
@@ -41,7 +43,7 @@ OpenStack networking on the other hand is extremely complicated because it attem
 
 Taken together, Romana defines Cloud Native networks as networks that provide Amazon style connectivity, Kubernetes style reachability and service definitions and an OpenStack style tenancy model to allow isolated, private and public cloud deployment of Cloud Native applications.
 
-Kubernetes' simple reachability model has the added benefit of enabling Cloud Native networks to support seamless and transparent scheduling of pods across cloud boundaries, greatly simplifying hybrid cloud deployment.
+Kubernetes' simple reachability model has the added benefit of enabling Cloud Native networks to support seamless and transparent scheduling of pods across cloud boundaries, greatly simplifying hybrid cloud deployment. *(Comment: This last paragraph here shouldn't be the one closing out this chapter, since it takes away from us and puts focus on Kubernetes instead. Maybe explain the Kubernetes reachability advantage first, then use the previous paragraph to close the chapter.)*
 
 [(^Back to Top^)](#topics)
 
@@ -61,9 +63,11 @@ It is easy to see how different flavors of SDN have emerged simply by looking at
 
 Clearly, the objectives for Cloud Native SDN are vastly different from each of the other SDN designs and therefor a separate solution is warranted. 
 
-Importantly, there is no requirement for layer 2 connectivity, traffic classification or device reconfiguration. Without these requirements, the single remaining challenge is provide to multi-tenancy. 
+Importantly, there is no requirement for access to layer 2 features, traffic classification or device reconfiguration. Without these requirements, the single remaining challenge is provide to multi-tenancy. 
 
 The complexity of building and operating VXLAN overlay networks for layer 2 virtualization are [well known](/how/#vxlan-isolation/), so dropping this from Cloud Native SDN immediately simplifies the design. However, without VXLAN, multi-tenancy needs to be implemented in some other way. 
+
+*(Comment: Mayve add a note stating that Romana has solved this and that this is explained in the 'how it works' or the chapter below?)*
 
 [(^Back to Top^)](#topics)
 
@@ -71,7 +75,7 @@ The complexity of building and operating VXLAN overlay networks for layer 2 virt
 
 #### Cloud Native SDN
 
-Cloud Native SDN can be simpler than Enterprise SDN because the requirements are much simpler. No layer 2 networking is required, which avoids the complexity of overlays and tunnel endpoints. This also lets operators run their cloud networks directly on the physical devices, which delivers higher performance and provides better visibility, manageability and control.
+Cloud Native SDN is simpler than Enterprise SDN because the requirements are much simpler. No layer 2 networking is required *(Comment: Yes, L2 is required, since otherwise nothing happens. But you don't need to fiddle with it or think about it. Specifically, you don't need access to L2 features in your app, you don't want to send broadcasts, etc.)*, which avoids the complexity of overlays and tunnel endpoints. This also lets operators run their cloud networks directly on the physical devices *(Comment: Which physical devices?)*, which delivers higher performance and provides better visibility, manageability and control.
 
 Romana solves the multi-tenancy problem without overlays using an innovative [layer 3 tenancy model](/how/how/#romana-tenant-isolation) that lets operators deploy Romana in a [Routed Access](#/how/how/routed-access-datacenter) datacenter design, for even simpler operations. This tenancy model also captures [application level context](/how/how/#romana-tenant-isolation) directly in the network, simplifying the job of securing the network and applying policy based control.
 
