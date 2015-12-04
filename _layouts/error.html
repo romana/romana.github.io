@@ -5,7 +5,8 @@
 
   <body>
     <div class="layout-transparent mdl-layout mdl-js-layout mdl-layout--fixed-header">
-      {% include backbutton.html %}
+      {% include header.html %}
+      {% include sidenav.html %}
       <main class="mdl-layout__content">
         <div class="page-content mdl-grid">
           <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
@@ -16,7 +17,7 @@
             <br />
             <div class="mdl-typography--text-center jekyll-mdl-bigger-font">
               <p>try search</p>
-              <a href="{{ "/search/" | prepend: site.baseurl }}">
+              <a href="{{ "/9-Search/" | prepend: site.baseurl }}">
                 <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
                   <i class="material-icons">search</i>
                 </button>
