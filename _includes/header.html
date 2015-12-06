@@ -8,18 +8,6 @@
           <!-- Add spacer, to align navigation to the right -->
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation -->
-	{% include topnav.html %}
-      {% if page.title == 'Search' %}
-      <!-- Search box -->
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--align-right">
-
-<div class="mdl-layout-spacer"></div>
-
-        <label class="mdl-textfield__label jekyll-mdl-darker-text" for="fixed-header-search">
-          Search...
-        </label>
-        <input class="mdl-textfield__input jekyll-mdl-darker-border" type="text" name="sample" id="fixed-header-search" ng-model="search.$" />
-      </div>
-      {% endif %}
-    
-  </header>
+     {% include topnav.html %}
+     </header>
+{% include sidenav.html %}

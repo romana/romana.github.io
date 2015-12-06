@@ -1,8 +1,7 @@
 ---
-layout: post
+layout: page
 title: About
 icon: android
-permalink: /8-About/
 firstnav: 8
 secondnav: 0
 ---

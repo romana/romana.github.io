@@ -1,8 +1,7 @@
 ---
-layout: landingpage
+layout: page
 title: FAQ
 icon: question_answer
-permalink: /4-FAQ/
 firstnav: 4
 secondnav: 0
 ---

@@ -1,23 +1,23 @@
 ---
-layout: post
-title: How it Works
-date: 2015-11-3
-categories:
- - how
+layout: page
+title: Details
+firstnav: 2
+secondnav: 2
+
 ---
 
 #### Topics
 
-- [Introduction](/how/how/#introduction)
-- [Routed Access Datacenter](/how/how/#routed-access-datacenter)   
-- [Virtualization hosts](/how/how/#virtualization-hosts) 
-- [VXLAN Tenant Isolation](/how/how/#vxlan-tenant-isolation)
-- [Romana Tenant Isolation](/how/how/#romana-tenant-isolation)
-- [IP Address Management](/how/how/#ip-address-managment)
-- [Route Manager](/how/how/#route-manager) 
-- [Microservices](/how/how/#microservices) 
-- [Service Insertion](/how/how/#service-insertion) 
-- [Policy Based Control](/how/how/#policy-based-control)  
+- [Introduction](/how/howitworks.html/#introduction)
+- [Routed Access Datacenter](/how/howitworks.html/#routed-access-datacenter)   
+- [Virtualization hosts](/how/howitworks.html/#virtualization-hosts) 
+- [VXLAN Tenant Isolation](/how/howitworks.html/#vxlan-tenant-isolation)
+- [Romana Tenant Isolation](/how/howitworks.html/#romana-tenant-isolation)
+- [IP Address Management](/how/howitworks.html/#ip-address-managment)
+- [Route Manager](/how/howitworks.html/#route-manager) 
+- [Microservices](/how/howitworks.html/#microservices) 
+- [Service Insertion](/how/howitworks.html/#service-insertion) 
+- [Policy Based Control](/how/howitworks.html/#policy-based-control)  
 
 ---
 

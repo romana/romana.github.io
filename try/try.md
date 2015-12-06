@@ -1,8 +1,7 @@
 ---
-layout: landingpage
+layout: page
 title: Try it Now
 icon: launch
-permalink: /3-Try/
 firstnav: 3
 secondnav: 0
 ---

@@ -29,6 +29,14 @@
 	</a>
 {% endif %}
 
+{% if node.secondnav == 3  %}
+
+          <a class="mdl-navigation__link {% if page.url == node.url %} jekyll-mdl-navactive{% endif %}" href="{{ node.url | prepend: site.baseurl }}">
+		<li class="mdl-menu__item">{{ node.title }}</li>
+	</a>
+{% endif %}
+
+
         {% endif %}
       {% endif %}
     {% endfor %}

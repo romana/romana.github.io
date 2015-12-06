@@ -1,8 +1,7 @@
 ---
-layout: landingpage
+layout: page
 title: Roadmap
 icon: map
-permalink: /6-Roadmap/
 firstnav: 6
 secondnav: 0
 ---
@@ -13,9 +12,9 @@ secondnav: 0
 
 The current release supports
 
-- [Feature 1](feature-1)
-- [Feature 2](feature-1)
-- [Feature 3](feature-1)
+- [Feature 1](#feature-1)
+- [Feature 2](#feature-2)
+- [Feature 3](#feature-3)
 
 
 ---

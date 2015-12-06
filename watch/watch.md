@@ -1,8 +1,7 @@
 ---
-layout: landingpage
+layout: page
 title: Watch and Learn
 icon: 'videocam'
-permalink: /5-WatchLearn/
 firstnav: 5
 secondnav: 0
 ---

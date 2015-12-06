@@ -1,16 +1,16 @@
 ---
-layout: post
-title: Cloud Native SDN
-date: 2015-10-1
-categories: 
-- cloudnative
+layout: page
+title: Cloud Native Networks
+firstnav: 1
+secondnav: 1
+
 ---
 ### Topics
 
-- [Introduction](/cloudnative/cloudnative/#introduction)
-- [Cloud Native Networks](/cloudnative/cloudnative/#cloud-native-networks)   
-- [SDN Flavors](/cloudnative/cloudnative/#sdn-flavors)   
-- [Cloud Native SDN](/cloudnative/cloudnative/#cloud-native-sdn)   
+- [Introduction](/cloud/cloud.html/#introduction)
+- [Cloud Native Networks](/cloud/cloud.html/#cloud-native-networks)   
+- [SDN Flavors](/cloud/cloud.html/#sdn-flavors)   
+- [Cloud Native SDN](/cloud/cloud.html/#cloud-native-sdn)   
 
 ---
 

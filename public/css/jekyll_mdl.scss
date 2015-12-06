@@ -71,6 +71,11 @@ blockquote::after {
   }
 }
 
+.mdl-button--accent.mdl-button--accent.mdl-button--raised, .mdl-button--accent.mdl-button--accent.mdl-button--fab {
+
+background-color: rgb(66,66,66)
+
+}
 
 .layout-transparent .mdl-layout__header,
 .layout-transparent .mdl-layout__drawer-button,
@@ -178,7 +183,7 @@ blockquote::after {
 
 // Nav button not highlight text...
 .mdl-button--fab.mdl-button--colored {
-  background: rgb(68,84,106)
+  background: rgb(66,66,66)
 }
 
 // header
@@ -230,9 +235,10 @@ article > p {
 // Share button
 #jekyll-mdl-share {
   position: fixed;
-  right: 40px;
-  bottom: 75px;
+  right: 50px;
+  bottom: 110px;
   z-index: 900;
+  
 }
 #jekyll-mdl-share ul {
   left: 0px;
@@ -249,4 +255,4 @@ article > p {
 }
 #jekyll-mdl-share-btns {
   display: none;
-}
+ }

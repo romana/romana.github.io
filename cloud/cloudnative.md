@@ -1,8 +1,7 @@
 ---
-layout: landingpage
+layout: page
 title: Cloud Native SDN
 icon: cloud
-permalink: /1-Cloud/
 firstnav: 1
 secondnav: 0
 ---
@@ -15,7 +14,7 @@ Specifically, the explosion in the number of network endpoints, tighter integrat
 
 We call this new approach *Cloud Native SDN.*
 
-Learn more about Cloud Native SDN and how it compares to other SDN designs [here](/cloudnative/cloudnative)
+Learn more about Cloud Native SDN and how it compares to other SDN designs [here](/cloud/cloud.html)
 
 
 
