@@ -3,6 +3,8 @@ layout: landingpage
 title: Cloud Native SDN
 icon: cloud
 permalink: /1-Cloud/
+firstnav: 1
+secondnav: 0
 ---
 
 Building and operating scalable, high-performance multi-tenant cloud computing networks is extremely difficult.  Today's preferred solution is to deploy a virtual network using VXLAN overlays and a commercial Enterprise SDN controller. 

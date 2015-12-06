@@ -3,6 +3,8 @@ layout: landingpage
 title: FAQ
 icon: question_answer
 permalink: /4-FAQ/
+firstnav: 4
+secondnav: 0
 ---
 ---
 
@@ -21,6 +23,8 @@ permalink: /4-FAQ/
 11. [How do I put Load Balancer of Firewall in front of my services](#what-does-cloud-native-mean)?
 12. [What Kind of Service Discovery is supported](#what-does-cloud-native-mean)?
 13. [Will it work with Kubernets Kube-proxy](#what-does-cloud-native-mean)?
+14. [What are the security implications of application level context being exposed in the IP address](#what-does-cloud-native-mean)?
+
 
 ---
 

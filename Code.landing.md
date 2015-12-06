@@ -1,8 +1,10 @@
 ---
 layout: landingpage
-title: Get Involved
+title: Code
 icon: code
-permalink: /7-GetInvolved/
+permalink: /7-Code/
+firstnav: 7
+secondnav: 0
 ---
 If you want to get involved, we're taking pull requests and looking for contributors to join the effort.
 

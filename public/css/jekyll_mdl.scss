@@ -74,10 +74,36 @@ blockquote::after {
 
 .layout-transparent .mdl-layout__header,
 .layout-transparent .mdl-layout__drawer-button,
-.layout-transparent .mdl-layout__header .mdl-layout__header-row .mdl-navigation__link {
+.layout-transparent .mdl-layout__header .mdl-navigation__link {
   /* This background is dark, so we set text to white. Use 87% black instead if
      your background is light. */
   color: rgba(0,0,0, 0.87);
+  font-weight: 600;
+}
+
+.mdl-layout__tab-bar {
+	padding-left: 225px;
+	background-color: rgb(255,255,255);
+}
+
+.mdl-layout__tab-bar-button {
+	
+	background-color: rgb(255,255,255);
+}
+
+.mdl-layout__tab {
+	color: rgba(0,0,0, 0.87);
+	background-color: rgb(255,255,255);
+}
+
+.mdl-layout__tab.is-active {
+	color: rgba(0,0,0, 0.87);
+	background-color: rgb(238,238,238);
+}
+
+.mdl-layout.is-upgraded .mdl-layout__tab.is-active {
+	color: rgba(0,0,0, 0.87);
+	background-color: rgb(238,238,238);
 }
 
 .jekyll-mdl-darker-text {
@@ -150,6 +176,10 @@ blockquote::after {
   background-color: rgb(238,238,238);
 }
 
+// Nav button not highlight text...
+.mdl-button--fab.mdl-button--colored {
+  background: rgb(68,84,106)
+}
 
 // header
 header {

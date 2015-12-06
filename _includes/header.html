@@ -1,21 +1,25 @@
   <header class="mdl-layout__header mdl-layout__header--transparent">
     <div class="mdl-layout__header-row">
-      <!-- Title -->
+    <!-- Title -->
       <span class="mdl-layout-title">
 
 <a href="/"> <img src="/images/Logo.text.25.png" alt="Romana"> </a>
 </span>
-      <!-- Add spacer, to align navigation to the right -->
+          <!-- Add spacer, to align navigation to the right -->
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation -->
+	{% include topnav.html %}
       {% if page.title == 'Search' %}
       <!-- Search box -->
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--align-right">
+
+<div class="mdl-layout-spacer"></div>
+
         <label class="mdl-textfield__label jekyll-mdl-darker-text" for="fixed-header-search">
           Search...
         </label>
         <input class="mdl-textfield__input jekyll-mdl-darker-border" type="text" name="sample" id="fixed-header-search" ng-model="search.$" />
       </div>
       {% endif %}
-    </div>
+    
   </header>

@@ -1,0 +1,29 @@
+---
+layout: page
+title:  Service Chaining and Insertion
+icon: subject
+date: 2015-11-1
+permalink: /how/chain/
+categories:
+ - how
+firstnav: 2
+secondnav: 1
+---
+
+Service Insertion and Service Chaining are terms used to describe the ability to modify the path traffic will use to traverse the network on its way to its final destination. The modified path typically includes one or more Service Function devices (SFs) that may adjust and/or modify the traffic according to an operator-defined policy. An example of an SF is a load balancer, firewall or IDS.
+
+Service Insertion is related to, but different from, application-level request routing. Application request routing is the process by which requests are forwarded to one or more application service endpoints that are available for further processing. Service Insertion is also different from the developer-specified logical paths that requests must traverse to complete an applications function. An example of this kind of logical path would be specifying what is necessary to complete a user request. For example, a user request requires a path to a webserver, from a web server to an application server, and from an application server to a database server.
+
+Application request routing is typically performed by specifying only the desired destination endpoint for an application request with little or no regard for how the network actually forward packets along the path. Sometimes the destination is specified directly by its numerical IP address directly, but today with Microservice based application architectures, it is more likely to be specified by name. In this case, a separate name resolution service, such as DNS, would be used for service discovery. 
+
+When a destination endpoint is specified and traffic traverses the network, the standard path will be through default route from the source to the destination. Changing this path for Service Insertion requires reconfiguration of the devices that lie along the standard path.
+
+Romana performs Service Insertion by changing the default route that is configured on the network interface of the traffic source (i.e. virtual machines, containers, pods, etc.). The standard configuration for the default route for an interface is for it to be set to the IP address of the upstream router.
+
+For Service Insertion, the Romana [Route Manager](/RouteManager/) resets this from the IP address of the upstream router to the IP address of the [Service Router](/ServiceRouter/) for the particular [Segment](/Segment/) that contains the source VM.
+
+The [Service Router](/ServiceRouter/) for this segment can forward the traffic to the proper SF by specifying the IP address of the SF as the gateway address for the next hop router.  If the SF is located on a different network, an upstream [Service Router](/ServiceRouter/) will be specified as the next hop router.
+The example below shows how traffic originating on VM1 on Host(1) from Segment1 destined for VM2 on Host(2) can be steered through SF1 located on Host(S).
+
+The default route for this traffic is through Router(1) and Router(2) as shown. However, when the default route on Host(1) is set to the IP address of SF(1)
+

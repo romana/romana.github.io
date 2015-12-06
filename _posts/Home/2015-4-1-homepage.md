@@ -4,6 +4,8 @@ title: Welcome to the Romana Project
 icon: explore
 categories:
 - home
+firstnav: 0
+secondnav: 0
 ---
 
 ### Cloud Native Networks

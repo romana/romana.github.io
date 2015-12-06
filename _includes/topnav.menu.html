@@ -1,0 +1,34 @@
+{% comment %}
+    The code below dynamically generates a top nav of pages with`landing: page` in the front-matter. See readme for usage.
+{% endcomment %}
+
+
+ <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+	<div class="mdl-layout__header">
+		<div class="mdl-layout__header-row">
+			<!-- Title block, this can contain an img -->
+			<span class="mdl-layout-title"><a href="/"> <img src="/images/Logo.text.25.png" alt="Romana"> </a></span>
+			<!-- This pushs the elements to the right -->
+			<div class="mdl-layout-spacer"></div>
+				<!-- Dropdown menu -->
+
+{% include menu.1.html %}
+{% include menu.2.html %}
+{% include menu.3.html %}
+{% include menu.4.html %}
+{% include menu.5.html %}
+{% include menu.6.html %}
+{% include menu.7.html %}
+{% include menu.8.html %}
+	<div class="mdl-layout-spacer"></div>
+					<!-- Navigation Block -->
+					
+					<!-- Search -->
+					
+				</div>
+			</div>
+	
+		</div>
+
+
+

@@ -3,6 +3,8 @@ layout: landingpage
 title: Watch and Learn
 icon: 'videocam'
 permalink: /5-WatchLearn/
+firstnav: 5
+secondnav: 0
 ---
 
 #### Learn how Romana works by watching these videos

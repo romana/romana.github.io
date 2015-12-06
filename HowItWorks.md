@@ -1,8 +1,10 @@
 ---
-layout: landingpage
+layout: post
 title: How it Works
 icon: build
 permalink: /2-HowItWorks/
+firstnav: 2
+secondnav: 0
 categories:
  - home
 ---
