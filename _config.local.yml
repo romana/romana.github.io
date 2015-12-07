@@ -1,0 +1,51 @@
+#
+# This file contains configuration flags to customize your site
+#
+
+host: 192.168.0.224
+
+# Site Title (blank until I figure out logo spacing)
+title: Cloud Native SDN
+
+permalink: /:categories/:title
+
+description: > # this means to ignore newlines until "baseurl:"
+  Romana is a new open source Software Defined Network (SDN) solution that lets data center operators design and deploy multi-tenant cloud computing networks directly on their physical infrastructure without a virtual network overlay. Romana based networks are less expensive to build, easier to operate and deliver higher performance than overlay-based virtual networks.
+
+# Your website URL (e.g. http://romana.github.io or http://romana.io)
+# Used for Sitemap.xml and your RSS feed
+url: romana.io
+
+# If you're hosting your site at a Project repository on GitHub pages
+# (http://yourusername.github.io/repository-name)
+# and NOT your User repository (http://yourusername.github.io)
+# then add in the baseurl here, like this: "/repository-name"
+baseurl:
+
+# Contact/Social Info
+email: info@romana.io
+
+# https://twitter.com/romanaproject
+twitter_username: romanaproject
+
+# https://github.com/romana
+github_username:  romana
+
+# https://www.linkedin.com/in/<linkedin_username>
+#linkedin_username:
+
+#https://www.facebook.com/<facebook_profile>
+#facebook_profile:
+
+# https://plus.google.com/u/0/<gplus_profile>
+#gplus_profile:
+
+# https://instagram.com/<instagram_username>
+#instagram_username:
+
+# https://www.pinterest.com/pintrest_username
+#pintrest_username:
+
+
+# Build settings
+markdown: kramdown
