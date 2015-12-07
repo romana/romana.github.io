@@ -44,7 +44,7 @@ Briefly stated, route aggregation is a method of simplifying router configuratio
 
 The diagram below shows how route aggregation makes all endpoints in the network reachable with just a few routes configured on the leaf and spine devices. It illustrates how a 10/8 network (with up to 16M IP addresses) could be partitioned across two spines and four leaves so that each spine port forwards packets to one of four /10 networks (one on each leaf) and each leaf forwards packets to one of 64 ports configured with a /16 network.
 
-![Route Aggregation](/images/Aggregation.png)
+![Route Aggregation]({{ site.baseurl }}/images/Aggregation.png)
 
 With this configuration, each spine device is configured with the *same* four static routes, one to each leaf device. Each leaf device is configured with one route to each port (ignoring ECMP and other fabric related configuration details of spine or leafs). The routes on the leafs are sequential and differ across leaf devices only by an offset in the second octet of the CIDR.
 
@@ -74,7 +74,7 @@ Using this as a simple baseline example, if you allocate a /24 range to each VM,
 
 The diagram below shows how Romana extends the [routed access datacenter](#routed-access-datacenter) design into the virtualization host by configuring them as a router in the overall datacenter address hierarchy. The router on the host forwards traffic to one of 253 VMs, where each VM gets one of the available /24 networks for its own use.
 
-![Virtualization Hosts](/images/vHosts.png)
+![Virtualization Hosts]({{ site.baseurl }}/images/vHosts.png)
 
 Routing traffic on the host as described here is supported directly in the Linux kernel. No additional data plane forwarding software is necessary. The host needs to be configured with routes, just like a network device. The Romana [Host Agent](/design/) adds the routes on the host whenever a new endpoint is added.
 
@@ -112,7 +112,7 @@ For example, the diagram below shows the path packets take when OpenStack VMs on
 
 With Romana this extra router hop is avoided and the top-of-rack round trip as well as the three encap cycles are eliminated. As a result latency is greatly reduced (in some cases by 85%).
 
-![OpenStack VXLAN Routing](/images/vxlan.png) 
+![OpenStack VXLAN Routing]({{ site.baseurl }}/images/vxlan.png) 
 
 If performance were all it cost to run VXLAN, considering the benefits of segment isolation, it could still be a bargain. However, from an operational perspective, there are other critical challenges to running VXLANs that are not easily addressed.
 
@@ -167,7 +167,7 @@ The diagram below illustrates how an IP address can be partitioned to capture ho
 
 In this example all traffic for Host 1 (Host ID = 1), would go to the 10.1/16 network. Of this, traffic to Tenant 1 (ID=1) would be directed to the 10.1.1/24 network. Traffic for Tenant 2 (ID=2) would go to 10.1.2/24. Traffic to Tenant 1 Segment 1 (ID=1) would go to 10.1.1.16/28 (1 in bits 25-28 of address, or 00010000=16). For Host 2, all CIDRs would be the same, except that 1 would be replaced by 2, the ID of Host 2.
 
-![Route Aggregation](/images/cidr.png)
+![Route Aggregation]({{ site.baseurl }}/images/cidr.png)
 
 Endpoints that are in a specific segment would have IP addresses from the CIDR range of the segment. VM1 (ID=11) on Host 1 for Tenant 1 Segment 1 would get 10.1.1.27 (16+11=27).
 
