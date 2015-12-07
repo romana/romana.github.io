@@ -8,16 +8,16 @@ secondnav: 2
 
 #### Topics
 
-- [Introduction](/how/howitworks.html/#introduction)
-- [Routed Access Datacenter](/how/howitworks.html/#routed-access-datacenter)   
-- [Virtualization hosts](/how/howitworks.html/#virtualization-hosts) 
-- [VXLAN Tenant Isolation](/how/howitworks.html/#vxlan-tenant-isolation)
-- [Romana Tenant Isolation](/how/howitworks.html/#romana-tenant-isolation)
-- [IP Address Management](/how/howitworks.html/#ip-address-managment)
-- [Route Manager](/how/howitworks.html/#route-manager) 
-- [Microservices](/how/howitworks.html/#microservices) 
-- [Service Insertion](/how/howitworks.html/#service-insertion) 
-- [Policy Based Control](/how/howitworks.html/#policy-based-control)  
+- [Introduction](/how/details.html/#introduction)
+- [Routed Access Datacenter](/how/details.html/#routed-access-datacenter)   
+- [Virtualization hosts](/how/details.html/#virtualization-hosts) 
+- [VXLAN Tenant Isolation](/how/details.html/#vxlan-tenant-isolation)
+- [Romana Tenant Isolation](/how/details.html/#romana-tenant-isolation)
+- [IP Address Management](/how/details.html/#ip-address-managment)
+- [Route Manager](/how/details.html/#route-manager) 
+- [Microservices](/how/details.html/#microservices) 
+- [Service Insertion](/how/details.html/#service-insertion) 
+- [Policy Based Control](/how/details.html/#policy-based-control)  
 
 ---
 
