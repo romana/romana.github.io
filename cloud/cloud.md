@@ -30,9 +30,9 @@ We call Romana *Cloud Native* SDN because of this specific application focus, an
 
 This is important from a networking perspective because these IaaS platforms have networks that are nothing like traditional enterprise networks. Among other things, they only provide layer 3 connectivity, do not support multicast. 
 
-In AWS, each instance gets an IP address that can communicate with other instances. It optionally may also get a public IP address.  Beyond that, it provides load balancing and private addresses, but not much else. 
+For example, with AWS, each instance gets an IP address that can communicate with other instances. It optionally may also get a public IP address. Beyond that, not much else.
 
-Kubernetes network requirements are simply that each [IP address be reachable](http://kubernetes.io/v1.0/docs/admin/networking.html#kubernetes-model). It also introduces the idea of a 'pod' and a 'service' to better support [microservice](http://martinfowler.com/articles/microservices.html) based applications. A pod is simply a collection of containers reachable by a single IP address, and a service is a collection of pods that all deliver the same function.
+Likewise, for Kubernetes, network requirements are simply that each [IP address be reachable](http://kubernetes.io/v1.0/docs/admin/networking.html#kubernetes-model). It also introduces the idea of a 'pod' and a 'service' to better support [microservice](http://martinfowler.com/articles/microservices.html) based applications. A pod is simply a collection of containers reachable by a single IP address, and a service is a collection of pods that all deliver the same function.
 
 OpenStack networking on the other hand is extremely complicated because it attempts to also provide Enterprise style networking for private clouds. However, one important feature it can provide for Cloud Native applications in a private cloud is multi-tenancy.
 
@@ -58,9 +58,9 @@ It is easy to see how different flavors of SDN have emerged simply by looking at
 
 Clearly, the objectives for Cloud Native SDN are vastly different from each of the other SDN designs and therefor a separate solution is warranted. 
 
-Importantly, there is no requirement for layer 2 connectivity, traffic classification or device reconfiguration. Without these requirements, the single remaining challenge is provide to multi-tenancy. 
+Importantly, there is no requirement for layer 2 network features, traffic classification or device reconfiguration. Without these requirements, the single remaining challenge is provide to multi-tenancy. 
 
-The complexity of building and operating VXLAN overlay networks for layer 2 virtualization are [well known](/how/#vxlan-isolation/), so dropping this from Cloud Native SDN immediately simplifies the design. However, without VXLAN, multi-tenancy needs to be implemented in some other way. 
+The complexity of building and operating VXLAN overlay networks for layer 2 virtualization are [well known](/how/#vxlan-isolation/), so dropping this from Cloud Native SDN immediately simplifies the design. However, without VXLAN, multi-tenancy needs to be implemented in some [other way](/how/details.html/#romana-tenant-isolation).
 
 [(^Back to Top^)](#topics)
 
@@ -68,7 +68,7 @@ The complexity of building and operating VXLAN overlay networks for layer 2 virt
 
 #### Cloud Native SDN
 
-Cloud Native SDN can be simpler than Enterprise SDN because the requirements are much simpler. No layer 2 networking is required, which avoids the complexity of overlays and tunnel endpoints. This also lets operators run their cloud networks directly on the physical devices, which delivers higher performance and provides better visibility, manageability and control.
+Cloud Native SDN can be simpler than Enterprise SDN because the requirements are much simpler. Specifically, endpoints do not require layer 2 adjacency, so the complexity of overlays and tunnel endpoints disappears. This also lets operators run their cloud networks directly on the physical devices, which delivers higher performance and provides better visibility, manageability and control.
 
 Romana solves the multi-tenancy problem without overlays using an innovative [layer 3 tenancy model](/how/how/#romana-tenant-isolation) that lets operators deploy Romana in a [Routed Access](#/how/how/routed-access-datacenter) datacenter design, for even simpler operations. This tenancy model also captures [application level context](/how/how/#romana-tenant-isolation) directly in the network, simplifying the job of securing the network and applying policy based control.
 

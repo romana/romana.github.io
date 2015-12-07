@@ -23,9 +23,12 @@ secondnav: 2
 
 #### Introduction
 
+[Yuk. To be revised]
+
 The Romana Cloud Native SDN solution consist of several software components organized as microservices. However, for this discussion of the concepts behind Romana, we simplify the architecture to include only the Route Controller, IP Address Manager, and Host Agent. 
 
 After the concepts behind Romana are clear, the remainder of the architecture will be easier to understand. The architecture is described in detail [here](/design/).
+
 
 ---
 
@@ -37,17 +40,17 @@ Today's modern datacenters are frequently built using a Spine/Leaf network desig
 
 These kind of layer 3 designs are popular because of their simplicity and performance and are often used as the underlay network for cloud deployments. An important point to remember about these designs is that they frequently take advantage of [route aggregation]( http://www.linktionary.com/r/route_aggregation.html) to further simplify operations.
 
-Briefly stated, route aggregation is method of simplifying router configuration by minimizing the number of routes a network device needs to maintain. This is achieved by organizing network address ranges (CIDRs) in a way that is 'topologically significant'. That is, each part of the network can only contain addresses from a specific CIDR block. By organizing the addresses hierarchically, the number of routes needed to reach every endpoint is reduced. 
+Briefly stated, route aggregation is a method of simplifying router configuration by minimizing the number of routes a network device needs to maintain. This is achieved by organizing network address ranges (CIDRs) in a way that is 'topologically significant'. That is, each part of the network can only contain addresses from a specific CIDR block. By organizing the addresses hierarchically, the number of routes needed to reach every endpoint is reduced. 
 
-The diagram below shows how route aggregation makes all endpoints in the network reachable with just a few routes configured on the leaf and spine devices. It illustrates how a 10/8 network (with up to 16M IP addresses) could be partitioned across 2 spines and 4 leaves so that each spine port forwards packets to one of four /10 networks (one on each leaf) and each leaf forwards packets to one of 64 ports configured with a /16 network.
+The diagram below shows how route aggregation makes all endpoints in the network reachable with just a few routes configured on the leaf and spine devices. It illustrates how a 10/8 network (with up to 16M IP addresses) could be partitioned across two spines and four leaves so that each spine port forwards packets to one of four /10 networks (one on each leaf) and each leaf forwards packets to one of 64 ports configured with a /16 network.
 
 ![Route Aggregation](/images/Aggregation.png)
 
-With this configuration, each spine device is configured with the *same* 4 static routes, one to each leaf device. Each leaf device is configured with one route to each port (ignoring ECMP and other fabric related configuration details of spine or leafs). The routes on the leafs are sequential and differ across leaf devices only by an offset in the second octet of the CIDR.
+With this configuration, each spine device is configured with the *same* four static routes, one to each leaf device. Each leaf device is configured with one route to each port (ignoring ECMP and other fabric related configuration details of spine or leafs). The routes on the leafs are sequential and differ across leaf devices only by an offset in the second octet of the CIDR.
 
 The simplicity of this design is undeniable. It is compact, intuitive and predictable, and delivers high performance as well. Which is why it is so popular among large data center operators and the basis for most cloud network underlay designs. 
 
-One constraint imposed by a routed access design is that it *requires endpoint IP addresses conform to the route aggregation hierarchy*. 
+A constraint imposed by a routed access design is that it *requires endpoint IP addresses be assigned in a way that conforms to the route aggregation hierarchy*. 
 
 One obvious way to relax this constraint is to update the network devices with individual host routes (/32 CIDRs) to the specific endpoints that do not conform to the hierarchy. 
 
@@ -55,7 +58,7 @@ However, updating the devices with host routes introduces the additional require
 
 Romana leverages the operational simplicity of this approach and extends the use of hierarchical addressing further, down to tenants, and even their individual network segments. 
 
-To maintain overall simplicity of the design, Romana avoids BGP and host routes by incorporating an intelligent [IP Address Management System](#ip-address-management) to ensure endpoints get addresses that conform to the hierarchy.
+To maintain overall simplicity of the design, Romana avoids running BGP on hosts and requiring host routes on network devices by incorporating an intelligent [IP Address Management System](#ip-address-management) to ensure endpoints get addresses that conform to the hierarchy.
 
 [(^Back to Top^)](#topics)
 
@@ -67,13 +70,15 @@ Allocating a /16 CIDR and 64K IP addresses to a single port does not make a lot 
 
 For example, on the [Google Compute Engine]( https://cloud.google.com/compute/) IaaS platform, when you launch a Kubernetes VM, by default it is allocated a [complete /24 network]( http://kubernetes.io/v1.0/docs/admin/networking.html#how-to-achieve-this ) so that when a pod is launched on that VM, it gets one of the possible 255 IP addresses from within the assigned range. 
 
-Using this as a simple baseline example, if you allocate a /24 range to each VM, having a /16 available for the entire virtualization host would accommodate up to 255 VMs.
+Using this as a simple baseline example, if you allocate a /24 range to each VM, having a /16 available for the entire virtualization host would accommodate up to 253 VMs (255 minus gateway and broadcast addresses, but for simplicity going forward will use 255).
 
-The diagram below shows how Romana extends the [routed access datacenter](#routed-access-datacenter) design into the virtualization host by configuring them as a router in the overall datacenter address hierarchy. The router on the host forwards traffic to one of 255 VMs, where each VM gets one of the available /24 networks for its own use.
+The diagram below shows how Romana extends the [routed access datacenter](#routed-access-datacenter) design into the virtualization host by configuring them as a router in the overall datacenter address hierarchy. The router on the host forwards traffic to one of 253 VMs, where each VM gets one of the available /24 networks for its own use.
 
 ![Virtualization Hosts](/images/vHosts.png)
 
 Routing traffic on the host as described here is supported directly in the Linux kernel. No additional data plane forwarding software is necessary. The host needs to be configured with routes, just like a network device. The Romana [Host Agent](/design/) adds the routes on the host whenever a new endpoint is added.
+
+*Unlike other layer 3 cloud networking designs which do not take advantage of hierarchical addressing, when a new endpoint is added to a Romana network, only the local host needs to be updated.* 
 
 If an actual cloud datacenter were build using the assumptions from the previous example, the 16M IP addresses available in the 10/8 network would be allocated across 255 virtualization hosts, where each could support up to 255 VMs, with each VM supporting up to 255 IP addresses for local endpoints.
 
@@ -81,7 +86,9 @@ Alternative configurations are easily designed by simply changing how many addre
 
 Other variations include using only a portion of the complete 10/8 for smaller configurations, such as a 10/10 for 4M endpoints, a 10/11 for 2M endpoints, etc. Smaller configurations are possible as well where just a few hosts are attached directly to a flat network.
 
-The important point here is that Romana configures the virtualization host to act just like any another router in the datacenter, forwarding traffic to local tenant endpoints. This is an obvious and natural extension of the highly successful layer 3 routed access datacenter design on to virtualization hosts. 
+The important point here is that Romana configures the virtualization host to act just like any other router in the datacenter, forwarding traffic to local tenant endpoints. This is an obvious and natural extension of the highly successful layer 3 routed access datacenter design on to virtualization hosts. 
+
+> Romana allows you to configure the number of bits in the address that are used for each purpose so that you can design your environment in whatever way best suits your needs. IPv6 is also [supported](github issue like) so that larger data center designs are possible as well.
 
 However, for multi-tenant cloud orchestration systems to take full advantage of this design, the problem of tenant isolation still needs a solution.
 
@@ -103,7 +110,7 @@ But more important to consider than simple stand alone performance benchmarks is
 
 For example, the diagram below shows the path packets take when OpenStack VMs on different tenant VXLAN segments communicate. There is an extra encap/dcap cycle required for the router on another host to forward the traffic to the proper endpoint. 
 
-Using Romana would avoid this extra router hop, the top-of-rack round trip as well as the 3 encap cycles, reducing latency by about 85%. 
+With Romana this extra router hop is avoided and the top-of-rack round trip as well as the three encap cycles are eliminated. As a result latency is greatly reduced (in some cases by 85%).
 
 ![OpenStack VXLAN Routing](/images/vxlan.png) 
 
@@ -158,11 +165,11 @@ Specifically, Romana assigns a set of bits to be a segment identifier and furthe
 
 The diagram below illustrates how an IP address can be partitioned to capture host, tenant and segment identity. Note, for simplicity, the example uses 8 bits for each range, which makes the resulting IP addresses readable in four octet dot address notation. 
 
-In this example all traffic for Host 1 (Host ID = 54), would go to the 10.54/16 network. Of this, traffic to Tenant 1 (ID=5) would be directed to the 10.54.5/24 network. Traffic for Tenant 2 (ID=22) would go to 10.54.22/24. Traffic to Tenant 1 Segment 1 (ID=12) would go to 10.54.5.192/28 (12 in bits 25-28 of address, or 1100000=192). For Host 2, all CIDRs would be the same, except that 54 would be replaced by 18, the ID of Host 2.
+In this example all traffic for Host 1 (Host ID = 1), would go to the 10.1/16 network. Of this, traffic to Tenant 1 (ID=1) would be directed to the 10.1.1/24 network. Traffic for Tenant 2 (ID=2) would go to 10.1.2/24. Traffic to Tenant 1 Segment 1 (ID=1) would go to 10.1.1.16/28 (1 in bits 25-28 of address, or 00010000=16). For Host 2, all CIDRs would be the same, except that 1 would be replaced by 2, the ID of Host 2.
 
 ![Route Aggregation](/images/cidr.png)
 
-Endpoints that are in specific segments would have IP addresses from the CIDR range of the segment. VM1 (ID=11) on Host 1 on Tenant 1 Segment 1 would get 10.54.5.203 (192+11=203).
+Endpoints that are in a specific segment would have IP addresses from the CIDR range of the segment. VM1 (ID=11) on Host 1 for Tenant 1 Segment 1 would get 10.1.1.27 (16+11=27).
 
 Romana assigning addresses to application endpoints within the Tenant and Segment CIDRs enhances them with application level context. This context is used directly on the host to provide Tenant and Segment isolation. 
 
@@ -178,7 +185,7 @@ In summary, for each virtualization host, there is a CIDR that identifies traffi
 
 
 
-Across all hosts, the total number of CIDRs is the total number of routes on each Host, times the number of hosts deployed. It is the job of the Romana [Route Manager](#route-manager) to create, set, update and manage these routes across the entire network.
+Across all hosts, the total number of CIDRs is the total number of routes on each Host, times the number of hosts deployed. It is the job of the Romana [Route Manager](#route-manager) to create, set, update and manage these routes across the entire network. [details TBD]
 
  [(^Back to Top^)](#topics)
 
@@ -188,25 +195,25 @@ Across all hosts, the total number of CIDRs is the total number of routes on eac
 
 Attaching [application level context](#romana-tenant-isolation) to endpoint addresses is a powerful tool to simplify cloud networking. The remaining problem is ensuring that IP addresses get assigned in a way that conforms to this design.
 
-Romana does this with its own IP Address Management system that maintains a list of all Tenants and the network Segments they create. 
+Romana does this with its own IP Address Management system what works with cloud orchestration systems such as OpenStack and Kubernetes and maintains a list of all Tenants and the network Segments and endpoints they create. 
 
-For OpenStack, Romana listens to the message queue and whenever a new Tenant or Segment is created, updates its database. 
+For OpenStack, Romana provides a standard OpenStack ML2 plugin. Whenever a new Tenant, Segment or endpoint is created, Romana updates its database. 
 
-When a new VM is launched, Romana listens on the Message Queue to learn which Tenant is launching it and the segment on which they wish it to be placed. When OpenStack identifies the Host that will get the VM, the Romana IPAM calculates the IP address based on the Host ID, Tenant ID and Segment ID.  This address is then assigned to the VM interface using the standard OpenStack DHCP mechanism [not really sure about the details here. cloud-init, etc.].
+When a new VM is launched in OpenStack, Romana learns which Tenant is launching it and the segment on which they wish it to be placed. When OpenStack identifies the host for the VM, the Romana IPAM calculates the IP address based on the Host ID, Tenant ID and Segment ID.  This address is then assigned to the VM interface using DHCP. mechanism.
 
-For other cloud orchestration systems, such as Kubernetes, a similar process take place to make sure all application endpoints are assigned the proper addressees.
+For other cloud orchestration systems, such as Kubernetes, a similar process takes place to make sure all application endpoints are assigned the proper addressees.
 
 [(^Back to Top^)](#topics)
 
 ---
 
-#### Route Manager
+#### Host Agent and Route Manager
 
 Romana uses the native routing functions in the Linux kernel for packet forwarding and does not require any additional kernel software (dataplane kernel modules, etc.). Configuring routes on the Host is done with standard linux ip route commands, which are issued locally via the Romana Host Agent. 
 
-Before any endpoints can be configured, the Route Manager must first configure the default gateway interface on the host that all local endpoints use. When a new endpoint is launched on a host, the Route Manager instructs the Host Agent to configure a route. The routes are simply the default route to the host gateway. 
+Before any endpoints can be configured, the Route Host Agent must first configure the default gateway interface on the host that all local endpoints use. When a new endpoint is launched on a host, the Host Agent to configure a route. The routes are simply the default route to the host gateway. 
 
-However, each route can be reconfigured with a different default gateway to direct traffic to an alternative device for [Service Insertion](#service-insertion).
+However, each route can be reconfigured with a different default gateway to direct traffic to an alternative device for [Service Insertion](#service-insertion) or to deal with [VM migration](github issue). Such special routes are maintained by the Romana Route Manager, which communicates with the Romana Host Agent on one or more hosts, as needed.
 
 
 [(^Back to Top^)](#topics)
