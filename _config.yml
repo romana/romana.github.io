@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #
 # This file contains configuration flags to customize your site
 #
@@ -29,6 +30,18 @@ email: info@romana.io
 twitter_username: romanaproject
 
 # https://github.com/romana
+=======
+# Site settings
+title: Romana Cloud Networking
+email: info@romana.io
+description: > # this means to ignore newlines until "baseurl:"
+  Romana software is awesome!. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://romana.io" # the base hostname & protocol for your site
+twitter_username: romana
+>>>>>>> parent of f5b95ac... Clean up for live site
 github_username:  romana
 
 # https://www.linkedin.com/in/<linkedin_username>
