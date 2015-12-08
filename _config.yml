@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 #
 # This file contains configuration flags to customize your site
 #
@@ -41,7 +41,7 @@ description: > # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://romana.io" # the base hostname & protocol for your site
 twitter_username: romana
->>>>>>> parent of f5b95ac... Clean up for live site
+
 github_username:  romana
 
 # https://www.linkedin.com/in/<linkedin_username>
