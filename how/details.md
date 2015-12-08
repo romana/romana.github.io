@@ -179,9 +179,9 @@ In summary, for each virtualization host, there is a CIDR that identifies traffi
  
 |Level |  | ID  |  |CIDR  |
 |---|---|---:|---|---| ---|
-|Host  |  | 54  |  | 10.54/16  |
-|Tenant  |  | 5  |  | 10.54.5/24    |
-|Segment  |  | 12  |  | 10.54.5.192/28    |
+|Host  |  | 1  |  | 10.1/16  |
+|Tenant  |  | 1  |  | 10.1.1/24    |
+|Segment  |  | 1  |  | 10.1.5.16/28    |
 
 
 
