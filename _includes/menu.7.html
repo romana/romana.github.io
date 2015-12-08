@@ -1,0 +1,43 @@
+{% comment %}
+    The code below dynamically generates a top nav of pages with`landing: page` in the front-matter. See readme for usage.
+{% endcomment %}
+
+{% assign pages_list = site.pages | sort:"secondnav" %}
+    {% for node in pages_list %}
+      {% if node.title != null %}
+{% if node.firstnav == 7  %}
+{% if node.secondnav == 0  %}
+<button id="menu{{ node.firstnav }}" class= "mdl-color-text--black mdl-button">{{ node.title }}
+			</button>
+<ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu" for="menu{{ node.firstnav }}">
+  <a class="mdl-navigation__link {% if page.url == node.url %} jekyll-mdl-navactive{% endif %}" href="{{ node.url | prepend: site.baseurl }}">	
+		<li class="mdl-menu__item">{{ node.title }}</li>
+</a>
+{% endif %}
+
+{% if node.secondnav == 1  %}
+
+          <a class="mdl-navigation__link {% if page.url == node.url %} jekyll-mdl-navactive{% endif %}" href="{{ node.url | prepend: site.baseurl }}">
+		<li class="mdl-menu__item">{{ node.title }}</li>
+	</a>
+{% endif %}
+
+
+{% if node.secondnav == 2  %}
+          <a class="mdl-navigation__link {% if page.url == node.url %} jekyll-mdl-navactive{% endif %}" href="{{ node.url | prepend: site.baseurl }}">
+		<li class="mdl-menu__item">{{ node.title }}</li>
+	</a>
+{% endif %}
+
+{% if node.secondnav == 3  %}
+
+          <a class="mdl-navigation__link {% if page.url == node.url %} jekyll-mdl-navactive{% endif %}" href="{{ node.url | prepend: site.baseurl }}">
+		<li class="mdl-menu__item">{{ node.title }}</li>
+	</a>
+{% endif %}
+
+
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+</ul>

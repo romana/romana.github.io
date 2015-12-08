@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  {% include head.html %}
+
+  <style>
+
+  </style>
+  <body>
+    <div class="layout-transparent mdl-layout mdl-js-layout mdl-layout__header--waterfall mdl-layout--fixed-header">
+      {% include header.html %}
+      <main class="mdl-layout__content">
+        <div class="page-content mdl-grid">
+          <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+          <div class="mdl-cell mdl-cell--8-col jekyll-mdl-content mdl-shadow--4dp">
+            {{content}}
+          </div>
+        </div>
+        {% include footer.html %}
+      </main>
+    </div>
+    {% include endscripts.html %}
+
+  </body>
+
+</html>
