@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Details
+title: Background
 firstnav: 2
-secondnav: 2
+secondnav: 4
 
 ---
 
