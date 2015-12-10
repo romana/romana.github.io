@@ -3,6 +3,7 @@ layout: page
 title: Cloud Native Networks
 firstnav: 1
 secondnav: 1
+permalink: /cloud/cloud/
 
 ---
 ### Topics

@@ -1,9 +1,9 @@
 ---
 layout: page
 title: Service Chaining and Insertion
-icon: subject
 firstnav: 2
-secondnav: 3
+secondnav: 4
+permalink: /how/chaining/
 ---
 
 Service Insertion and Service Chaining are terms used to describe the ability to modify the path traffic will use to traverse the network on its way to its final destination. The modified path typically includes one or more Service Function devices (SFs) that may adjust and/or modify the traffic according to an operator-defined policy. An example of an SF is a load balancer, firewall or IDS.

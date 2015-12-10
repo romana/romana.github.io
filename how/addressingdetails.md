@@ -1,9 +1,9 @@
 ---
 layout: page
-title: Details
+title: Addressing Details
 firstnav: 2
-secondnav: 2
-
+secondnav: 3
+permalink: /how/addressing/
 ---
 
 #### Topics
@@ -21,7 +21,7 @@ secondnav: 2
 
 ---
 
-#### Introduction
+#### Addressing Introduction
 
 [Yuk. To be revised]
 

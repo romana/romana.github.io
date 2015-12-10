@@ -4,6 +4,7 @@ title: Watch and Learn
 icon: 'videocam'
 firstnav: 5
 secondnav: 0
+permalink: /watch/
 ---
 
 #### Learn how Romana works by watching these videos

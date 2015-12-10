@@ -4,7 +4,7 @@ title: FAQ
 icon: question_answer
 firstnav: 4
 secondnav: 0
----
+permalink: /faq/
 ---
 
 #### Frequently Asked Questions

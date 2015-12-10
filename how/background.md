@@ -2,8 +2,8 @@
 layout: page
 title: Background
 firstnav: 2
-secondnav: 4
-
+secondnav: 1
+permalink: /how/background/
 ---
 
 #### Topics
@@ -21,14 +21,9 @@ secondnav: 4
 
 ---
 
-#### Introduction
+#### Background
 
-[Yuk. To be revised]
-
-The Romana Cloud Native SDN solution consist of several software components organized as microservices. However, for this discussion of the concepts behind Romana, we simplify the architecture to include only the Route Controller, IP Address Manager, and Host Agent. 
-
-After the concepts behind Romana are clear, the remainder of the architecture will be easier to understand. The architecture is described in detail [here](/design/).
-
+This is useful background information to better understand Roamana.
 
 ---
 

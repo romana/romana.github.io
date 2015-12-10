@@ -4,6 +4,7 @@ title: How it Works
 icon: build
 firstnav: 2
 secondnav: 0
+permalink: /how/
 ---
 
 #### tl;dr

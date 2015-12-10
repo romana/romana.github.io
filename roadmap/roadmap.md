@@ -4,6 +4,7 @@ title: Roadmap
 icon: map
 firstnav: 6
 secondnav: 0
+permalink: /roadmap/
 ---
 
 #### Help us build the future of Cloud Native SDN

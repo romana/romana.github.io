@@ -4,6 +4,7 @@ title: Try it Now
 icon: launch
 firstnav: 3
 secondnav: 0
+permalink: /try/
 ---
 
 Get the code on Github [here](http://www.github.com/romana)
