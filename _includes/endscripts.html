@@ -1,0 +1,15 @@
+<script type="text/javascript" src="{{ "/public/lib/mdl/material.min.js" | prepend: site.baseurl }}"></script>
+<script type="text/javascript" src="{{ "/public/js/jquery-1.11.2.min.js" | prepend: site.baseurl }}"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".mdl-layout__content").scroll(function(){
+      if (this.scrollTop > 0)
+      {
+        $(".mdl-layout__header").addClass("jekyll-boxShadow");
+      }
+      else {
+        $(".mdl-layout__header").removeClass("jekyll-boxShadow");
+      }
+    });
+  });
+</script>

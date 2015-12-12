@@ -1,36 +1,15 @@
 /**
- * Set `margin-bottom` to maintain vertical rhythm
- */
-h1, h2, h3, h4, h5, h6,
-p, blockquote, pre,
-ul, ol, dl, figure,
-%vertical-rhythm {
-    margin-bottom: $spacing-unit / 2;
-}
-
-/**
- * Blockquotes
- */
-blockquote {
-    color: $grey-color;
-    border-left: 4px solid $grey-color-light;
-    padding-left: $spacing-unit / 2;
-    font-size: 18px;
-    letter-spacing: -1px;
-    font-style: italic;
-
-    > :last-child {
-        margin-bottom: 0;
-    }
-}
-
-/**
  * Code formatting
  */
+
+%vertical-rhythm {
+   margin-bottom: 30px / 2;
+}
+
 pre,
 code {
     font-size: 15px;
-    border: 1px solid $grey-color-light;
+    border: 1px solid color("brown", "lighten-3");
     border-radius: 3px;
     background-color: #eef;
 }
@@ -51,30 +30,18 @@ pre {
 }
 
 /**
- * Clearfix
- */
-%clearfix {
-
-    &:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-}
-
-/**
  * Icons
  */
-.icon {
+.orig_icon {
 
     > svg {
         display: inline-block;
-        width: 16px;
-        height: 16px;
+        width: 25px;
+        height: 25px;
         vertical-align: middle;
 
         path {
-            fill: $grey-color;
+            fill: color("grey", "lighten-1");
         }
     }
 }
