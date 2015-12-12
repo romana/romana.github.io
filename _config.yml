@@ -1,5 +1,32 @@
+<<<<<<< HEAD
 # Site settings
 title: Romana Software
+=======
+#
+# This file contains configuration flags to customize your site
+#
+
+#host: 192.168.0.224
+
+# Site Title (blank until I figure out logo spacing)
+title: Cloud Native SDN
+
+
+description: > # this means to ignore newlines until "baseurl:"
+  Romana is a new open source Software Defined Network (SDN) solution that lets data center operators design and deploy multi-tenant cloud computing networks directly on their physical infrastructure without a virtual network overlay. Romana based networks are less expensive to build, easier to operate and deliver higher performance than overlay-based virtual networks.
+
+# Your website URL (e.g. http://romana.github.io or http://romana.io)
+# Used for Sitemap.xml and your RSS feed
+url: romana.io
+
+# If you're hosting your site at a Project repository on GitHub pages
+# (http://yourusername.github.io/repository-name)
+# and NOT your User repository (http://yourusername.github.io)
+# then add in the baseurl here, like this: "/repository-name"
+baseurl:
+
+# Contact/Social Info
+>>>>>>> refs/remotes/origin/master
 email: info@romana.io
 description: > # this means to ignore newlines until "baseurl:"
   Romana software is awesome!. You can edit this
