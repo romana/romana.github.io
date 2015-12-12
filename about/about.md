@@ -10,15 +10,15 @@ Romana is a new open source Software Defined Network (SDN) solution that lets da
 
 ----
 
-#### Open Source Software
+### Open Source Software
 
 - All software is publically available in the Romana GitHub [repositories](www.github.com/romana).
 
-#### Sponsor
+### Sponsor
 
 - Romana development is sponsored by Pani Networks.
 
-#### License
+### License
 
 - Romana is an Apache 2.0 licensed project.
 

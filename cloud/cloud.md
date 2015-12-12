@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Cloud Native Networks
+title: Cloud Native SDN
 firstnav: 1
 secondnav: 1
 permalink: /cloud/cloud/
@@ -8,24 +8,23 @@ permalink: /cloud/cloud/
 ---
 ### Topics
 
-- [Introduction](/cloud/cloud.html/#introduction)
-- [Cloud Native Networks](/cloud/cloud.html/#cloud-native-networks)   
-- [SDN Flavors](/cloud/cloud.html/#sdn-flavors)   
-- [Cloud Native SDN](/cloud/cloud.html/#cloud-native-sdn)   
+- [Introduction](/cloud/cloud/#introduction)
+- [Cloud Native Networks](/cloud/cloud/#cloud-native-networks)   
+- [SDN Flavors](/cloud/cloud/#sdn-flavors)   
+- [Cloud Native SDN](/cloud/cloud/#cloud-native-sdn)   
 
 ---
 
-#### Introduction
+### Introduction
 
 Romana is a new Software Defined Network (SDN) solution specifically designed for the [Cloud Native](https://cncf.io/) architectural style. The result of this focus is that Romana cloud networks are less expensive to build, easier to operate and deliver higher performance than cloud networks built using alternative SDN designs. 
 
 We call Romana *Cloud Native* SDN because of this specific application focus, and also because it can be deployed in a cloud native way. Deployed wherever applications need to run, Romana will provide a uniformly reachable network that lets cloud management systems like Kubernetes seamlessly and transparently scale Cloud Native applications across private and public clouds worldwide.
 
-[(^Back to Top^)](#topics)
-
+{% include backtotopbutton.html %}
 ---
 
-#### Cloud Native Networks
+### Cloud Native Networks
 
 *Cloud Native* is a term without a precise definition. The [Cloud Native Foundation](https://cncf.io/) avoids defining it at all, preferring to simply propose Kubernetes as the 'seed' technology for the architectural style. Here the term is used a little more broadly to include any newly developed application that is designed to run on popular IaaS platforms, such as [AWS]( http://aws.amazon.com/), [GCE]( https://cloud.google.com/compute/) or [OpenStack](http://www.openstack.org).
 
@@ -41,11 +40,11 @@ Taken together, Romana defines Cloud Native networks as networks that provide Am
 
 Kubernetes' simple reachability model has the added benefit of enabling Cloud Native networks to support seamless and transparent scheduling of pods across cloud boundaries, greatly simplifying hybrid cloud deployment.
 
-[(^Back to Top^)](#topics)
+{% include backtotopbutton.html %}
 
 ---
 
-#### SDN Flavors
+### SDN Flavors
 
 It is easy to see how different flavors of SDN have emerged simply by looking at the objectives of their designs.
 
@@ -63,11 +62,11 @@ Importantly, there is no requirement for layer 2 network features, traffic class
 
 The complexity of building and operating VXLAN overlay networks for layer 2 virtualization are [well known](/how/#vxlan-isolation/), so dropping this from Cloud Native SDN immediately simplifies the design. However, without VXLAN, multi-tenancy needs to be implemented in some [other way](/how/details.html/#romana-tenant-isolation).
 
-[(^Back to Top^)](#topics)
+{% include backtotopbutton.html %}
 
 ---
 
-#### Cloud Native SDN
+### Cloud Native SDN
 
 Cloud Native SDN can be simpler than Enterprise SDN because the requirements are much simpler. Specifically, endpoints do not require layer 2 adjacency, so the complexity of overlays and tunnel endpoints disappears. This also lets operators run their cloud networks directly on the physical devices, which delivers higher performance and provides better visibility, manageability and control.
 
@@ -75,6 +74,8 @@ Romana solves the multi-tenancy problem without overlays using an innovative [la
 
 Finally, since traffic runs on the physical network without encapsulation, all standard layer 3 traffic steering and filtering techniques can be used (in physical or virtual form factors) further simplifying network operations.
 
-Learn more about how Romana Cloud Native SDN works [here](/how/how/)
+Learn more about how Romana Cloud Native SDN works [here](/how/romana/)
 
+{% include backtotopbutton.html %}
 
+---

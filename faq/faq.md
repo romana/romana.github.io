@@ -7,7 +7,7 @@ secondnav: 0
 permalink: /faq/
 ---
 
-#### Frequently Asked Questions
+### Frequently Asked Questions
 
 1. [What does Cloud Native mean](#what-does-cloud-native-mean)?
 2. [What is Cloud Native SDN](#what-does-cloud-native-mean)?
@@ -27,16 +27,17 @@ permalink: /faq/
 
 ---
 
-#### 1. What does Cloud Native mean?
+### 1. What does Cloud Native mean?
 
 
-[(^Back to Top^)](#frequently-asked-questions)
+{% include backtotopbutton.html %}
 
 ---
 
-#### 2. What is Cloud Native SDN?
+### 2. What is Cloud Native SDN?
 
 
-[(^Back to Top^)](#frequently-asked-questions)
+{% include backtotopbutton.html %}
+
 
 ---

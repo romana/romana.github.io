@@ -4,6 +4,7 @@
 
 @import '_base.scss';
 @import '_syntax-highlighting.scss';
+@import '_table.scss';
 
 // direct mdl overrides
 .mdl-button > a {
@@ -40,13 +41,34 @@ body::before {
   top: 0;
   position: fixed;
 }
-blockquote::before {
-  content: '';
-}
-blockquote::after {
-  content: '';
-  margin-left: 0;
-}
+
+blockquote {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  position: relative;
+  padding: 10px;
+  background-color: rgb(224,224,224);
+  
+  }
+
+blockquote > p {
+  font-size: 16px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.35;
+  }
+  blockquote:before {
+    position: absolute;
+    left: -0.5em;
+    content: ''; }
+  blockquote:after {
+    content: '';
+    margin-left: 0; }
+
+
+
+
+
+
 @media screen and (min-width: 400px) and (max-width: 1024px) {
   body::before {
     background: rgb(255, 255, 255) ;
@@ -256,3 +278,4 @@ article > p {
 #jekyll-mdl-share-btns {
   display: none;
  }
+
