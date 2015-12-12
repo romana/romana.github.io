@@ -1,0 +1,98 @@
+
+
+.romanatable {
+	margin:0px;padding:0px;
+	margin-left:50px;
+	width:60%;
+	border:1px solid #000000;
+	margin-bottom: 20px;
+
+	-moz-border-radius-bottomleft:1px;
+	-webkit-border-bottom-left-radius:1px;
+	border-bottom-left-radius:1px;
+	
+	-moz-border-radius-bottomright:1px;
+	-webkit-border-bottom-right-radius:1px;
+	border-bottom-right-radius:1px;
+	
+	-moz-border-radius-topright:1px;
+	-webkit-border-top-right-radius:1px;
+	border-top-right-radius:1px;
+	
+	-moz-border-radius-topleft:1px;
+	-webkit-border-top-left-radius:1px;
+	border-top-left-radius:1px;
+}.romanatable table{
+    border-collapse: collapse;
+        border-spacing: 0;
+	width:100%;
+	height:100%;
+	margin:0px;padding:0px;
+}.romanatable tr:last-child td:last-child {
+	-moz-border-radius-bottomright:1px;
+	-webkit-border-bottom-right-radius:1px;
+	border-bottom-right-radius:1px;
+}
+.romanatable table tr:first-child td:first-child {
+	-moz-border-radius-topleft:1px;
+	-webkit-border-top-left-radius:1px;
+	border-top-left-radius:1px;
+}
+.romanatable table tr:first-child td:last-child {
+	-moz-border-radius-topright:1px;
+	-webkit-border-top-right-radius:1px;
+	border-top-right-radius:1px;
+}.romanatable tr:last-child td:first-child{
+	-moz-border-radius-bottomleft:1px;
+	-webkit-border-bottom-left-radius:1px;
+	border-bottom-left-radius:1px;
+}.romanatable tr:hover td{
+	
+}
+.romanatable tr:nth-child(odd){ background-color:#e6e6e6; }
+.romanatable tr:nth-child(even)    { background-color:#ffffff; }.romanatable td{
+	vertical-align:middle;
+	
+	
+	border:1px solid #000000;
+	border-width:0px 1px 1px 0px;
+	text-align:left;
+	padding:2px;
+	font-size:14px;
+	font-family:Arial;
+	font-weight:normal;
+	color:#000000;
+}.romanatable tr:last-child td{
+	border-width:0px 1px 0px 0px;
+}.romanatable tr td:last-child{
+	border-width:0px 0px 1px 0px;
+}.romanatable tr:last-child td:last-child{
+	border-width:0px 0px 0px 0px;
+}
+.romanatable tr:first-child td{
+		background:-o-linear-gradient(bottom, #e0e0e0 5%, #e0e0e0 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #e0e0e0), color-stop(1, #e0e0e0) );
+	background:-moz-linear-gradient( center top, #e0e0e0 5%, #e0e0e0 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#e0e0e0", endColorstr="#e0e0e0");	background: -o-linear-gradient(top,#e0e0e0,e0e0e0);
+
+	background-color:#e0e0e0;
+	border:0px solid #000000;
+	text-align:center;
+	border-width:0px 0px 1px 1px;
+	font-size:15px;
+	font-family:Arial;
+	font-weight:bold;
+	color:#000000;
+}
+.romanatable tr:first-child:hover td{
+	background:-o-linear-gradient(bottom, #e0e0e0 5%, #e0e0e0 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #e0e0e0), color-stop(1, #e0e0e0) );
+	background:-moz-linear-gradient( center top, #e0e0e0 5%, #e0e0e0 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#e0e0e0", endColorstr="#e0e0e0");	background: -o-linear-gradient(top,#e0e0e0,e0e0e0);
+
+	background-color:#e0e0e0;
+}
+.romanatable tr:first-child td:first-child{
+	border-width:0px 0px 1px 0px;
+}
+.romanatable tr:first-child td:last-child{
+	border-width:0px 0px 1px 1px;
+}

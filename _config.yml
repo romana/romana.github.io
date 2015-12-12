@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+# Site settings
+title: Romana Software
+=======
 #
 # This file contains configuration flags to customize your site
 #
@@ -22,29 +26,35 @@ url: romana.io
 baseurl:
 
 # Contact/Social Info
+>>>>>>> refs/remotes/origin/master
 email: info@romana.io
-
-# https://twitter.com/romanaproject
+description: > # this means to ignore newlines until "baseurl:"
+  Romana software is awesome!. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://romana.io" # the base hostname & protocol for your site
 twitter_username: romanaproject
-
-# https://github.com/romana
 github_username:  romana
 
-# https://www.linkedin.com/in/<linkedin_username>
-#linkedin_username:
+# Layout settings
+header_type: default  # values [ drawer, default ]
+post_type: highlight    # values [ highlight, default ]
+pagination_type: default  # values [ ops, default ]
 
-#https://www.facebook.com/<facebook_profile>
-#facebook_profile:
+more_vert:
+  option1:
+    name: Documentation
+    link: www.github.com/romana/docs
+  option2:
+    name: Fork
+    link: www.github.com/romana
+  option3:
+    name: Try it out
+    link: www.github.com/romana/romana
 
-# https://plus.google.com/u/0/<gplus_profile>
-#gplus_profile:
-
-# https://instagram.com/<instagram_username>
-#instagram_username:
-
-# https://www.pinterest.com/pintrest_username
-#pintrest_username:
-
+disqus: true
+disqus_shortname: 'romana'
 
 # Build settings
 markdown: kramdown
