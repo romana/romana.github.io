@@ -5,6 +5,7 @@
 @import '_base.scss';
 @import '_syntax-highlighting.scss';
 @import '_table.scss';
+@import '_deep_links.scss';
 
 // direct mdl overrides
 .mdl-button > a {
@@ -106,6 +107,10 @@ background-color: rgb(66,66,66)
      your background is light. */
   color: rgba(0,0,0, 0.87);
   font-weight: 600;
+}
+
+.mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
+	padding:14px;
 }
 
 .mdl-layout__tab-bar {

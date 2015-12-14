@@ -13,7 +13,7 @@ Romana Cloud Native networks are based on a new layer 3 tenancy model that encod
 
 Romana includes an intelligent [IP Address Management](/how/romana/#ip-address-management) (IPAM) system that assigns IP addresses that include network topology and application level context. This lets Romana take advantage of modern, layer 3 routed access datacenter designs, and allows routes to be aggregated and statically configured on physical network devices. With static routes on the physical network, only the hypervisor needs an updated route when a new endpoint is created. 
 
-A [Route Manager](/how/romana/#route-manager) 
+A [Route Manager](/how/romana/#host-agent-and-route-manager) 
 configures new routes on the hypervisor and uses the application level context in the addresses to simplify configuration of firewall rules for tenant isolation and other traffic management policies. 
 
 Also, since routes on network devices are static, no route distribution protocol is necessary, further simplifying network design.
@@ -30,13 +30,15 @@ Or jump right to the topic you want to learn more about.
 ---
 
 ### Romana   
+
 - [Introduction](/how/romana/#introduction)
 - [Romana Tenant Isolation](/how/romana/#romana-tenant-isolation)
-- [IP Address Management](/how/romana/#ip-address-managment)
-- [Route Manager](/how/romana/#route-manager) 
+- [IP Address Management](/how/romana/#ip-address-management)
+- [Route Manager and Host Agent](/how/romana/#route-manager-and-host-agent) 
 - [Microservices](/how/romana/#microservices) 
 - [Service Insertion](/how/romana/#service-insertion) 
 - [Policy Based Control](/how/romana/#policy-based-control)  
+
 
 ---
 
