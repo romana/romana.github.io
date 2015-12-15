@@ -6,7 +6,7 @@ menu_text: Basics
 icon: build
 firstnav: 2
 secondnav: 0
-permalink: /how/
+permalink: /how/romana_basics/
 ---
 
 Romana Cloud Native networks are based on a new layer 3 tenancy model that encodes tenant and segment identifiers directly in the IP address. This enables multi-tenant cloud networks to be built without a virtual network overlay.

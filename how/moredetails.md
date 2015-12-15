@@ -5,7 +5,7 @@ menu_text: More Details
 nav_text: NA
 firstnav: 2
 secondnav: 1
-permalink: /how/romana/
+permalink: /how/romana_details/
 ---
 
 ### Topics
