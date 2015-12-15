@@ -17,7 +17,7 @@ Specifically, the explosion in the number of network endpoints, tighter integrat
 
 We call this new approach *Cloud Native SDN.*
 
-Learn more about Cloud Native SDN and how it compares to other SDN designs [here](/cloud/cloud/)
+Learn more about Cloud Native SDN and how it compares to other SDN designs [here](/cloud/cloud_native_sdn/)
 
 
 

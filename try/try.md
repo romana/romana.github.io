@@ -1,12 +1,12 @@
 ---
 layout: page
-title: Try it Now
+title: Try Romana Now
 menu_text: Try it Now
 nav_text: Try it Now
 icon: launch
 firstnav: 3
 secondnav: 9
-permalink: /try/
+permalink: /try/try_romana
 ---
 
 Get the code on Github [here](http://www.github.com/romana)
