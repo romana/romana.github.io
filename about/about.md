@@ -1,6 +1,8 @@
 ---
 layout: page
 title: About
+nav_text: About
+menu_text: NA
 icon: android
 firstnav: 8
 secondnav: 9

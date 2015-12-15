@@ -1,10 +1,11 @@
 ---
 layout: page
 title: Cloud Native Networks
+nav_text: Cloud Native Networks
+menu_text: Clout Native Networks
 icon: cloud
 firstnav: 1
 secondnav: 0
-menu_title: Clout Native Nets
 permalink: /cloud/cloudnative/
 ---
 

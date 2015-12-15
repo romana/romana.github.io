@@ -1,6 +1,8 @@
 ---
 layout: page
 title: Try it Now
+menu_text: Try it Now
+nav_text: Try it Now
 icon: launch
 firstnav: 3
 secondnav: 9

@@ -1,10 +1,11 @@
 ---
 layout: page
 title: Just the Basics
+nav_text: How it Works
+menu_text: Basics
 icon: build
 firstnav: 2
 secondnav: 0
-menu_title: How it Works
 permalink: /how/
 ---
 

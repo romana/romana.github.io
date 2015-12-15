@@ -1,6 +1,8 @@
 ---
 layout: page
 title: Cloud Native SDN
+nav_text: NA
+menu_text: Cloud Native SDN
 firstnav: 1
 secondnav: 1
 permalink: /cloud/cloud/
