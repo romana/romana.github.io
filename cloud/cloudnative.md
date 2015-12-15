@@ -4,6 +4,7 @@ title: Cloud Native Networks
 icon: cloud
 firstnav: 1
 secondnav: 0
+menu_title: Clout Native Nets
 permalink: /cloud/cloudnative/
 ---
 

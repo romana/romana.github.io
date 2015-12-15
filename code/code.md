@@ -3,7 +3,7 @@ layout: page
 title: Code
 icon: code
 firstnav: 7
-secondnav: 0
+secondnav: 9
 permalink: /code/
 ---
 If you want to get involved, we're taking pull requests and looking for contributors to join the effort.

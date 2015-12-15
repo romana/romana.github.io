@@ -3,7 +3,7 @@ layout: page
 title: Try it Now
 icon: launch
 firstnav: 3
-secondnav: 0
+secondnav: 9
 permalink: /try/
 ---
 

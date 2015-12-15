@@ -3,21 +3,31 @@
 
 There is a copy of this file for each menu across the top of the page. The only difference is the value of the 'menu_position' set at top of file.
 
+secondnav values from 0-9 with 0 for the button lable when there are menu items, 9 for when there is no drop down.
+
 {% endcomment %}
 
 {% assign menu_position = 8 %}
+
 
 {% assign pages_list = site.pages | sort:"secondnav" %}
     {% for node in pages_list %}
       {% if node.title != null %}
 {% if node.firstnav == menu_position  %}
 {% if node.secondnav == 0  %}
-<button id="menu{{ node.firstnav }}" class= "mdl-color-text--black mdl-button">{{ node.title }}
+<button id="menu{{ node.firstnav }}" class= "mdl-color-text--black mdl-button">{{ node.menu_title }}
 			</button>
 <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu" for="menu{{ node.firstnav }}">
   <a class="mdl-navigation__link {% if page.url == node.url %} jekyll-mdl-navactive{% endif %}" href="{{ node.url | prepend: site.baseurl }}">	
 		<li class="mdl-menu__item">{{ node.title }}</li>
 </a>
+{% endif %}
+
+{% if node.secondnav == 9  %}
+<a class="mdl-navigation__link " href="{{ node.url | prepend: site.baseurl }}">	
+
+<button id="menu{{ node.firstnav }}" class= "mdl-color-text--black mdl-button">{{ node.title }}
+</button></a>
 {% endif %}
 
 {% if node.secondnav == 1  %}

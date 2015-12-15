@@ -3,7 +3,7 @@ layout: page
 title: FAQ
 icon: question_answer
 firstnav: 4
-secondnav: 0
+secondnav: 9
 permalink: /faq/
 ---
 
