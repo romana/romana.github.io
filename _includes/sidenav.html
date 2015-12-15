@@ -16,7 +16,7 @@
     {% assign pages_list = site.pages | sort: "firstnav" %}
     {% for node in pages_list %}
       {% if node.title != null %}
-        {% if node.secondnav == 0 %}
+        {% if node.secondnav == 0 or node.secondnav == 9 %}
           <a class="mdl-navigation__link {% if page.url == node.url %} jekyll-mdl-navactive{% endif %}" href="{{ node.url | prepend: site.baseurl }}">
             <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored jekyll-mdl-navicon">
               <i class="material-icons">{{ node.icon }}</i>

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Romana
+title: Details
 firstnav: 2
 secondnav: 1
 permalink: /how/romana/

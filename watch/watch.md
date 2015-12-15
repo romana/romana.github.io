@@ -3,7 +3,7 @@ layout: page
 title: Watch and Learn
 icon: 'videocam'
 firstnav: 5
-secondnav: 0
+secondnav: 9
 permalink: /watch/
 ---
 
