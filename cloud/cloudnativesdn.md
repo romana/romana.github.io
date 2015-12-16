@@ -1,17 +1,19 @@
 ---
 layout: page
 title: Cloud Native SDN
+nav_text: NA
+menu_text: Cloud Native SDN
 firstnav: 1
 secondnav: 1
-permalink: /cloud/cloud/
+permalink: /cloud/cloud_native_sdn/
 
 ---
 ### Topics
 
-- [Introduction](/cloud/cloud/#introduction)
-- [Cloud Native Networks](/cloud/cloud/#cloud-native-networks)   
-- [SDN Flavors](/cloud/cloud/#sdn-flavors)   
-- [Cloud Native SDN](/cloud/cloud/#cloud-native-sdn)   
+- [Introduction](/cloud/cloud_native_sdn/#introduction)
+- [Cloud Native Networks](/cloud/cloud_native_sdn/#cloud-native-networks)   
+- [SDN Flavors](/cloud/cloud_native_sdn/#sdn-flavors)   
+- [Cloud Native SDN](/cloud/cloud_native_sdn/#cloud-native-sdn)   
 
 ---
 
@@ -54,13 +56,13 @@ It is easy to see how different flavors of SDN have emerged simply by looking at
 
 * *WAN SDN*: Classify and intelligently forward WAN traffic based on cost, performance and other policy constraints. Dynamically optimize WAN edge device configurations. Successful deployment results in large cost savings and is driving rapid adoption of [SDN solutions](http://www.networkcomputing.com/networking/software-defined-wan-a-primer/a/d-id/1307047) for the WAN.
 
-* *Cloud Native SDN*: Integrate with cloud orchestration systems to automate provisioning of isolated multi-tenant [Cloud Native networks](#cloud-native-networks). Group cloud endpoints in to services, add load balancers as front-end service endpoints and make them discoverable (*Cloud endpoints* here simply means endpoints that reside anywhere in a public or private cloud).
+* *Cloud Native SDN*: Integrate with cloud orchestration systems to automate provisioning of isolated multi-tenant [Cloud Native networks](/cloud/cloud_native_networks/). Group cloud endpoints in to services, add load balancers as front-end service endpoints and make them discoverable (*Cloud endpoints* here simply means endpoints that reside anywhere in a public or private cloud).
 
 Clearly, the objectives for Cloud Native SDN are vastly different from each of the other SDN designs and therefor a separate solution is warranted. 
 
 Importantly, there is no requirement for layer 2 network features, traffic classification or device reconfiguration. Without these requirements, the single remaining challenge is provide to multi-tenancy. 
 
-The complexity of building and operating VXLAN overlay networks for layer 2 virtualization are [well known](/how/#vxlan-isolation/), so dropping this from Cloud Native SDN immediately simplifies the design. However, without VXLAN, multi-tenancy needs to be implemented in some [other way](/how/details.html/#romana-tenant-isolation).
+The complexity of building and operating VXLAN overlay networks for layer 2 virtualization are [well known](/how/background/#vxlan-isolation/), so dropping this from Cloud Native SDN immediately simplifies the design. However, without VXLAN, multi-tenancy needs to be implemented in some [other way](/how/romana_details/#romana-tenant-isolation).
 
 {% include backtotopbutton.html %}
 
@@ -70,11 +72,11 @@ The complexity of building and operating VXLAN overlay networks for layer 2 virt
 
 Cloud Native SDN can be simpler than Enterprise SDN because the requirements are much simpler. Specifically, endpoints do not require layer 2 adjacency, so the complexity of overlays and tunnel endpoints disappears. This also lets operators run their cloud networks directly on the physical devices, which delivers higher performance and provides better visibility, manageability and control.
 
-Romana solves the multi-tenancy problem without overlays using an innovative [layer 3 tenancy model](/how/how/#romana-tenant-isolation) that lets operators deploy Romana in a [Routed Access](#/how/how/routed-access-datacenter) datacenter design, for even simpler operations. This tenancy model also captures [application level context](/how/how/#romana-tenant-isolation) directly in the network, simplifying the job of securing the network and applying policy based control.
+Romana solves the multi-tenancy problem without overlays using an innovative [layer 3 tenancy model](/how/romana_details/#romana-tenant-isolation) that lets operators deploy Romana in a [Routed Access](#/how/how/romana_details/routed-access-datacenter) datacenter design, for even simpler operations. This tenancy model also captures [application level context](/how/romana_details/#romana-tenant-isolation) directly in the network, simplifying the job of securing the network and applying policy based control.
 
 Finally, since traffic runs on the physical network without encapsulation, all standard layer 3 traffic steering and filtering techniques can be used (in physical or virtual form factors) further simplifying network operations.
 
-Learn more about how Romana Cloud Native SDN works [here](/how/romana/)
+Learn more about how Romana Cloud Native SDN works [here](/how/romana_basics/)
 
 {% include backtotopbutton.html %}
 

@@ -1,11 +1,16 @@
 ---
 layout: page
-title: Code
+title: Join the Effort 
+menu_text: NA
+nav_text: Code
 icon: code
 firstnav: 7
 secondnav: 9
 permalink: /code/
 ---
+
+All the code is available right now [here](http://www.github.com/romana) on Github.
+
 If you want to get involved, we're taking pull requests and looking for contributors to join the effort.
 
 We're currently working to get version 1.0 as soon as practical. See our [Roadmap](/roadmap/) for what we're working on.

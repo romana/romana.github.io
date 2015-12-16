@@ -1,20 +1,22 @@
 ---
 layout: page
-title: Details
+title: Romana Details
+menu_text: More Details
+nav_text: NA
 firstnav: 2
 secondnav: 1
-permalink: /how/romana/
+permalink: /how/romana_details/
 ---
 
 ### Topics
 
-- [Introduction](/how/romana/#introduction)
-- [Romana Tenant Isolation](/how/romana/#romana-tenant-isolation)
-- [IP Address Management](/how/romana/#ip-address-management)
-- [Route Manager and Host Agent](/how/romana/#route-manager-and-host-agent) 
-- [Microservices](/how/romana/#microservices) 
-- [Service Insertion](/how/romana/#service-insertion) 
-- [Policy Based Control](/how/romana/#policy-based-control)  
+- [Introduction](/how/romana_details/#introduction)
+- [Romana Tenant Isolation](/how/romana_details/#romana-tenant-isolation)
+- [IP Address Management](/how/romana_details/#ip-address-management)
+- [Route Manager and Host Agent](/how/romana_details/#route-manager-and-host-agent) 
+- [Microservices](/how/romana_details/#microservices) 
+- [Service Insertion](/how/romana_details/#service-insertion) 
+- [Policy Based Control](/how/romana_details/#policy-based-control)  
 
 ---
 
@@ -44,7 +46,7 @@ The traditional method to maintain tenant isolation is to create individual laye
 
 What operators need is a solution that supports a multi-tenant network isolation model that avoids the cost and complexity of overlay networks, while maintaining the simplicity of the routed access datacenter design.
 
-Romana can deliver this solution because it focuses on the requirements of [Cloud Native](/cloud-native-sdn/) applications and these applications' network requirements are very simple. 
+Romana can deliver this solution because it focuses on the requirements of [Cloud Native](/cloud/cloud-native-sdn/) applications and these applications' network requirements are very simple. 
 
 For example, the [Kubernetes network model](http://kubernetes.io/v1.0/docs/admin/networking.html#kubernetes-model) requires only reachability among endpoints, without NAT:
 
@@ -148,7 +150,7 @@ The Route Manager already does when it sets up a route. Modifying the route in t
 
 Defining these traffic path is the job of the [Romana Service Policy Manager](#policy-based-control).
 
-A more detailed overview of Service Insertion is available [here](/how/chain/)
+A more detailed overview of Service Insertion is available [here](TBD on Github) 
 
 {% include backtotopbutton.html %}
 ---

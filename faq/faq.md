@@ -1,13 +1,13 @@
 ---
 layout: page
-title: FAQ
+title: Frequently Asked Questions
+menu_text: NA
+nav_text: FAQ
 icon: question_answer
 firstnav: 4
 secondnav: 9
 permalink: /faq/
 ---
-
-### Frequently Asked Questions
 
 1. [What does Cloud Native mean](#what-does-cloud-native-mean)?
 2. [What is Cloud Native SDN](#what-does-cloud-native-mean)?

@@ -1,13 +1,13 @@
 ---
 layout: page
-title: Watch and Learn
+title: Learn how Romana Works by Watching These Videos
+menu_text: NA
+nav_text: Watch and Learn 
 icon: 'videocam'
 firstnav: 5
 secondnav: 9
 permalink: /watch/
 ---
-
-### Learn how Romana works by watching these videos
 
 - [Running Kubernetes in AWS without overlay networking](#kubernetes).
 - [Running OpenStack overlay networking](#openstack).
