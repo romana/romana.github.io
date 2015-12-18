@@ -4,7 +4,7 @@ title: Helpful Network Background Information
 menu_text: Background
 nav_text: NA
 firstnav: 2
-secondnav: 2
+secondnav: 3
 permalink: /how/background/
 ---
 

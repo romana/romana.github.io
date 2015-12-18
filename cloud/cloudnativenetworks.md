@@ -5,7 +5,7 @@ nav_text: Cloud Native Networks
 menu_text: What Are They
 icon: cloud
 firstnav: 1
-secondnav: 0
+secondnav: 1
 permalink: /cloud/cloud_native_networks/
 ---
 

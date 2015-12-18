@@ -5,7 +5,7 @@ nav_text: How it Works
 menu_text: Basics
 icon: build
 firstnav: 2
-secondnav: 0
+secondnav: 1
 permalink: /how/romana_basics/
 ---
 

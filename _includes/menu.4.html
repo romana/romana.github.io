@@ -14,7 +14,7 @@ secondnav values from 0-9 with 0 for the button lable when there are menu items,
     {% for node in pages_list %}
       {% if node.title != null %}
 {% if node.firstnav == menu_position  %}
-{% if node.secondnav == 0  %}
+{% if node.secondnav == 1  %}
 <button id="menu{{ node.firstnav }}" class= "mdl-color-text--black mdl-button">{{ node.nav_text }}
 			</button>
 <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu" for="menu{{ node.firstnav }}">
@@ -28,13 +28,6 @@ secondnav values from 0-9 with 0 for the button lable when there are menu items,
 
 <button id="menu{{ node.firstnav }}" class= "mdl-color-text--black mdl-button">{{ node.nav_text}}
 </button></a>
-{% endif %}
-
-{% if node.secondnav == 1  %}
-
-          <a class="mdl-navigation__link {% if page.url == node.url %} jekyll-mdl-navactive{% endif %}" href="{{ node.url | prepend: site.baseurl }}">
-		<li class="mdl-menu__item">{{ node.menu_text}}</li>
-	</a>
 {% endif %}
 
 
