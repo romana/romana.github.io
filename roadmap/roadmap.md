@@ -49,7 +49,7 @@ While Cloud Native application typically do not rely on live migration for eithe
 
 For this reason we are building a set of live migration features that let physical infrastructure to be managed more efficiently
 
-[(^Back to Top^)](#help-us-build-the-future-of-cloud-native-sdn)
+{% include backtotopbutton.html %}
 
 ---
 
@@ -57,7 +57,7 @@ For this reason we are building a set of live migration features that let physic
 
 The Awesome Hybrid cloud feature 
 
-[(^Back to Top^)](#help-us-build-the-future-of-cloud-native-sdn)
+{% include backtotopbutton.html %}
 
 ---
 
@@ -65,7 +65,7 @@ The Awesome Hybrid cloud feature
 
 Connecting to AWS requires that the IPSEC gateway to the VPC gateway be configured properly. We're working on that
 
-[(^Back to Top^)](#help-us-build-the-future-of-cloud-native-sdn)
+{% include backtotopbutton.html %}
 
 ---
 
@@ -73,7 +73,7 @@ Connecting to AWS requires that the IPSEC gateway to the VPC gateway be configur
 
 The Awesome topology manager.
 
-[(^Back to Top^)](#help-us-build-the-future-of-cloud-native-sdn)
+{% include backtotopbutton.html %}
 
 ---
 
@@ -81,36 +81,37 @@ The Awesome topology manager.
 
 The Awesome OpenStack Integration
 
-[(^Back to Top^)](#help-us-build-the-future-of-cloud-native-sdn)
+{% include backtotopbutton.html %}
 
 ---
 
 #### Physical Device Management
 
-[(^Back to Top^)](#help-us-build-the-future-of-cloud-native-sdn)
+{% include backtotopbutton.html %}
 
 ---
 
 #### Enterprise Systems Integration
 
-[(^Back to Top^)](#help-us-build-the-future-of-cloud-native-sdn)
+{% include backtotopbutton.html %}
 
 ---
 
 #### IPAM
 
-[(^Back to Top^)](#help-us-build-the-future-of-cloud-native-sdn)
+{% include backtotopbutton.html %}
 
 ---
 
 #### Security
 
-[(^Back to Top^)](#help-us-build-the-future-of-cloud-native-sdn)
+{% include backtotopbutton.html %}
 
 ---
 
 #### Network Management Systems
 
-[(^Back to Top^)](#help-us-build-the-future-of-cloud-native-sdn)
+{% include backtotopbutton.html %}
 
 ---
+

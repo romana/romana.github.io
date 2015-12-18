@@ -11,7 +11,7 @@ permalink: /code/
 
 All the code is available right now [here](http://www.github.com/romana) on Github.
 
-If you want to get involved, we're taking pull requests and looking for contributors to join the effort.
+If you want to get involved, we're taking pull requests and looking for contributors to join the effort. Join the [Romana community on Slack](http://romana.slack.com) to get your questions answered.
 
 We're currently working to get version 1.0 as soon as practical. See our [Roadmap](/roadmap/) for what we're working on.
 
