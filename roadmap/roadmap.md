@@ -9,109 +9,35 @@ secondnav: 9
 permalink: /roadmap/
 ---
 
-#### Help us build the future of Cloud Native SDN
+#### Release v0.1: Proof of Concept re-implemented
 
-#### Current Release v0.4
+Release v0.1 is a complete re-implementation of the initial Proof of Concept (PoC) prototype we demonstrated earlier this year. There is still a lot to do before it will support anything beyond simple, small scale experimentation. 
 
-The current release supports
+That said, we are anxious to get the software out to users to let them get hands-on experience with the software and to become familiar with the concepts behind [Cloud Native SDN](/cloud/cloud-native-sdn). In addition, there are many features we have not yet implemented and would like input prioritizing them, as well as help defining specific operational details.
 
-- [Feature 1](#feature-1)
-- [Feature 2](#feature-2)
-- [Feature 3](#feature-3)
+The current v0.1 release supports *only* what was demonstrated to users with the original PoC. Specifically:
 
+- Deployment on EC2 with OpenStack
+- Single *Administrator* Tenant
+- Pre-defined Network Segments
+- Default Segment Isolation Firewall
+- Minimal Horizon integration
 
----
+See the [README](http://www.github.com/romana/romana/README.md) file in the repository for more detail. 
 
-#### Version 1.0
-
-- [AWS IPSEC Gateway](#aws-ipsec-gateway)
-- [OpenStack Integration](#openstack-integration)
-- [Hybrid Cloud](#hybrid-cloud)
-- [IPAM](#ipam)
+We will quickly update this release to include a CLI to more easily add Tenants and Segments, as well as a Vagrant based laptop deployment alternative.
 
 ---
 
-#### Future Enhancements
+#### Release v0.2: Service Chaining and Insertion Prototype
 
-Our plans include the following functional enhancement. Follow the links to take you to the Github issue pages where the details are currently being discussed. 
+The next update will include the following enhancements:
 
-- [Live Migration](#live-migration)
-- [Topology Manager](#topology-manager)
-- [Physical Device Management](#physical-device-management)
-- [Security](#security)
-- [Network Management Systems](#network-management-systems)
+- Prototype Service Chaining and Insertion
+- Expanded Policy Specification 
+- Basic Kubernetes Integration
+- Improved OpenStack Horizon Integration
 
----
-
-#### Live Migration
-
-While Cloud Native application typically do not rely on live migration for either maintenance or to maintain availability, Operators, however, need the flexibility to manage their physical infrastructure. 
-
-For this reason we are building a set of live migration features that let physical infrastructure to be managed more efficiently
-
-{% include backtotopbutton.html %}
+An introduction to how Romana implements Service Insertion is available [here](/how/romana_details/#service-insertion).
 
 ---
-
-#### Hybrid Cloud
-
-The Awesome Hybrid cloud feature 
-
-{% include backtotopbutton.html %}
-
----
-
-#### AWS IPSEC Gateway
-
-Connecting to AWS requires that the IPSEC gateway to the VPC gateway be configured properly. We're working on that
-
-{% include backtotopbutton.html %}
-
----
-
-#### Topology Manager
-
-The Awesome topology manager.
-
-{% include backtotopbutton.html %}
-
----
-
-#### OpenStack Integration
-
-The Awesome OpenStack Integration
-
-{% include backtotopbutton.html %}
-
----
-
-#### Physical Device Management
-
-{% include backtotopbutton.html %}
-
----
-
-#### Enterprise Systems Integration
-
-{% include backtotopbutton.html %}
-
----
-
-#### IPAM
-
-{% include backtotopbutton.html %}
-
----
-
-#### Security
-
-{% include backtotopbutton.html %}
-
----
-
-#### Network Management Systems
-
-{% include backtotopbutton.html %}
-
----
-

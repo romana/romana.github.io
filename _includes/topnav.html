@@ -6,7 +6,7 @@
 <!-- Top Nav here -->
 
 
-<a class="mdl-navigation__link {% if page.url == node.url %} jekyll-mdl-navactive{% endif %}" href="{{ site.baseurl }}/indexSite.html">
+<a class="mdl-navigation__link {% if page.url == node.url %} jekyll-mdl-navactive{% endif %}" href="{{ site.baseurl }}/{{ site.homepage }}">
 <button id="Home" class= "mdl-color-text--black mdl-button">Home</button>
 </a>
 
@@ -20,6 +20,10 @@
 {% include menu.7.html %}
 {% include menu.8.html %}
 
+{% comment %}
+
+Take out the search button on the eval site
+
 <!-- Search here -->
 <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
           				<label class="mdl-button mdl-js-button mdl-button--icon" for="search"><i class="material-icons">search</i></label>
@@ -27,4 +31,6 @@
             				<input class="mdl-textfield__input" type="text" id="search" />
 				   		</div>
 					</div>
+
+{% endcomment %}
 

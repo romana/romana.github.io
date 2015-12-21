@@ -6,7 +6,7 @@
 <div class="mdl-layout__drawer">
 
   <nav class="mdl-navigation">
-    <a class="mdl-navigation__link {% if page.url == '/indexSite.html' %} jekyll-mdl-navactive{% endif %}" href="{{ site.baseurl }}/indexSite.html">
+    <a class="mdl-navigation__link {% if page.url == '/{{ site.homepage }}' %} jekyll-mdl-navactive{% endif %}" href="{{ site.baseurl }}/{{ site.homepage }}">
       <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored jekyll-mdl-navicon">
         <i class="material-icons">home</i>
       </button>

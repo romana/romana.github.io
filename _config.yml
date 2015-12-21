@@ -14,6 +14,11 @@ description: > # this means to ignore newlines until "baseurl:"
 # Used for Sitemap.xml and your RSS feed
 url: romana.io
 
+# Homepage URL. Used for links to homepage in templates so all templated don't
+# need to be updated when obscure urls used
+
+homepage: earlyaccess.html
+
 # If you're hosting your site at a Project repository on GitHub pages
 # (http://yourusername.github.io/repository-name)
 # and NOT your User repository (http://yourusername.github.io)
@@ -24,7 +29,7 @@ baseurl:
 email: info@romana.io
 
 # https://twitter.com/romanaproject
-twitter_username: romanaproject
+#twitter_username: romanaproject
 
 # https://github.com/romana
 github_username:  romana

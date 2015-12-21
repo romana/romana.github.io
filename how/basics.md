@@ -9,7 +9,7 @@ secondnav: 1
 permalink: /how/romana_basics/
 ---
 
-Romana Cloud Native networks are based on a new layer 3 tenancy model that encodes tenant and segment identifiers directly in the IP address. This enables multi-tenant cloud networks to be built without a virtual network overlay.
+Romana Cloud Native Networks are based on a new layer 3 tenancy model that encodes tenant and segment identifiers directly in the IP address. This enables multi-tenant cloud networks to be built without a virtual network overlay.
 
 Romana includes an intelligent [IP Address Management](/how/romana_details/#ip-address-management) (IPAM) system that assigns IP addresses that include network topology and application level context. This lets Romana take advantage of modern, layer 3 routed access datacenter designs, and allows routes to be aggregated and statically configured on physical network devices. With static routes on the physical network, only the hypervisor needs an updated route when a new endpoint is created. 
 
