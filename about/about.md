@@ -14,7 +14,7 @@ Romana is a new open source Software Defined Network (SDN) solution that lets da
 
 ### Open Source Software
 
-- All software is publically available in the Romana GitHub [repositories](www.github.com/romana).
+- All software is publically available in the Romana GitHub [repositories](http://www.github.com/romana).
 
 ### Sponsor
 
