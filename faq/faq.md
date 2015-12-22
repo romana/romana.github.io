@@ -10,34 +10,104 @@ permalink: /faq/
 ---
 
 1. [What does Cloud Native mean](#what-does-cloud-native-mean)?
-2. [What is Cloud Native SDN](#what-does-cloud-native-mean)?
-3. [Does Romana work with OpenStack](#what-does-cloud-native-mean)?
-4. [Does Romana work with Docker](#what-does-cloud-native-mean)?
-5. [Does Romana work with Kubernetes](#what-does-cloud-native-mean)?
-6. [Will Romana run in AWS](#what-does-cloud-native-mean)?
-7. [How are network segments isolated](#what-does-cloud-native-mean)?
-8. [Does it have any layer 2 semanatics](#what-does-cloud-native-mean)?
-9. [How does it scale](#what-does-cloud-native-mean)?
-10. [What are your plans for IPv6](#what-does-cloud-native-mean)?
-11. [How do I put Load Balancer of Firewall in front of my services](#what-does-cloud-native-mean)?
-12. [What Kind of Service Discovery is supported](#what-does-cloud-native-mean)?
-13. [Will it work with Kubernets Kube-proxy](#what-does-cloud-native-mean)?
-14. [What are the security implications of application level context being exposed in the IP address](#what-does-cloud-native-mean)?
-
+2. [What is Cloud Native SDN](#what-is-cloud-native-sdn)?
+3. [Does Romana work with OpenStack](#does-romana-work-with-openstack)?
+4. [Does Romana work with Docker](#does-romana-work-with-docker)?
+5. [Does Romana work with Kubernetes](#does-romana-work-with-kubernetes)?
+6. [Will Romana run in AWS](#will-romana-run-in-aws)?
+7. [How are network segments isolated](#how-are-network-segments-isolated)?
+8. [Does it have any layer 2 semantics](#does-it-have-any-layer-2-semantics)?
+9. [How does it scale](#how-does-it-scale)?
+10. [What are the plans for IPv6](#what-are-the-plans-for-ipv6)?
 
 ---
 
-### 1. What does Cloud Native mean?
+#### 1. What does Cloud Native mean?
+
+Cloud Native is a term without a precise definition, but is generally understood to be the name for applications that are developed specifically for deployment in the cloud. 
+
+The [Cloud Native Foundation](https://cncf.io/) avoids defining it at all, preferring to simply propose Kubernetes as the 'seed' technology for the architectural style. Romana uses the term more broadly to include any newly developed application designed to run on popular IaaS platforms, such as [AWS]( http://aws.amazon.com/), [GCE]( https://cloud.google.com/compute/) or [Microsoft Azure](https://azure.microsoft.com/en-us/).  See [Cloud Native Networks](/cloud/cloud_native_networks/) for more details.
+
+{% include backtotopbutton.html %}
+
+---
+
+#### 2. What is Cloud Native SDN?
+
+Cloud Native SDN is a specific kind of Software Defined Networking approach focused on building and operating Cloud Native Networks. Cloud Native Networks do not need layer 2 networks so can be build without an virtual network overlay. Cloud Native SDN builds these networks that are easier to deploy and maintain and can deliver higher performance that cloud networks build using alternative SDN techniques. 
+
+See [Cloud Native SDN](cloud/cloud_native_snd) for more details.
+
+{% include backtotopbutton.html %}
+
+---
+
+#### 3. Does Romana work with OpenStack?
+
+Yes. Romana works with cloud orchestration systems like OpenStack to launch VM and container endpoints. Romana integrates with OpenStack through an Modular Layer 2 device driver and an interface to its new IPAM API.
+
+See current [Roadmap](/roadmap/) for details.
 
 
 {% include backtotopbutton.html %}
 
 ---
 
-### 2. What is Cloud Native SDN?
+#### 4. Does Romana work with Docker?
 
+It will. The current [v0.1 release](/roadmap/) does not support Docker, but it is planned for release v0.2.
 
 {% include backtotopbutton.html %}
 
+---
+
+#### 5. Does Romana work with Kubernetes?
+
+It will. The current [v0.1 release](/roadmap/) does not support Kubernetes, but it is planned for release v0.2.
+
+{% include backtotopbutton.html %}
+---
+
+#### 6. Will Romana run in AWS?
+
+Yes. The current release supports OpenStack running in AWS EC2. See current [Roadmap](/roadmap/) for details.
+
+{% include backtotopbutton.html %}
 
 ---
+
+#### 7. How are network segments isolated?
+
+Romana uses a new layer 3 based approach for tenant and segment isolation. Romana encodes tenant and segment identifiers directly in the IP address and ip tables firewall rules are set to provide isolation. This enables multi-tenant cloud networks to be built without a virtual network overlay. See [Romana Tenant Isolation](/how/romana_details/#romana-tenant-isolation) for  more detail.
+
+{% include backtotopbutton.html %}
+
+---
+
+#### 8. Does it have any layer 2 semantics?
+
+No. Cloud Native applications are built on simple cloud networks where no layer 2 networks are available. Romana implements only the features that are needed for [Cloud Native Networks](/how/cloud_native_networks/).
+
+{% include backtotopbutton.html %}
+
+---
+
+#### 9. How does it scale?
+
+Since Romana uses a distributed, service oriented approach, each service can scale by simply adding more service instances. See [Romana Architecture](/how/romana_arch/) for details.
+
+{% include backtotopbutton.html %}
+
+---
+
+#### 10. What are the plans for IPv6
+
+Since Romana tenant and segment isolation relies on [IP addressing](/how/romana_details/#romana-tenant-isolation), larger deployments will exceed the limit of what IPv4 can support.  For this reason, Romana will support IPv6 as soon as practical. However, it is unlikely to be part of the first v1.0 Production Release 
+ 
+{% include backtotopbutton.html %}
+
+---
+
+
+
+
