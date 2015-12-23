@@ -29,9 +29,9 @@ It is easy to see how different flavors of SDN have emerged simply by looking at
 
 Clearly, the objectives for Cloud Native SDN are different from each of the other SDN designs and a separate solution is warranted. 
 
-Specifically, there is no Enterprise requirement for layer 2 networks, no WAN requirement for traffic classification and device reconfiguration, and no Carrier requirement for NFV. 
+Specifically, there is no enterprise requirement for layer 2 networks, no WAN requirement for traffic classification and device reconfiguration, and no carrier requirement for NFV. 
 
-Without these requirements, Cloud Native SDN can avoid much of the complexity these SDN solutions introduce, such as VXLAN overlays for Enterprise virtual networks. 
+Without these requirements, Cloud Native SDN can avoid much of the complexity these SDN solutions introduce, such as VXLAN overlays for enterprise virtual networks. 
 
 ---
 

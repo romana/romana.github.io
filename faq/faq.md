@@ -19,6 +19,7 @@ permalink: /faq/
 8. [Does it have any layer 2 semantics](#does-it-have-any-layer-2-semantics)?
 9. [How does it scale](#how-does-it-scale)?
 10. [What are the plans for IPv6](#what-are-the-plans-for-ipv6)?
+11. [Does Romana support overlapping IP addresses](#does-romana-support-overlapping-ip-addresses)?
 
 ---
 
@@ -106,7 +107,11 @@ Since Romana tenant and segment isolation relies on [IP addressing](/how/romana_
  
 {% include backtotopbutton.html %}
 
----
+#### 11. Does Romana Support Overlapping IP addresses?
+
+No. Romana does not support overlapping IP addresses. To maintain the structure of the [routed access datacenter design](/how/background/#routed-access-datacenter/), IP addresses need to be conform to the address hierarchy.
+  
+{% include backtotopbutton.html %}
 
 
 
