@@ -23,6 +23,3 @@ Romana is a new open source Software Defined Network (SDN) solution that lets da
 ### License
 
 - Romana is an Apache 2.0 licensed project.
-
----
-

@@ -30,7 +30,7 @@ Kubernetes also introduces the idea of a 'pod' and a 'service' to more naturally
 
 This simple reachability model is important because it lets these networks support seamless and transparent scheduling of pods across cloud boundaries, greatly simplifying hybrid cloud deployment.
 
-Unlike these simple cloud networks, OpenStack networking is extremely complicated because it also provides Enterprise style networking for private clouds. However, one important feature it can provide for Cloud Native applications in a private cloud is segment isolation for multi-tenancy.
+Unlike these simple cloud networks, OpenStack networking is extremely complicated because it also provides enterprise style networking for private clouds. However, one important feature it can provide for Cloud Native applications in a private cloud is segment isolation for multi-tenancy.
 
 Taken together, Romana defines *Cloud Native Networks* as networks that provide Amazon style connectivity, Kubernetes style reachability and service definitions and an OpenStack style tenancy model to allow isolated, private and public cloud deployment of Cloud Native applications.
 

@@ -18,12 +18,12 @@ That said, we are anxious to get the software out to users to let them get hands
 The current v0.1 release supports *only* what was demonstrated to users with the original PoC. Specifically:
 
 - Deployment on EC2 with OpenStack
-- Single *Administrator* Tenant
-- Pre-defined Network Segments
+- Two default Tenant: *admin* and *demo*
+- Two Pre-defined Network Segments per Tenant, S1 and S2
 - Default Segment Isolation Firewall
 - Minimal Horizon integration
 
-See the [README](http://www.github.com/romana/romana/README.md) file in the repository for more detail. 
+See the [README](http://www.github.com/romana/romana/) file in the repository and the [Wiki]( http://www.github.com/romana/romana/wiki) home page for details on how to set up your own OpenStack cluster running Romana and what you can do with it. 
 
 We will quickly update this release to include a CLI to more easily add Tenants and Segments, as well as a Vagrant based laptop deployment alternative.
 
@@ -39,5 +39,3 @@ The next update will include the following enhancements:
 - Improved OpenStack Horizon Integration
 
 An introduction to how Romana implements Service Insertion is available [here](/how/romana_details/#service-insertion).
-
----
