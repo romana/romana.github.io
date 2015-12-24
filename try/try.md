@@ -28,8 +28,9 @@ Two Tenants are created: 'admin' and 'demo'. They each have up to 2 network segm
 
 #### What You Can Do
 
-Once you have successfully installed OpenStack, you can explore the setup by examining the route tables on the Compute Nodes. You can ssh in to the EC2 instance using it's public IP address. There you will find the local Romana router gateway interface (romana-gw) that is used to access endpoints running on the local host, as well as routes to the *other hosts* that lie on the 192.168.0/24 network (eth0). 
+Once you have successfully installed OpenStack, you can explore the setup by examining the route tables on the Compute Nodes. You can log in to Horizon at the IP address of the Controller node. The default administrator account is 'admin' with password 'secrete'. 
 
+You can ssh in to the EC2 instance using it's public IP address. There you will find the local Romana router gateway interface (romana-gw) that is used to access endpoints running on the local host, as well as routes to the *other hosts* that lie on the 192.168.0/24 network (eth0). 
 
 Depending on how many Compute Nodes you're running, it should looks something like the configuration below:
 
