@@ -17,7 +17,7 @@ We will be updating this release soon to also include a local deployment option 
 
 #### What Gets Installed
 
-The EC2 installation creates an OpenStack DevStack cluster (Liberty release) with a single Controller Node and up to 4 Compute Nodes, each running on their own EC2 instance. Romana installs its OpenStack ML2 and IPAM drivers and creates a Romana router gateway interface on each Compute Node. 
+The EC2 installation takes 30-40 mins to complete (on t2.medium instances) and creates an OpenStack DevStack cluster (Liberty release) with a single Controller Node and up to 4 Compute Nodes. Each OpenStack Node runs on a dedicated EC2 instance. Romana installs its OpenStack ML2 and IPAM drivers and creates a Romana router gateway interface on each Compute Node. 
 
 The default configuration partitions the address space so that 8 bits are used for the Host ID, 4 bits for the Tenant and Segment IDs as well as 8 bits for the endpoint ID. While this may not be an efficient allocation for a production deployment, it has the advantage of creating IP addresses that make it easy to see what is happening. 
 
@@ -32,7 +32,7 @@ Once you have successfully installed OpenStack, you can explore the setup by exa
 
 You can ssh in to the EC2 instance using it's public IP address. There you will find the local Romana router gateway interface (romana-gw) that is used to access endpoints running on the local host, as well as routes to the *other hosts* that lie on the 192.168.0/24 network (eth0). 
 
-Depending on how many Compute Nodes you're running, it should looks something like the configuration below:
+The route table should looks something like the configuration below:
 
     ubuntu@ip-192-168-0-10:~$ route -n
     Kernel IP routing table
