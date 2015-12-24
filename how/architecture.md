@@ -51,7 +51,7 @@ The Romana IPAM Service implements the layer 3 tenancy model as described [here]
 
 The Topology Service maintains the configuration of the physical network topology and the endpoints that are attached to the network.
 
-#### Router Manager Service
+#### Route Manager Service
 
 *Not implemented in Release v0.1*
 

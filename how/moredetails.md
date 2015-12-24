@@ -22,21 +22,23 @@ permalink: /how/romana_details/
 
 ### Introduction
 
-To better understand the operation of Romana, it is helpful to also understand the basics of a layer 3 routed access datacenter design, tenant isolation and service chaining and insertion. A brief summary of these concepts is available [here](/how/background/).
+To better understand the operation of Romana, it is helpful to also understand the basics of a layer 3 routed access datacenter design, tenant isolation and service chaining and insertion. If you are unfamiliar with any of these concepts, a brief summary is available [here](/how/background/).
 
-Romana Networks are built and managed by a set of configuration and control services that are integrated into popular Cloud Management Systems (CMS) including OpenStack, Kubernetes and Docker. 
+---
 
-Application developers using these systems see no changes to their standard development processes. An operator deploying one of these CMS's in their own datacenter would build it in as part of their private cloud deployment. When running Docker or Kubernetes in AWS, users would deploy and configure Romana as part of the CMS installation.
+Cloud Native Networks are built and managed by the set of [configuration and control services](/how/romana_arch/) that make up the Romana Cloud Native SDN solution. 
+
+Romana is integrated into popular Cloud Management Systems (CMS) including OpenStack, Kubernetes and Docker so that application developers using these systems see no changes to their standard development workflow. An operator deploying one of these CMS's in their own datacenter would build it in as part of their private cloud infrastructure. When running Docker or Kubernetes in AWS, users would deploy and configure Romana as part of the CMS installation.
 
 Conceptually, Romana provides two important functions: 
 
-* An *IP Address Management* (IPAM) system to ensure endpoints are assigned addresses in a way that maintain the simplicity of a layer 3 [routed access datacenter](/how/background/#routed-access-datacenter)   design, and  
+* An *IP Address Management* (IPAM) system to ensure endpoints are assigned addresses in a way that preserves the simplicity of a layer 3 [routed access datacenter](/how/background/#routed-access-datacenter)   design, and  
 
 * A *Route Manager* to configure and update virtualization hosts with routes to these endpoints. The Route Manager also configures the host with firewall rules to provide tenant isolation and to enforce other traffic management and control policies.
 
-The implementation details of these functions are provided in the architectural overview available [here](www.github.com/romana/core).
+The implementation details of these functions are provided in the architectural overview available [here](/how/romana_arch/).
 
-Together, intelligent assignment of IP addresses along with route control lets operators build multi-tenant cloud networks without an overlay network for tenant isolation. 
+Together, intelligent assignment of IP addresses along with route control lets operators build multi-tenant Cloud Native Networks without an overlay for tenant isolation. 
 
 ---
 
@@ -60,17 +62,17 @@ without NAT<br>
 
 Since Cloud Native applications do not require layer 2 networks, Romana can avoid an overlay network for tenant isolation as long as isolation can be enforced at layer 3.
 
-Fortunately, this can be achieved with a layer 3 firewall by configuring IP tables rules on the hypervisor that allow communication only among valid endpoints. A local Romana agent is available to configure these firewall rules as needed. 
+Fortunately, this can be achieved with a layer 3 firewall by configuring IP tables rules on the hypervisor that allow communication only among valid endpoints. A local Romana [Host Agent](/how/romana_arch/#host-configuration-service) is available to configure these firewall rules as needed. 
 
-However, maintaining these kinds of firewall rules and access control list (ACLs) for all endpoints is a large and complex data management problem. The problem becomes even more difficult when more advanced traffic management policies are required [Is this true? How complex is this, really?].
+However, maintaining these kinds of firewall rules and access control list (ACLs) for all endpoints is a large and complex data management problem. The problem becomes even more difficult when more advanced traffic management policies are required.
 
-To reduce this complexity and simplify the solution further, Romana extends the idea of capturing network topology in the IP address to also include a segment identifier in the address as well.
+To reduce this complexity and simplify the solution further, Romana extends the idea of capturing network topology in the IP address to also include a tenant and segment identifier in the address as well.
 
-Similar to a routed access datacenter design where the high order address bits identify a specific port in the network, Romana can assign a set of bits to identify individual segments. Each segment, therefore, has its own unique CIDR on every host.  
+Similar to a routed access datacenter design where the high order address bits identify a specific port in the network, Romana assigns a set of address bits to identify individual tenants and their segments. Each tenant and segment, therefore, has its own unique CIDR on every host.  
 
-The power of this addressing scheme is that this segment CIDR now has *application level context*, which Romana uses to simplify the firewall rules. Also, in addition to the CIDR being the handle by which all traffic in and out of the segment can be controlled, capturing this application level context in the CIDR makes *every layer 3 control device available for application level policy enforcement*.
+The power of this addressing scheme is that these CIDRs now have tenant and *application level context*, which Romana uses to simplify configuring firewall rules. Also, in addition to the CIDR being the handle by which all traffic in and out of the segment can be controlled, capturing this application level context in the (physical network) CIDR makes *every layer 3 control device available for application level policy enforcement*.
 
-Specifically, Romana assigns a set of bits to be a segment identifier and further splits it in to a Tenant ID and a Segment ID. This creates Tenant CIDRs as well as Tenant Segment CIDRs within the tenant range, each with their own application level context.
+Specifically, Romana assigns a set of bits to be a tenant identifier (Tenant ID) and another set of bits to be a segment identifier (Segment ID). This creates Tenant CIDRs as well as longer Segment CIDRs within the tenant range, each with their own application level context.
 
 The diagram below illustrates how an IP address can be partitioned to capture host, tenant and segment identity. Note, for simplicity, the example uses 8 bits for each range, which makes the resulting IP addresses readable in four octet dot address notation. 
 
@@ -92,7 +94,7 @@ In summary, for each virtualization host, there is a CIDR that identifies traffi
 |Segment|1|10.1.1.16/28|
 {: class='romanatable'}
 
-Across all hosts, the total number of CIDRs is the total number of routes on each Host, times the number of hosts deployed. It is the job of the Romana [Route Manager](#route-manager) to create, set, update and manage these routes across the entire network. [details TBD]
+Across all hosts, the total number of CIDRs is the total number of routes on each Host, times the number of hosts deployed. It is the job of the Romana [Route Manager](#route-manager-and-host-agent) to create, set, update and manage these routes across the entire network.
 
 Layer 3 firewalls avoid the use of overlays for tenant isolation and with Romana inserting tenant and segment IDs in IP addresses, isolation and traffic control can be simplified because they each have their own CIDR, which lets devices be configured more easily. 
 
@@ -103,11 +105,11 @@ Layer 3 firewalls avoid the use of overlays for tenant isolation and with Romana
 
 Attaching [application level context](#romana-tenant-isolation) to endpoint addresses is a powerful tool to simplify cloud networking. The remaining problem is ensuring that IP addresses get assigned in a way that conforms to this design.
 
-Romana does this with its own IP Address Management system what works with cloud orchestration systems such as OpenStack and Kubernetes and maintains a list of all Tenants and the network Segments and endpoints they create. 
+Romana does this with its own [IP Address Management system](/how/romana_arch/#ipam-service) what works with cloud orchestration systems such as OpenStack and Kubernetes to maintain a list of all Tenants and the network Segments and endpoints they create. 
 
-For OpenStack, Romana provides a standard OpenStack ML2 plugin. Whenever a new Tenant, Segment or endpoint is created, Romana updates its database. 
+For OpenStack, Romana provides a standard OpenStack ML2 plugin and IPAM API Driver. Whenever a new Tenant, Segment or endpoint is created, Romana updates its database. 
 
-When a new VM is launched in OpenStack, Romana learns which Tenant is launching it and the segment on which they wish it to be placed. When OpenStack identifies the host for the VM, the Romana IPAM calculates the IP address based on the Host ID, Tenant ID and Segment ID.  This address is then assigned to the VM interface using DHCP.
+When a new VM is launched in OpenStack, Romana learns which Tenant is launching it and the segment on which they wish it to be placed. When OpenStack identifies the host for the VM, the Romana IPAM calculates the IP address based on the Host ID, Tenant ID and Segment ID.  This address is then assigned to the VM interface using the OpenStack IPAM API.
 
 For other cloud orchestration systems, such as Kubernetes, a similar process takes place to make sure all application endpoints are assigned the proper addressees.
 
@@ -120,7 +122,7 @@ Romana uses the native routing functions in the Linux kernel for packet forwardi
 
 Before any endpoints can be configured, the Route Manager, via the Host Agent, must first configure the default gateway interface on the host that local endpoints use. When a new endpoint is launched on a host, the Route Manager instructs the Host Agent to configure a route. Normally, these routes are simply default routes to the host gateway. 
 
-However, when a service is inserted into the path of an endpoint, this default route can be reconfigured to use a different address to forward traffic to a Service Function for [Service Insertion](#service-insertion) or to deal with [VM migration](github issue). 
+However, when a service is inserted into the path of an endpoint, this default route can be reconfigured to use a different address to forward traffic to a Service Function for [Service Insertion](#service-insertion) or to accommodate [VM migration](http://github.com/romana/romana/issues) to other hosts. 
 
 {% include backtotopbutton.html %}
 ---
@@ -129,7 +131,7 @@ However, when a service is inserted into the path of an endpoint, this default r
 
 Cloud Native applications frequently take advantage of a [microservices](http://thenewstack.io/best-practices-for-developing-cloud-native-applications-and-microservice-architectures/) based approach. This requires replicated elements within a service be identified individually, yet all be managed collectively as a unified service. These requirements are well suited to a layer 2 networking model since it provides network isolation as well as explicit access control and membership affinity through its gateway and CIDR.
 
-Other cloud networking solutions that use layer 3 for tenant isolation are unable to take advantage of these layer 2 properties. However, since Romana *does maintain CIDRs for each tenant segment*, like layer 2 networks, it is inherently service oriented because network segments can define microservice boundaries. And, since network segments define a service boundary, the CIDR that controls traffic in and out of a segment can also be used to steer traffic among Microservices and through operator defined [Service Functions](#service-insertion).
+Other cloud networking solutions that use layer 3 for tenant isolation are unable to take advantage of these layer 2 properties. However, since Romana *does maintain CIDRs for each tenant segment*, like layer 2 networks, it is inherently service oriented because network segments can *define microservice boundaries*. And, since network segments define a service boundary, the CIDR that controls traffic in and out of a segment can also be used to steer traffic among Microservices and through operator defined [Service Functions](#service-insertion).
 
 The default gateway of the endpoints in a segment (i.e. a microservice) can be assigned to a Load Balancer, or any other Service Function device to act as the service endpoint. These front end Service Functions can apply any kind of user policy that is required. 
 
@@ -140,7 +142,7 @@ Since an overlay is not necessary for Romana segments, all existing (physical or
 
 ### Service Insertion
 
-Connecting different microservices to compose more complicated applications is typically done directly by the application developer by naming service endpoints and adding them to a Service Discovery registry. When services need to communicate, they look for the named service in the registry to learn the IP address (or addresses) where the service is available, and open a connection directly with the service endpoint. The path that traffic actually takes between service endpoints is generally not something developer cares about. 
+Connecting different microservices to compose more complicated applications is typically done directly by the application developer by naming service endpoints, then adding them to a Service Discovery registry. When services need to communicate, they look for the named service in the registry to learn the IP address (or addresses) where the service is available, and open a connection directly with the service endpoint. The path that traffic actually takes between service endpoints is generally not something developer cares about. 
 
 Operators, on the other hand, frequently want to steer traffic through different paths because of different policy objectives (Security, Encryption, etc.).  These traffic policies can not be left to the developer to apply, which means operators need a way to transparently steer traffic through Service Functions, independent of how individual microservices ordinarily communicate.
 
@@ -150,12 +152,14 @@ The Route Manager already does when it sets up a route. Modifying the route in t
 
 Defining these traffic path is the job of the [Romana Service Policy Manager](#policy-based-control).
 
-A more detailed overview of Service Insertion is available [here](TBD on Github) 
+A more detailed overview of Service Insertion is available [here](http://github.com/romana/romana/issues) 
 
 {% include backtotopbutton.html %}
 ---
 
 ### Policy Based Control
+
+To be implemented in a future release.
 
 {% include backtotopbutton.html %}
 

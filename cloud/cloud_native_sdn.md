@@ -8,7 +8,6 @@ secondnav: 2
 permalink: /cloud/cloud_native_sdn/
 
 ---
-
 Romana is a new Software Defined Network (SDN) solution specifically designed for the [Cloud Native](https://cncf.io/) architectural style. Romana Cloud Native Networks are less expensive to build, easier to operate and deliver higher performance than multi-tenant cloud networks built using alternative SDN designs. 
 
 We call Romana *Cloud Native SDN* because of this specific application focus, and also because it was built and can be deployed in a Cloud Native way. Romana is a [collection of microservices](/how/romana_arch/) that run wherever applications are deployed, which lets cloud management systems like Kubernetes seamlessly and transparently scale Cloud Native applications across private and public clouds worldwide.
@@ -25,11 +24,11 @@ It is easy to see how different flavors of SDN have emerged simply by looking at
 
 * *WAN SDN*: Classify and intelligently forward WAN traffic based on cost, performance and other policy constraints. Dynamically optimize WAN edge device configurations. Successful deployment results in large cost savings and is driving rapid adoption of [SDN solutions](http://www.networkcomputing.com/networking/software-defined-wan-a-primer/a/d-id/1307047) for the WAN.
 
-* *Cloud Native SDN*: Automate self-service provisioning of isolated multi-tenant [Cloud Native Networks](/cloud/cloud_native_networks/). Integrate with cloud orchestration systems to support grouping endpoints into services and adding discoverable front-end service endpoints.
+* *Cloud Native SDN*: Developer oriented, self-service provisioning of isolated multi-tenant [Cloud Native Networks](/cloud/cloud_native_networks/). Integrate with cloud orchestration systems to support grouping endpoints into services and adding discoverable front-end service endpoints.
 
 Clearly, the objectives for Cloud Native SDN are different from each of the other SDN designs and a separate solution is warranted. 
 
-Specifically, there is no enterprise requirement for layer 2 networks, no WAN requirement for traffic classification and device reconfiguration, and no carrier requirement for NFV. 
+Specifically, there is no enterprise requirement for layer 2 networks, no WAN requirement for traffic classification or device reconfiguration, and no carrier requirement for NFV. 
 
 Without these requirements, Cloud Native SDN can avoid much of the complexity these SDN solutions introduce, such as VXLAN overlays for enterprise virtual networks. 
 

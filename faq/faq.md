@@ -35,9 +35,9 @@ The [Cloud Native Foundation](https://cncf.io/) avoids defining it at all, prefe
 
 #### 2. What is Cloud Native SDN?
 
-Cloud Native SDN is a specific kind of Software Defined Networking approach focused on building and operating Cloud Native Networks. Cloud Native Networks do not need layer 2 networks so can be build without an virtual network overlay. Cloud Native SDN builds these networks that are easier to deploy and maintain and can deliver higher performance that cloud networks build using alternative SDN techniques. 
+Cloud Native SDN is a specific kind of Software Defined Networking approach focused on building and operating Cloud Native Networks. Cloud Native Networks do not need layer 2 networks so can be built without an virtual network overlay. Romana Cloud Native SDN lets operators build Cloud Native Networks that are easier to deploy and maintain and can deliver higher performance that cloud networks build using alternative SDN techniques. 
 
-See [Cloud Native SDN](cloud/cloud_native_snd) for more details.
+See [Cloud Native SDN](/cloud/cloud_native_sdn) for more details.
 
 {% include backtotopbutton.html %}
 
@@ -45,7 +45,7 @@ See [Cloud Native SDN](cloud/cloud_native_snd) for more details.
 
 #### 3. Does Romana work with OpenStack?
 
-Yes. Romana works with cloud orchestration systems like OpenStack to launch VM and container endpoints. Romana integrates with OpenStack through an Modular Layer 2 device driver and an interface to its new IPAM API.
+Yes. Romana works with cloud orchestration systems like OpenStack to launch VM and container endpoints. Romana integrates with OpenStack through a Modular Layer 2 device driver and an interface to its new IPAM API.
 
 See current [Roadmap](/roadmap/) for details.
 
@@ -87,7 +87,7 @@ Romana uses a new layer 3 based approach for tenant and segment isolation. Roman
 
 #### 8. Does it have any layer 2 semantics?
 
-No. Cloud Native applications are built on simple cloud networks where no layer 2 networks are available. Romana implements only the features that are needed for [Cloud Native Networks](/how/cloud_native_networks/).
+No. Cloud Native applications are built on simple cloud networks where no layer 2 networks are available. Romana implements only the features that are needed for [Cloud Native Networks](/cloud/cloud_native_networks/).
 
 {% include backtotopbutton.html %}
 
