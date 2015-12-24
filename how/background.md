@@ -30,7 +30,7 @@ The diagram below shows how route aggregation makes all endpoints in the network
 
 ![Route Aggregation]({{ site.baseurl }}/images/Aggregation.png)
 
-With this configuration, each spine device is configured with the *same* four static routes, one to each leaf device. Each leaf device is configured with one route to each port (ignoring ECMP and other fabric related configuration details of spines or leafs). The routes on the leafs are sequential and differ across leaf devices only by an offset in the second octet of the CIDR.
+With this configuration, each spine device is configured with the *same* four static routes, one to each leaf device. Each leaf device is configured with *one route to each port* (ignoring ECMP and other fabric related configuration details of spines or leafs). The routes on the leafs are sequential and differ across leaf devices only by an offset in the second octet of the CIDR.
 
 The simplicity of this design is undeniable. It is compact, intuitive and predictable, and delivers high performance as well. Which is why it is so popular among large data center operators and the basis for most cloud network underlay designs. 
 
@@ -52,11 +52,11 @@ It is important to realize that a constraint imposed by this kind of routed acce
 <br><br>
 However, updating routers with individual host routes for each endpoint introduces the additional requirement (and complexity) of running a route distribution protocol like BGP, which requires additional skills and training. Also, at the limit, injecting host routes, by whatever means, will eventually overflow the capacity of the devices.
 <br><br>
-Also, since virtualization hosts are configured as routers in the design hierarchy, in addition to requiring that all network devices run BGP (perhaps ~6-24 devices), every host needs to run it as well (~50-250 devices). This increases operational and administrative complexity substantially.
+Also, since virtualization hosts are configured as routers in the design hierarchy, in addition to requiring that all network devices run BGP (perhaps ~6-24 devices), every host needs to run it as well (perhaps hundreds of devices). This increases operational and administrative complexity substantially.
 
-If an actual cloud datacenter were built using the assumptions from the example above, the 16M IP addresses available in the 10/8 network would be allocated across 255 virtualization hosts, where each could support up to 255 VMs, with each VM supporting up to 255 IP addresses for local endpoints.
+If an actual cloud datacenter were built using the assumptions from the example above, the 16M IP addresses available in the 10/8 network would be allocated across 255 virtualization hosts (64 attached to each of the 4 leaf devices), where each host could support up to 255 VMs, with each VM supporting up to 255 IP addresses for local endpoints.
 
-Alternative configurations are easily designed by simply changing how many address bits are dedicated to identify hosts (i.e. routers) attached to leaf switch ports. In the previous example, 8 bits are used to identify hosts (i.e. 8 host ID bits), resulting in up to 2^8 or 64 hosts. Eight host ID bits added to the eight bit netmask from the 10/8 CIDR gives each connected host its own /16 network. Using 10 host ID bits instead of eight allows four times as many connected hosts, but each would only accommodate one fourth the number of endpoints.
+Alternative configurations are easily designed by simply changing how many address bits are dedicated to identify hosts (i.e. routers) attached to leaf switch ports. In the previous example, 8 bits were used to identify hosts (i.e. 8 Host ID bits), resulting in up to 2^8 or 64 hosts. Eight Host ID bits added to the eight bit netmask from the 10/8 CIDR gives each connected host its own /16 network. Using 10 Host ID bits instead of eight allows four times as many connected hosts, but each would only accommodate one fourth the number of endpoints.
 
 Other variations include using only a portion of the complete 10/8 for smaller configurations, such as a 10/10 for 4M endpoints, a 10/11 for 2M endpoints, etc. Smaller configurations are possible as well where just a few hosts are attached directly to a flat network.
 
@@ -80,7 +80,9 @@ While VXLAN technology is reasonably mature and stable, bandwidth and CPU perfor
 
 This is because the overlay requires a Virtual Tunnel Endpoint (VTEP) processor to add a header and to insert the correct field value for each packet that enters or exits the VXLAN. While line rate throughput can be achieved, the actual observed performance impact is [difficult to characterize](http://blog.ipspace.net/2015/02/performance-of-hypervisor-based-overlay.html). However, with header overhead [reducing bandwidth by ~6%](http://packetpushers.net/vxlan-udp-ip-ethernet-bandwidth-overheads/), and [CPU overhead taking at least 3%](http://chinog.org/wp-content/uploads/2015/05/Optimizing-Your-Virtual-Switch-for-VXLAN.pdf) the overall performance impact cannot be ignored. The reduced MTU size, for example may introduce packet fragmentation that could significantly impact [performance](http://www.networkworld.com/article/2224654/cisco-subnet/mtu-size-issues.html).  
 
-But more important to consider than simple stand alone performance benchmarks is the cumulative latency introduced by encap/decap cycles along the complete path. At a minimum, all east/west traffic requires an encap at the source and a decap at the destination, or one complete cycle. However, for all routed VXLAN and north/south traffic, there is an *additional* encap/decap cycle for *each* intermediate router and/or service function. Additionally, since overlay networks remove all topology context from the network, inefficient packet paths are unavoidable.
+But more important to consider than simple stand alone performance benchmarks is the cumulative latency introduced by encap/decap cycles along the complete path. At a minimum, all east/west traffic requires an encap at the source and a decap at the destination, or one complete cycle. However, for all routed VXLAN and north/south traffic, there is an *additional* encap/decap cycle for *each* intermediate router and/or Service Function. This is especially problematic for Cloud Native (i.e. microservice oriented) applications since they frequently apply Service Functions (i.e. load balancers) between *each* microservice.
+
+In addition, since overlay networks remove all topology context from the network, inefficient packet paths are unavoidable.
 
 For example, the diagram below shows the path packets take when OpenStack VMs on different tenant VXLAN segments communicate. There is an extra encap/dcap cycle required for the router on the Neutron host to forward traffic to the proper endpoint. 
 
@@ -88,7 +90,7 @@ For example, the diagram below shows the path packets take when OpenStack VMs on
 
 If performance were all it cost to run VXLAN, considering the benefits of segment isolation, it could still be a bargain. However, from an operational perspective, there are other critical challenges to running VXLANs that are not easily addressed.
 
-1. *Visibility*: VXLAN Encapsulation hides traffic inside of IP packets that can not be seen with standard network monitoring tools. Actual paths through the physical network are difficult to diagnose because endpoint addresses are inside VXLANs and could be located anywhere. Since encapsulated traffic lacks the topology context of the physical network, trouble-shooting problems is especially challenging. 
+1. *Visibility*: VXLAN Encapsulation hides traffic inside of IP packets that can not be seen with standard network monitoring tools. Actual paths through the physical network are difficult to diagnose because endpoint addresses are inside VXLANs and might be located anywhere on the network. Since encapsulated traffic lacks the topology context of the physical network, trouble-shooting problems is especially challenging. 
 
 2. *Manageability*: VXLANs use a VXLAN Network Identifier (VNID) that identifies the segment to which the traffic belongs. Managing these VNID is conceptually similar to managing VLAN IDs, except instead of managing up to 4K IDs, you need a system that can handle up to 16M. The VNIDs need to be propagated to all VTEPs, which itself is a large management problem that requires some measure of VTEP compatibility and/or interoperability.
 
@@ -116,7 +118,9 @@ Sometimes these functional destinations are specified directly by their numerica
 
 When a destination endpoint is specified and traffic traverses the network, the standard path will be through the default route from the source to the destination. Changing this path for Service Insertion requires reconfiguration of the devices that lie along the standard path.
 
-What distinguishes Service Chaining from either request routing or service topology is that network operators need to insert SFs *transparently* in the path, *independent* of how applications are designed. The obvious example is the operators desire to insert security devices, as needed, anywhere within the network without requiring modifications to the applications. 
+What distinguishes Service Chaining from either request routing or service composition is, unlike these *developer* specified paths, the *network operator* needs to insert SFs *transparently* in the path, *independent* of how applications are designed. 
+
+The obvious example is the operators desire to insert security devices, as needed, anywhere within the network without requiring modifications to the applications. 
 
 The diagram below shows a Service Function (F1) inserted into the path from the source (S1) to the destination (D1). On the left, the traffic flows through the gateway directly to the destination. On the right, by modifying the gateway address of S1 to be the IP address of the Service Function, traffic will not go to the gateway. Instead, it will go to the Service Function where it will apply the desired function then forward traffic to the default gateway where it will be routed to the destination in the standard way.
 
