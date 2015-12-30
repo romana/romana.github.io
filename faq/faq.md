@@ -117,7 +117,7 @@ No. Romana does not support overlapping IP addresses. To maintain the structure 
 
 #### 12. How does Romana handle NAT?
 
-The current release dose not perform NAT directly. NAT can be done as needed by a gateway router by forwarding traffic to the device directly. Having control over the routes also allows external IP addressed to be assigned directly to endpoint interfaces, avoiding NAT entirely.
+The current release dose not perform NAT on its own. NAT can be done as needed by a gateway router by forwarding traffic to the device. Having control over the routes also allows external IP addressed to be assigned to endpoint interfaces, avoiding NAT entirely.
 
 Variations of this same approach will allow consolidation of external IPs in DMZ, etc.
 
