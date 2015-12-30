@@ -60,7 +60,7 @@ Alternative configurations are easily designed by simply changing how many addre
 
 Other variations include using only a portion of the complete 10/8 for smaller configurations, such as a 10/10 for 4M endpoints, a 10/11 for 2M endpoints, etc. 
 
-Smaller configurations are possible as well where just a few hosts are attached directly to a flat layer 2 network. In this case, there would be a route configured on each host to the router on every other host to maintain the fully routed design.
+Extending the routed access design on to the hosts also allows the design to work when all hosts are on a flat layer 2 network. In this case, there would need to be a route configured on each host to the router on every other host to maintain the fully routed design.
 
 > [Romana v0.1 Release](/try_romana/) builds an OpenStack DevStack cluster in AWS where each OpenStack Node runs as an EC2 instance in a VPC. Since there are no spine or leaf devices, routes are configured on every Node to every other Node to implement the fully routed design.
 
