@@ -58,6 +58,6 @@ Trying to ping instances on different Segments will fail.
 
 You can relaunch DevStack with a different number of Compute nodes by changing the *devstack_compute_node* value in the [configuration file](https://github.com/romana/romana/blob/master/romana-install/group_vars/all) and running ./romana-setup again.
 
-Beyond these simple tests, OpenStack will behave exactly as it always does.
+Beyond these simple tests, OpenStack will behave as it always does. However, there is no external network configured so instances will only be able to reach other OpenStack instances.
 
 You can visit the other Romana [repositories](https://github.com/romana/core) to see the Go code, run tests, etc.

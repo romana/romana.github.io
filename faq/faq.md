@@ -20,6 +20,7 @@ permalink: /faq/
 9. [How does it scale](#how-does-it-scale)?
 10. [What are the plans for IPv6](#what-are-the-plans-for-ipv6)?
 11. [Does Romana support overlapping IP addresses](#does-romana-support-overlapping-ip-addresses)?
+12. [How does Romana handle NAT](#how-does-romana-handle-nat)?
 
 ---
 
@@ -113,6 +114,10 @@ No. Romana does not support overlapping IP addresses. To maintain the structure 
   
 {% include backtotopbutton.html %}
 
+
+#### 12. How does Romana handle NAT?
+
+The current release dose not perform NAT. The current plan is to avoid the need for NAT entirely by routing traffic to external IPs that are brought up on interfaces at the final endpoints. Variations of this same approach will allow consolidation of external IPs in DMZ, etc.
 
 
 

@@ -58,7 +58,11 @@ If an actual cloud datacenter were built using the assumptions from the example 
 
 Alternative configurations are easily designed by simply changing how many address bits are dedicated to identify hosts (i.e. routers) attached to leaf switch ports. In the previous example, 8 bits were used to identify hosts (i.e. 8 Host ID bits), resulting in up to 2^8 or 64 hosts. Eight Host ID bits added to the eight bit netmask from the 10/8 CIDR gives each connected host its own /16 network. Using 10 Host ID bits instead of eight allows four times as many connected hosts, but each would only accommodate one fourth the number of endpoints.
 
-Other variations include using only a portion of the complete 10/8 for smaller configurations, such as a 10/10 for 4M endpoints, a 10/11 for 2M endpoints, etc. Smaller configurations are possible as well where just a few hosts are attached directly to a flat network.
+Other variations include using only a portion of the complete 10/8 for smaller configurations, such as a 10/10 for 4M endpoints, a 10/11 for 2M endpoints, etc. 
+
+Smaller configurations are possible as well where just a few hosts are attached directly to a flat layer 2 network. In this case, there would be a route configured on each host to the router on every other host to maintain the fully routed design.
+
+> [Romana v0.1 Release](/try_romana/) builds an OpenStack DevStack cluster in AWS where each OpenStack Node runs as an EC2 instance in a VPC. Since there are no spine or leaf devices, routes are configured on every Node to every other Node to implement the fully routed design.
 
 The important point here is that the simplicity of the routed access design is extended on to the virtualization host where it acts just like any other router in the datacenter, forwarding traffic to local tenant endpoints. This is an obvious and natural extension of the highly successful layer 3 routed access datacenter.
 
