@@ -17,7 +17,7 @@ We will be updating this release soon to also include a local deployment option 
 
 #### What Gets Installed
 
-The EC2 installation takes 30-40 mins to complete (on t2.medium instances) and creates an OpenStack DevStack cluster (Liberty release) with a single Controller Node and up to 4 Compute Nodes. Each OpenStack Node runs on a dedicated EC2 instance. Romana installs its OpenStack ML2 and IPAM drivers and creates a Romana router gateway interface on each Compute Node. 
+The EC2 installation takes 30-40 mins to complete (on t2.large instances) and creates an OpenStack DevStack cluster (Liberty release) with a single Controller Node and up to 4 Compute Nodes. Each OpenStack Node runs on a dedicated EC2 instance. Romana installs its OpenStack ML2 and IPAM drivers and creates a Romana router gateway interface on each Compute Node. 
 
 The default configuration partitions the address space so that 8 bits are used for the Host ID, 4 bits for the Tenant and Segment IDs as well as 8 bits for the endpoint ID. While this may not be an efficient allocation for a production deployment, it has the advantage of creating IP addresses that make it easy to see what is happening. 
 
@@ -50,14 +50,17 @@ Note that since there are 8 bits allocated for the Host ID, the gateway interfac
 
 From Horizon, examining the 'admin' project you will see an empty Network. You can start several cirros VMs and put them all on their own segment by specifying a Segment name in the launch Instance 'Advanced Options' tab.
 
-Launch two or three instances on each network segment. Once they have started, you can examine the route table on the Compute Nodes where you will see tap interfaces for each VM running on the node. Note the way the addresses have been set and assigned to indicate the Host, Tenant and Segment for which each endpoint belongs.
+Launch two or three instances on each network segment. Once they have started, you can examine the route table on the Compute Nodes where you will see tap interfaces for each VM running on the node. Note the way the addresses have been set using Host, Tenant and Segment IDs.
 
-If you log in to any of the instances (from Compute Node, 'ssh cirros@IP_address'), you will be able to ping other instances on the same segment. If you traceroute the path to other instances you will see two intermediate router hops along the path between the instances. Each host is a router hop, so two router entries in the trace indicate the router on the host at the source and the router on the destination host.
+If you log in to any of the instances (from Compute Node, 'ssh cirros@IP_address', or use the Console tab of the Horizon instance detail), you will be able to ping other instances on the same segment. If you traceroute the path to another instance on the same segment, *on the same Host*, you will see the router hop of the local host. Trying to ping instances on different Segments will fail.
 
-Trying to ping instances on different Segments will fail.
+
+> Note: *traceroute* to an instance on a different Host will fail since the default firewall rules for segment isolation prevent ICMP return packets.
+
+Try launching more instances as a different Tenant (demo). There you will see addresses being assigned to the instances with a different Tenant ID. Pinging these instances from any of other Tenant's (admin) instances will fail.
 
 You can relaunch DevStack with a different number of Compute nodes by changing the *devstack_compute_node* value in the [configuration file](https://github.com/romana/romana/blob/master/romana-install/group_vars/all) and running ./romana-setup again.
 
-Beyond these simple tests, OpenStack will behave as it always does. However, there is no external network configured so instances will only be able to reach other OpenStack instances.
+This release of Romana does not provide any mechanism to configure routes between segments or to an external network. This will be available in an upcoming release. See the Romana [Roadmap](/roadmap/) for details.
 
 You can visit the other Romana [repositories](https://github.com/romana/core) to see the Go code, run tests, etc.
