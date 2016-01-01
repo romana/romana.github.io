@@ -57,7 +57,7 @@ If you log in to any of the instances (from Compute Node, 'ssh cirros@IP_address
 
 > Note: *traceroute* to an instance on a different Host will fail since the default firewall rules for segment isolation block UDP from external hosts.
 
-Try launching more instances as a different Tenant (demo). There you will see addresses being assigned to the instances with a different Tenant ID. Pinging these instances from any of other Tenant's (admin) instances will fail.
+Try launching more instances as a different Tenant (demo). There you will see addresses being assigned to the instances with a different Tenant ID. Pinging these instances from any of the 'admin' Tenant instances will fail.
 
 You can relaunch DevStack with a different number of Compute nodes by changing the *devstack_compute_node* value in the [configuration file](https://github.com/romana/romana/blob/master/romana-install/group_vars/all) and running ./romana-setup again.
 
