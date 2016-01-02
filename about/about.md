@@ -18,7 +18,7 @@ Romana is a new open source Software Defined Network (SDN) solution that lets da
 
 ### Sponsor
 
-- Romana development is sponsored by Pani Networks.
+- Romana development is sponsored by Pani Networks, Inc..
 
 ### License
 

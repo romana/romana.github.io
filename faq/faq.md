@@ -108,12 +108,15 @@ Since Romana tenant and segment isolation relies on [IP addressing](/how/romana_
  
 {% include backtotopbutton.html %}
 
+---
+
 #### 11. Does Romana Support Overlapping IP addresses?
 
 No. Romana does not support overlapping IP addresses. To maintain the structure of the [routed access datacenter design](/how/background/#routed-access-datacenter/), IP addresses need to be conform to the address hierarchy.
   
 {% include backtotopbutton.html %}
 
+---
 
 #### 12. How does Romana handle NAT?
 
@@ -122,5 +125,9 @@ The current release dose not perform NAT on its own. NAT can be done as needed b
 Variations of this same approach will allow consolidation of external IPs in DMZ, etc.
 
 The current release does not support automated configuration of these kinds of individual routes. See the Romana [Roadmap](/roadmap/) for details on what is currently supported.
+
+{% include backtotopbutton.html %}
+
+---
 
 
