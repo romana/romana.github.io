@@ -52,10 +52,7 @@ From Horizon, examining the 'admin' project you will see an empty Network. You c
 
 Launch two or three instances on each network segment. Once they have started, you can examine the route table on the Compute Nodes where you will see tap interfaces for each VM running on the node. Note the way the addresses have been set using Host, Tenant and Segment IDs.
 
-If you log in to any of the instances (from Compute Node, 'ssh cirros@IP_address', or use the Console tab of the Horizon instance detail), you will be able to ping other instances on the same segment. If you traceroute the path to another instance on the same segment, *on the same Host*, you will see the router hop of the local host. Trying to ping instances on different Segments will fail.
-
-
-> Note: *traceroute* to an instance on a different Host will fail since the default firewall rules for segment isolation block UDP from external hosts.
+If you log in to any of the instances (from Compute Node, 'ssh cirros@IP_address', or use the Console tab of the Horizon instance detail), you will be able to ping other instances on the same segment. If you *traceroute* the path to another instance, you will see the router hops along the path. Trying to ping instances on different Segments will fail.
 
 Try launching more instances as a different Tenant (demo). There you will see addresses being assigned to the instances with a different Tenant ID. Pinging these instances from any of the 'admin' Tenant instances will fail.
 
