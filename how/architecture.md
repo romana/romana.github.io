@@ -30,7 +30,7 @@ Romana Cloud Native SDN is implemented using the following Services:
 - [Storage Service](#storage-service)
 
 
-> Release v0.1 does not implement the Authentication Service or the Route Manager Service
+> Release v0.6 does not implement the Authentication Service or the Route Manager Service
 
 All Romana Services are written in [Go](https://golang.org/) and may be deployed all on a single server, or distributed across any number of systems. Romana Services may be replicated to scale performance or to provide redundancy for high availability. 
 
@@ -41,7 +41,7 @@ The Root Service is where all Romana Services get registered, and where new Roma
 
 #### Authentication Service
 
-The Authentication Service authenticates each request from Romana Services. Not fully implemented in Release v0.1.
+The Authentication Service authenticates each request from Romana Services. Not fully implemented in Release v0.6.
 
 #### IPAM Service
 
@@ -53,7 +53,7 @@ The Topology Service maintains the configuration of the physical network topolog
 
 #### Route Manager Service
 
-*Not implemented in Release v0.1*
+*Not implemented in Release v0.6*
 
 The Route Manager Service is responsible for updating all routes throughout the system, except for the initial default route set on endpoints, which is set locally via the Host Configuration Service
 
