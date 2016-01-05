@@ -9,15 +9,15 @@ secondnav: 9
 permalink: /roadmap/
 ---
 
-#### Release v0.1: Proof of Concept re-implemented
+#### Release v0.6: Basic Cloud Native Networks
 
-Release v0.1 is a complete re-implementation of the initial Proof of Concept (PoC) prototype we demonstrated earlier this year. There is still a lot to do before it will support anything beyond simple, small scale experimentation. 
+Release v0.6 is a re-implementation of the initial Proof of Concept (PoC) prototype that was demonstrated earlier this year, but built with the new [microservices architecture](/how/romana_arch/).
 
-That said, we are anxious to get the software out to users to let them get hands-on experience with the software and to become familiar with the concepts behind [Cloud Native SDN](/cloud/cloud_native_sdn). In addition, there are many features we have not yet implemented and would like input prioritizing them, as well as help defining specific operational details.
+We are anxious to get the software out to users to let them get hands-on experience with the software and to become familiar with the concepts behind [Cloud Native SDN](/cloud/cloud_native_sdn). In addition, there are certain features we have not yet implemented and would like input prioritizing them, as well as help defining specific operational details.
 
-The current v0.1 release supports *only* what was demonstrated to users with the original PoC. Specifically:
+The current v0.6 release supports basic Layer 3 Cloud Native Networks for OpenStack tenants. The:
 
-- Deployment on EC2 with OpenStack
+- Deployment on EC2 with up to 4 OpenStack Compute Nodes
 - Two default Tenants: *admin* and *demo*
 - Two Pre-defined Network Segments per Tenant, s1 and s2
 - Default Segment Isolation Firewall
@@ -29,7 +29,7 @@ We will quickly update this release to include a CLI to more easily add Tenants 
 
 ---
 
-#### Release v0.2: Service Chaining and Insertion Prototype
+#### Release v0.7: Service Chaining and Insertion
 
 The next update will include the following enhancements:
 

@@ -57,7 +57,7 @@ See current [Roadmap](/roadmap/) for details.
 
 #### 4. Does Romana work with Docker?
 
-It will. The current [v0.1 release](/roadmap/) does not support Docker, but it is planned for release v0.2.
+It will. The current [v0.6 release](/roadmap/) does not support Docker, but it is planned for release v0.2.
 
 {% include backtotopbutton.html %}
 
@@ -65,7 +65,7 @@ It will. The current [v0.1 release](/roadmap/) does not support Docker, but it i
 
 #### 5. Does Romana work with Kubernetes?
 
-It will. The current [v0.1 release](/roadmap/) does not support Kubernetes, but it is planned for release v0.2.
+It will. The current [v0.6 release](/roadmap/) does not support Kubernetes, but it is planned for release v0.2.
 
 {% include backtotopbutton.html %}
 ---
