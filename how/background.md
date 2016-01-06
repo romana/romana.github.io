@@ -28,7 +28,7 @@ Briefly stated, route aggregation is a method used to simplify router configurat
 
 The diagram below shows how route aggregation makes all endpoints in the network reachable with just a few routes configured on the leaf and spine devices. It illustrates how a 10/8 network (with up to 16M IP addresses) could be partitioned across two spines and four leaves so that each spine port forwards packets to one of four /10 networks (one on each leaf) and each leaf forwards packets to one of 64 ports configured with a /16 network.
 
-![Route Aggregation]({{ site.baseurl }}/images/Aggregation.png)
+![Route Aggregation]({{ site.baseurl }}/images/aggregation.png)
 
 With this configuration, each spine device is configured with the *same* four static routes, one to each leaf device. Each leaf device is configured with *one route to each port* (ignoring ECMP and other fabric related configuration details of spines or leafs). The routes on the leafs are sequential and differ across leaf devices only by an offset in the second octet of the CIDR.
 

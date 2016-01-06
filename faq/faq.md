@@ -21,6 +21,7 @@ permalink: /faq/
 10. [What are the plans for IPv6](#what-are-the-plans-for-ipv6)?
 11. [Does Romana support overlapping IP addresses](#does-romana-support-overlapping-ip-addresses)?
 12. [How does Romana handle NAT](#how-does-romana-handle-nat)?
+13. [What kind of performance gains can I expect](#what-kind-of-performance-gains-can-i-expect)?
 
 ---
 
@@ -130,4 +131,18 @@ The current release does not support automated configuration of these kinds of i
 
 ---
 
+#### 13. What kind of performance gains can I expect?
+
+Since Romana does not require an overlay, no packet encapsulation is required and since traffic runs directly on the physical network, it can take more direct paths.
+
+When encapsulation is performed on the host, it can consume about [4-6% of the CPU as well as about 3-4% of bandwidth](/how/background/#vxlan-tenant-isolation). However, just as important as reclaiming this performance, eliminating the overlay avoids the intermediate router hops that are necessary to forward traffic across networks.  With more direct network paths, Romana has reduced latency by about 85% for routed VXLAN traffic in OpenStack.
+
+The table below summarizes the relative performance of an OpenStack network with and without Romana.
+
+![Romana Performance]({{ site.baseurl }}/images/latency.png)
+
+
+{% include backtotopbutton.html %}
+
+---
 
