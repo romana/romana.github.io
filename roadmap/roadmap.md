@@ -9,6 +9,8 @@ secondnav: 9
 permalink: /roadmap/
 ---
 
+See the Romana GitHub Wiki page for the most up to date details on the [Roadmap]( https://github.com/romana/romana/wiki/Roadmap). Highlights of the current and upcoming release are included below.
+
 #### Release v0.6: Basic Cloud Native Networks
 
 Release v0.6 is a re-implementation of the initial Proof of Concept (PoC) prototype that was demonstrated earlier this year, but built with the new [microservices architecture](/how/romana_arch/).
@@ -25,17 +27,14 @@ The current v0.6 release supports basic Layer 3 Cloud Native Networks for OpenSt
 
 See the [README](http://www.github.com/romana/romana/) file in the repository and the [Wiki]( http://www.github.com/romana/romana/wiki) home page for details on how to set up your own OpenStack cluster running Romana and what you can do with it. 
 
-We will quickly update this release to include a CLI to more easily add Tenants and Segments, as well as a Vagrant based laptop deployment alternative.
+We will quickly update this release to include helper scripts to more easily add Tenants and Segments, as well as a Vagrant based laptop and physical server deployment alternative ([v0.61 and v0.62]( https://github.com/romana/romana/wiki/Roadmap#061)).
 
 ---
 
-#### Release v0.7: Service Chaining and Insertion
+#### Release v0.7: Kubernetes Deployment
 
 The next update will include the following enhancements:
 
-- Prototype Service Chaining and Insertion
-- Expanded Policy Specification 
 - Basic Kubernetes Integration
-- Improved OpenStack Horizon Integration
-
-An introduction to how Romana implements Service Insertion is available [here](/how/romana_details/#service-insertion).
+- Basic command line tools
+- Security and Policy Specification
