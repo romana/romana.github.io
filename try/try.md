@@ -11,9 +11,7 @@ permalink: /try_romana/
 
 Romana v0.6 lets you build isolated multi-tenant networks in OpenStack without an overlay network. The current installer builds an OpenStack cluster in AWS on EC2 instances.
 
-The first thing you need to do is join our GitHub Early Access team. If you are not a member already, send us an email at [info@romana.io](mailto:info@romana.io) for an invitation. 
-
-Once you have access to the repositories, you will need to set up your laptop with AWS command line tools and have your own AWS account to launch the CloudFormation scripts that provision the EC2 instances as OpenStack nodes and installs Romana. The Romana repository's [README](http://www.github.com/romana/romana/blob/master/README.md) file has the latest detail on how to set up your environment and get started. 
+You will need to set up your laptop with AWS command line tools and have your own AWS account to launch the CloudFormation scripts that provision the EC2 instances as OpenStack nodes and installs Romana. The Romana repository's [README](http://www.github.com/romana/romana/blob/master/README.md) file has the latest detail on how to set up your environment and get started. 
 
 We will be updating this release soon to also include a local deployment option using Vagrant.
 
