@@ -11,6 +11,7 @@ permalink: /faq/
 
 1. [What does Cloud Native mean](#what-does-cloud-native-mean)?
 2. [What is Cloud Native SDN](#what-is-cloud-native-sdn)?
+2. [How is Romana different from other layer 3 based SDN alternatives](#how-is-romana-different-from-other-layer-3-based-sdn-solutions)?
 3. [Does Romana work with OpenStack](#does-romana-work-with-openstack)?
 4. [Does Romana work with Docker](#does-romana-work-with-docker)?
 5. [Does Romana work with Kubernetes](#does-romana-work-with-kubernetes)?
@@ -40,6 +41,35 @@ The [Cloud Native Foundation](https://cncf.io/) avoids defining it at all, prefe
 Cloud Native SDN is a specific kind of Software Defined Networking approach focused on building and operating Cloud Native Networks. Cloud Native Networks do not need layer 2 networks so can be built without an virtual network overlay. Romana Cloud Native SDN lets operators build Cloud Native Networks that are easier to deploy and maintain and can deliver higher performance that cloud networks build using alternative SDN techniques. 
 
 See [Cloud Native SDN](/cloud/cloud_native_sdn) for more details.
+
+{% include backtotopbutton.html %}
+
+---
+
+#### 3. How is Romana Different from other Layer 3 Based SDN solutions?
+
+There are several SDN solutions available today that rely on layer 3 networks to varying degrees. Among them are [OpenContrail](www.opencontrail.org), [Calico](www.projectcalico.org), and [Nuage Networks]( http://www.nuagenetworks.net/).  While each of these solutions provide similar layer 3 functionality, there are important operational differences.
+
+OpenContrail uses host based virtual routers [(vRouters)]( https://github.com/Juniper/contrail-vrouter) to maintain VRFS and MPLS to isolate networks. vRouters get updated via XMPP and operators can optionally run an VXLAN overlay to provide layer 2 connectivity. Romana does not use host based router, it uses the routing capabilities of the Linux kernel and does not require MPLS for network multitanancy.
+
+Nuage Networks also uses a host based vRouter, but uses BGP-MP for route distribution. 
+
+On the other hand, Calico uses the linux host as a router, but requires BGP for route distribution. Also, Calico deployment presumes compute hosts are all on a single L2 network and ARP to learn about the other routers in the configuration. 
+
+When a new endpoint is added with Calico, a new host route (/32 CIDR) is added on the local host. This /32 route is then propagated to all the other hosts via BGP running on the host. 
+
+Romana on the other hand presumes all the hosts on an L3 network and leverages route aggregation to avoid the need for a route distribution protocol.
+
+Also, Calico requires a key value store (KVS) to maintain configuration state for the network. Romana does not need a KVS.
+
+In summary the main differences are:
+
+|  | Romana| OpenContrail | Nuage | Calico |
+| Network | Layer 3 | Layer 3 | Layer 3 | Layer 2 |
+| Route Distribution | Static | MXPP | BGP-MP | BGP |
+| Configuration State | DB | DB | DB | KVS |
+{: class='romanatable'}
+
 
 {% include backtotopbutton.html %}
 
