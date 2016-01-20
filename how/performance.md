@@ -18,7 +18,7 @@ But more important to consider than simple stand alone performance benchmarks is
 
 In addition, since overlay networks remove all topology context from the network, inefficient packet paths are unavoidable. It are these inefficient packet paths that most significantly impact performance.
 
-### Performance Gains on OpenStack
+### Performance Gains on OpenStack Networks
 
 
 The diagram below shows the path packets take when OpenStack VMs on different tenant VXLAN segments communicate. There is an extra encap/dcap cycle required for the router on the Neutron host to forward traffic to the proper endpoint. 

@@ -13,6 +13,7 @@ permalink: /faq/
 2. [What is Cloud Native SDN](#what-is-cloud-native-sdn)?
 2. [How is Romana different from other layer 3 based SDN alternatives](#how-is-romana-different-from-other-layer-3-based-sdn-solutions)?
 3. [Does Romana work with OpenStack](#does-romana-work-with-openstack)?
+3. [Can I run Romana on my existing OpenStack underlay network](#can-i-run-romana-on-my-existing-openstack-underlay-network)?
 4. [Does Romana work with Docker](#does-romana-work-with-docker)?
 5. [Does Romana work with Kubernetes](#does-romana-work-with-kubernetes)?
 6. [Will Romana run in AWS](#will-romana-run-in-aws)?
@@ -75,7 +76,7 @@ In summary the main differences are:
 
 ---
 
-#### 3. Does Romana work with OpenStack?
+#### 4. Does Romana work with OpenStack?
 
 Yes. Romana works with cloud orchestration systems like OpenStack to launch VM and container endpoints. Romana integrates with OpenStack through a Modular Layer 2 device driver and an interface to its new IPAM API.
 
@@ -86,7 +87,18 @@ See current [Roadmap](/roadmap/) for details.
 
 ---
 
-#### 4. Does Romana work with Docker?
+#### 5. Can I run Romana on my existing OpenStack underlay network?
+
+Soon. The current release does not support this, but we plan to in the future. If you would like to contribute to this effort, please let us know.
+
+See current [Roadmap](/roadmap/) for details.
+
+
+{% include backtotopbutton.html %}
+
+---
+
+#### 6. Does Romana work with Docker?
 
 It will. The current [v0.6 release](/roadmap/) does not support Docker, but it is planned for release v0.2.
 
@@ -94,14 +106,14 @@ It will. The current [v0.6 release](/roadmap/) does not support Docker, but it i
 
 ---
 
-#### 5. Does Romana work with Kubernetes?
+#### 7. Does Romana work with Kubernetes?
 
 It will. The current [v0.6 release](/roadmap/) does not support Kubernetes, but it is planned for the next release.
 
 {% include backtotopbutton.html %}
 ---
 
-#### 6. Will Romana run in AWS?
+#### 8. Will Romana run in AWS?
 
 Yes. The current release supports OpenStack running in AWS EC2. See current [Roadmap](/roadmap/) for details.
 
@@ -109,7 +121,7 @@ Yes. The current release supports OpenStack running in AWS EC2. See current [Roa
 
 ---
 
-#### 7. How are network segments isolated?
+#### 9. How are network segments isolated?
 
 Romana uses a new layer 3 based approach for tenant and segment isolation. Romana encodes tenant and segment identifiers directly in the IP address and ip tables firewall rules are set to provide isolation. This enables multi-tenant cloud networks to be built without a virtual network overlay. See [Romana Tenant Isolation](/how/romana_details/#romana-tenant-isolation) for  more detail.
 
@@ -117,7 +129,7 @@ Romana uses a new layer 3 based approach for tenant and segment isolation. Roman
 
 ---
 
-#### 8. Does it have any layer 2 semantics?
+#### 10. Does it have any layer 2 semantics?
 
 No. Cloud Native applications are built on simple cloud networks where no layer 2 networks are available. Romana implements only the features that are needed for [Cloud Native Networks](/cloud/cloud_native_networks/).
 
@@ -125,7 +137,7 @@ No. Cloud Native applications are built on simple cloud networks where no layer 
 
 ---
 
-#### 9. How does it scale?
+#### 11. How does it scale?
 
 Since Romana uses a distributed, service oriented approach, each service can scale by simply adding more service instances. See [Romana Architecture](/how/romana_arch/) for details.
 
@@ -133,7 +145,7 @@ Since Romana uses a distributed, service oriented approach, each service can sca
 
 ---
 
-#### 10. What are the plans for IPv6
+#### 12. What are the plans for IPv6
 
 Since Romana tenant and segment isolation relies on [IP addressing](/how/romana_details/#romana-tenant-isolation), larger deployments will exceed the limit of what IPv4 can support.  For this reason, Romana will support IPv6 as soon as practical. However, it is unlikely to be part of the first v1.0 Production Release 
  
@@ -141,7 +153,7 @@ Since Romana tenant and segment isolation relies on [IP addressing](/how/romana_
 
 ---
 
-#### 11. Does Romana Support Overlapping IP addresses?
+#### 13. Does Romana Support Overlapping IP addresses?
 
 No. Romana does not support overlapping IP addresses. To maintain the structure of the [routed access datacenter design](/how/background/#routed-access-datacenter/), IP addresses need to be conform to the address hierarchy.
   
@@ -149,7 +161,7 @@ No. Romana does not support overlapping IP addresses. To maintain the structure 
 
 ---
 
-#### 12. How does Romana handle NAT?
+#### 14. How does Romana handle NAT?
 
 The current release dose not perform NAT on its own. NAT can be done as needed by a gateway router by forwarding traffic to the device. Having control over the routes also allows external IP addressed to be assigned to endpoint interfaces, avoiding NAT entirely.
 
@@ -161,7 +173,7 @@ The current release does not support automated configuration of these kinds of i
 
 ---
 
-#### 13. What kind of performance gains can I expect?
+#### 15. What kind of performance gains can I expect?
 
 Since Romana does not require an overlay, no packet encapsulation is required and since traffic runs directly on the physical network, it can take more direct paths.
 
@@ -169,8 +181,17 @@ When encapsulation is performed on the host, it can consume about [4-6% of the C
 
 The table below summarizes the relative performance of an OpenStack network with and without Romana.
 
-![Romana Performance]({{ site.baseurl }}/images/latency.png)
+| Time | North/South | North/South | East/West | East/West |
+| | Local | Remote | Local | Remote |
+| Native OpenStack | 1.51 ms | 1.51 ms | 0.24 ms | 0.85 ms |
+| Romana Networks | 0.24 ms | 0.77 ms | 0.24 ms | 0.77 ms |
+| *Relative Performance* | Local | Remote | Local | Remote |
+| Native OpenStack | 100% | 100% | 100% | 100% |
+| Romana Networks | 16% | 51% | 100% | 90% |
+{: class='romanatable'}
 
+
+See this [Performance](/how/performance) page for more detail.
 
 {% include backtotopbutton.html %}
 
