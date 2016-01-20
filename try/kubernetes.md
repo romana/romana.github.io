@@ -1,12 +1,12 @@
 ---
 layout: page
 title: Try Romana Now
-menu_text: Try it Now
-nav_text: Try it Now
+menu_text: Kubernetes on EC2
+nav_text: 
 icon: launch
 firstnav: 3
-secondnav: 9
-permalink: /try_romana/
+secondnav: 2
+permalink: /try_romana/kubernetes/
 ---
 
 Romana v0.6 lets you build isolated multi-tenant networks in OpenStack without an overlay network. The current installer builds an OpenStack cluster in AWS on EC2 instances.
