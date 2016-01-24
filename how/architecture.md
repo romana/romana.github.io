@@ -8,15 +8,23 @@ secondnav: 3
 permalink: /how/romana_arch/
 ---
 
-Romana is implemented as a collection of microservices that together, automate creation, administration and control of [Cloud Native Networks](/cloud/cloud_native_networks/). A brief description of each Service is provided below. For more detail, as well as a description of the Service interactions, please see the [Architecture Wiki](https://github.com/romana/core/wiki) on GitHub.
+Romana is implemented as a collection of microservices that together automate
+creation, administration and control of [Cloud Native
+Networks](/cloud/cloud_native_networks/). A brief description of each service
+is provided below. For more detail, as well as a description of the service
+interactions, please see the [Architecture
+Wiki](https://github.com/romana/core/wiki) on GitHub.
 
 #### Cloud Orchestration
 
-Romana integrates directly into Cloud Orchestration systems so that developers can continue to use their existing tools and techniques to build their applications. For OpenStack, this integration is through the Modular Layer 2 (ML2) and IPAM drivers.
+Romana integrates directly into Cloud Orchestration systems so that developers
+can continue to use their existing tools and techniques to build their
+applications. For OpenStack, this integration is through the Modular Layer 2
+(ML2) and IPAM drivers. For Kubernetes, a CNI plugin is provided.
 
 #### Romana Services
 
-Romana Cloud Native SDN is implemented using the following Services:
+The Romana Cloud Native SDN is implemented using the following services:
 
 ![Romana Architecture]({{ site.baseurl }}/images/arch.png)
 
@@ -24,52 +32,65 @@ Romana Cloud Native SDN is implemented using the following Services:
 - [Authentication Service](#authorization-service)
 - [IPAM Service](#ipam-service)
 - [Topology Service](#topology-service)
-- [Router Manager Service](#route-manager-service)
-- [Host Configuration Service](#host-configuration-service)
+- [Route Manager Service](#route-manager-service)
 - [Tenant Service](#tenant-service)
-- [Storage Service](#storage-service)
+- [Host Configuration Service](#host-configuration-service)
 
 
-> Release v0.6 does not implement the Authentication Service or the Route Manager Service
+> Release v0.6 does not implement the Authentication service or the Route Manager Service
 
-All Romana Services are written in [Go](https://golang.org/) and may be deployed all on a single server, or distributed across any number of systems. Romana Services may be replicated to scale performance or to provide redundancy for high availability. 
+All Romana services are written in [Go](https://golang.org/) and may be
+deployed all on a single server, or distributed across any number of systems.
+Romana services may be replicated to scale performance or to provide redundancy
+for high availability. 
 
 
 #### Root Service
 
-The Root Service is where all Romana Services get registered, and where new Romana Services discover other Services and the overall capabilities of the environment. When a new service starts, it finds the Root Service and registers its name, IP address and capabilities. 
+The Root Service is where all Romana services are registered and discover other
+services as well as the the overall capabilities of the environment. When a new
+service starts, it finds the Root Service and registers its name, IP address
+and capabilities. 
 
 #### Authentication Service
 
-The Authentication Service authenticates each request from Romana Services. Not fully implemented in Release v0.6.
+The Authentication Service is used for clients and services to prove their
+identity and to obtain authentication tokens.  Not fully implemented in Release
+v0.6.
 
 #### IPAM Service
 
-The Romana IPAM Service implements the layer 3 tenancy model as described [here](/how/romana_details/#ip-address-management/). It provides the proper IP address to OpenStack Nova after learning which host will launch the guest VM. The IPAM Service interacts with OpenStack via its IPAM API and the Romana OpenStack IPAM driver.
+The Romana IPAM Service implements the layer 3 tenancy model as described
+[here](/how/romana_details/#ip-address-management/). It integrates with
+OpenStack via a pluggable IPAM driver: The request for the IP address is
+issued after the Nova scheduler decided on which host to place a new endpoint.
+For Kubernetes the integration takes place via the CNI plugin.
 
 #### Topology Service
 
-The Topology Service maintains the configuration of the physical network topology and the endpoints that are attached to the network.
+The Topology Service maintains the configuration of the physical network
+topology and the endpoints that are attached to the network.
 
 #### Route Manager Service
 
 *Not implemented in Release v0.6*
 
-The Route Manager Service is responsible for updating all routes throughout the system, except for the initial default route set on endpoints, which is set locally via the Host Configuration Service
-
-#### Host Configuration Service
-
-The Host Configuration Service configures the gateway interface on the host so that the default routes on endpoints all use the same Romana gateway interface.
-
+The Route Manager Service is responsible for updating all routes throughout the
+system, except for the initial default route set on endpoints, which is set
+locally via the Host Configuration Service.
 
 #### Tenant Service
 
-The Tenant Service maintains its own list of tenants and the endpoints and segments that are associated with their projects. The Tenant Service provides this information to the IPAM Service when it needs to issue a new IP address for an endpoint.
+The Tenant Service maintains its own list of tenants, which can be created to
+map tenants from the cloud orchestration system, such as OpenStack. When the
+IPAM Service needs to issue a new IP address for an endpoint it may query the
+Tenant Service for information.
 
-#### Storage Service
+#### Host Configuration Service
 
-The Romana Storage Service uses an SQL database as its primary data store for configuration and network state. When deployed with OpenStack, new database tables are created in the Neutron database and no separate data store is necessary.
-
-
-
+The Host Configuration Service configures the Romana gateway interface on the
+host for use as default gateway for any Romana managed endpoints. It also sets
+the necessary routes to reach Romana addresses on other hosts.
+Furthermore, it is used to configure traffic policy rules, for example security
+rules for traffic isolation.
 
