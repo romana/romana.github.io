@@ -34,7 +34,7 @@ The Romana Cloud Native SDN is implemented using the following services:
 - [Topology Service](#topology-service)
 - [Route Manager Service](#route-manager-service)
 - [Tenant Service](#tenant-service)
-- [Host Configuration Service](#host-configuration-service)
+- [Romana Agents](#romana-agents)
 
 
 > Release v0.6 does not implement the Authentication service or the Route Manager Service
@@ -77,7 +77,7 @@ topology and the endpoints that are attached to the network.
 
 The Route Manager Service is responsible for updating all routes throughout the
 system, except for the initial default route set on endpoints, which is set
-locally via the Host Configuration Service.
+locally via the Romana Agents.
 
 #### Tenant Service
 
@@ -86,11 +86,11 @@ map tenants from the cloud orchestration system, such as OpenStack. When the
 IPAM Service needs to issue a new IP address for an endpoint it may query the
 Tenant Service for information.
 
-#### Host Configuration Service
+#### Romana Agents
 
-The Host Configuration Service configures the Romana gateway interface on the
-host for use as default gateway for any Romana managed endpoints. It also sets
-the necessary routes to reach Romana addresses on other hosts.
-Furthermore, it is used to configure traffic policy rules, for example security
-rules for traffic isolation.
+The Romana Agents configure the Romana gateway interface on the hosts for use
+as default gateway for any Romana managed endpoints. They also set the
+necessary routes to reach Romana addresses on other hosts.  Furthermore, they
+are used to configure traffic policy rules, for example security rules for
+traffic isolation.
 
