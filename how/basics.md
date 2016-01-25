@@ -4,7 +4,7 @@ title: Just the Basics
 nav_text: How it Works
 menu_text: Basics
 icon: build
-firstnav: 2
+firstnav: 1
 secondnav: 1
 permalink: /how/romana_basics/
 ---

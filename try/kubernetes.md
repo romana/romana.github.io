@@ -4,7 +4,7 @@ title: Multi Host Kubernetes with Romana
 menu_text: Kubernetes on EC2
 nav_text: 
 icon:
-firstnav: 3
+firstnav: 2
 secondnav: 2
 permalink: /try_romana/kubernetes/
 ---

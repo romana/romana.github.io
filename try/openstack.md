@@ -4,7 +4,7 @@ title: Try Romana Now
 menu_text: OpenStack on EC2
 nav_text: Try it Now
 icon: launch
-firstnav: 3
+firstnav: 2
 secondnav: 1
 permalink: /try_romana/openstack/
 ---

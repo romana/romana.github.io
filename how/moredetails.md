@@ -3,7 +3,7 @@ layout: page
 title: Romana Details
 menu_text: More Details
 nav_text: NA
-firstnav: 2
+firstnav: 1
 secondnav: 2
 permalink: /how/romana_details/
 ---
