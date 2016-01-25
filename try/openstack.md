@@ -11,7 +11,7 @@ permalink: /try_romana/openstack/
 
 Romana v0.6 lets you build isolated multi-tenant networks in OpenStack without an overlay network. The current installer builds an OpenStack cluster in AWS on EC2 instances.
 
-You will need to set up your laptop with AWS command line tools and have your own AWS account to launch the CloudFormation scripts that provision the EC2 instances as OpenStack nodes and installs Romana. The Romana repository's [README](http://www.github.com/romana/romana/blob/master/README.md) file has the latest detail on how to set up your environment and get started. 
+You will need to set up your laptop with AWS command line tools and have your own AWS account to launch the CloudFormation scripts that provision the EC2 instances as OpenStack nodes and installs Romana. The Romana repository's [README]( https://github.com/romana/romana/blob/release-v0.6.1/README.md) file has the latest detail on how to set up your environment and get started. 
 
 We will be updating this release soon to also include a local deployment option using Vagrant.
 
@@ -54,15 +54,16 @@ From Horizon, examining the 'admin' project you will see an empty Network. You c
 
 Launch two or three instances on each network segment. Once they have started, you can examine the route table on the Compute Nodes where you will see tap interfaces for each VM running on the node. Note the way the addresses have been set using Host, Tenant and Segment IDs.
 
-If you log in to any of the instances (from Compute Node, 'ssh cirros@IP_address', or use the Console tab of the Horizon instance detail), you will be able to ping other instances on the same segment. If you *traceroute* the path to another instance, you will see the router hops along the path. 
+If you log in to any of the instances (from Compute Node, 'ssh cirros@IP_address', or use the Console tab of the Horizon instance detail), you will be able to ping other instances on the same segment. If you *traceroute* the path to another instance on the *same* host, you will see the Host IP address as a router hop along the path. 
 
-    $ traceroute 10.1.19.5
+
+    ubuntu@ip-192-168-0-10:~$ traceroute 10.1.19.5
     traceroute to 10.1.19.5 (10.1.19.5), 30 hops max, 46 byte packets
     1  ip-192-168-0-10 (192.168.0.10)  0.299 ms  0.033 ms  0.185 ms
-    2  ip-192-168-0-11 (192.168.0.11)  0.592 ms  0.484 ms  0.593 ms
-    3  10.1.19.5 (10.1.19.5)  1.158 ms  0.643 ms  1.226 ms
+    2  10.1.19.5 (10.1.19.5)  1.158 ms  0.643 ms  0.326 ms
     $
 
+>Note: A *traceroute* to an instance on a different host will show blank entries for the router hops along the path. This is normal, since ICMP traffic is blocked by default across OpenStack Hosts.
 
 Trying to ping instances on different Segments will fail.
 
@@ -70,6 +71,9 @@ Try launching more instances as a different Tenant (demo). There you will see ad
 
 You can relaunch DevStack with a different number of Compute nodes by changing the *devstack_compute_node* value in the [configuration file](https://github.com/romana/romana/blob/master/romana-install/group_vars/all) and running ./romana-setup again.
 
-This release of Romana does not provide any mechanism to configure routes between segments or to an external network. This will be available in an upcoming release. See the Romana [Roadmap](/roadmap/) for details.
+Romana provides a basic command line utility list or add new Hosts, Tenants, Segments, etc.  If you are logged in to the OpenStack Controller, you can list the Romana Tenants and/or Hosts with the following commands:
+
+	ubuntu@ip-192-168-0-10:~$ romana show-tenant
+	ubuntu@ip-192-168-0-10:~$ romana show-host
 
 You can visit the other Romana [repositories](https://github.com/romana/core) to see the Go code, run tests, etc.

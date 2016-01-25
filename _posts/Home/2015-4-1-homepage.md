@@ -12,9 +12,9 @@ secondnav: 0
 
 ---
 
-Romana is a new Software Defined Network solution specifically designed for Cloud Native applications. Romana lets data center operators design and deploy multi-tenant cloud computing networks directly on their physical infrastructure without a virtual network overlay. 
+Romana is a new Software Defined Network solution specifically designed for Cloud Native applications. Romana allows multi-tenant cloud computing networks for OpenStack, Docker and Kubernetes to be built without encapsulation or a virtual network overlay. 
 
-For OpenStack, Docker and Kubernetes deployments, Romana networks are less expensive to build, easier to operate and deliver higher performance than networks built using alternative SDN designs. Its innovative layer 3 approach enables seamless hybrid cloud deployment, and lets container orchestration systems such as Docker and Kubernetes transparently scale capacity across private and public clouds worldwide.
+Romana networks are less expensive to build, easier to operate and deliver higher performance than networks built using alternative overlay based SDN designs. Its innovative layer 3 approach enables seamless hybrid cloud deployment, and lets container orchestration systems transparently scale capacity across private and public clouds worldwide.
 
 Romana is all open source and available right now for you to [try out](/try_romana/). The current v0.6 Release lets you build a multi-node OpenStack cluster in EC2 and create isolated multi-tenant networks. 
 

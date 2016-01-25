@@ -20,6 +20,7 @@ permalink: /faq/
 7. [How are network segments isolated](#how-are-network-segments-isolated)?
 8. [Does it have any layer 2 semantics](#does-it-have-any-layer-2-semantics)?
 9. [How does it scale](#how-does-it-scale)?
+10. [Will I run out of IPv4 Addresses](#will-i-run-out-of-ipv4-addresses)?
 10. [What are the plans for IPv6](#what-are-the-plans-for-ipv6)?
 11. [Does Romana support overlapping IP addresses](#does-romana-support-overlapping-ip-addresses)?
 12. [How does Romana handle NAT](#how-does-romana-handle-nat)?
@@ -145,7 +146,18 @@ Since Romana uses a distributed, service oriented approach, each service can sca
 
 ---
 
-#### 12. What are the plans for IPv6
+#### 12. Will I run out of IPv4 Addresses?
+
+Probably not. A Romana network that has the full use of a 10/8 network can accommodate 16 million endpoints. Even considering how the IPAM would allocate these across CIDRs, this is a very large number of endpoints.
+
+The latest [OpenStack User Survey (p34)]( https://www.openstack.org/assets/survey/Public-User-Survey-Report.pdf) indicates that about 36% of deployments have less than 10 Compute Nodes and about 78% of deployments have less than 100. So, for a large majority of cloud deployments there will be ample addresses. 
+
+
+{% include backtotopbutton.html %}
+
+---
+
+#### 13. What are the plans for IPv6
 
 Since Romana tenant and segment isolation relies on [IP addressing](/how/romana_details/#romana-tenant-isolation), larger deployments will exceed the limit of what IPv4 can support.  For this reason, Romana will support IPv6 as soon as practical. However, it is unlikely to be part of the first v1.0 Production Release 
  
@@ -153,7 +165,7 @@ Since Romana tenant and segment isolation relies on [IP addressing](/how/romana_
 
 ---
 
-#### 13. Does Romana Support Overlapping IP addresses?
+#### 14. Does Romana Support Overlapping IP addresses?
 
 No. Romana does not support overlapping IP addresses. To maintain the structure of the [routed access datacenter design](/how/background/#routed-access-datacenter/), IP addresses need to be conform to the address hierarchy.
   
@@ -161,7 +173,7 @@ No. Romana does not support overlapping IP addresses. To maintain the structure 
 
 ---
 
-#### 14. How does Romana handle NAT?
+#### 15. How does Romana handle NAT?
 
 The current release dose not perform NAT on its own. NAT can be done as needed by a gateway router by forwarding traffic to the device. Having control over the routes also allows external IP addressed to be assigned to endpoint interfaces, avoiding NAT entirely.
 
@@ -173,7 +185,7 @@ The current release does not support automated configuration of these kinds of i
 
 ---
 
-#### 15. What kind of performance gains can I expect?
+#### 16. What kind of performance gains can I expect?
 
 Since Romana does not require an overlay, no packet encapsulation is required and since traffic runs directly on the physical network, it can take more direct paths.
 
