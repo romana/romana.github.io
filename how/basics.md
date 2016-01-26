@@ -11,11 +11,11 @@ permalink: /how/romana_basics/
 
 Romana Cloud Native Networks are based on a new layer 3 tenancy model that encodes tenant and segment identifiers directly in the IP address. This enables multi-tenant cloud networks to be built without a virtual network overlay.
 
-Romana extends the physical network hierarchy of a [layer 3 routed access design](/how/background/#routed-access-datacenter) from spine and leaf switches on to hypervisor hosts, VMs and containers. Romana then assigns each tenant a physical network CIDR on every host where the Linux kernel can forward traffic directly to endpoints without the overhead of encapsulation. 
+Romana extends the physical network hierarchy of a [layer 3 routed access design](/how/background/#routed-access-datacenter) from spine and leaf switches on to hypervisor hosts, VMs and containers. Romana then assigns each tenant and segment a physical network CIDR on every host. This lets the Linux kernel forward traffic directly to endpoints and enforce network isolation without the overhead of encapsulation. 
 
 Another advantage of this approach is that route aggregation makes route distribution unnecessary and collapses the number of Linux *iptables* rules required for segment isolation.
 
-Romana includes an intelligent [IP Address Management](/how/romana_details/#ip-address-management) (IPAM) system that assigns IP addresses to VM and container endpoints that maintain the physical address hierarchy. A [Route Manager](/how/romana_details/#host-agent-and-route-manager) configures new routes on the hypervisor and adds firewall rules for tenant isolation and other traffic management policies. 
+Romana includes an intelligent [IP Address Management](/how/romana_details/#ip-address-management) (IPAM) system that assigns IP addresses to VM and container endpoints that maintain the physical address hierarchy. A [Route Manager](/how/romana_details/#route-manager-and-host-agent) configures new routes on the hypervisor and adds firewall rules for tenant isolation and other traffic management policies. 
 
 Service insertion and policy based control (*available in an upcoming  release*) is implemented by reconfiguring the default gateway on endpoint interfaces to steer traffic along specific paths to the IP address of the service endpoint.
 

@@ -4,28 +4,15 @@ title: Romana Performance
 menu_text: Performance
 nav_text: NA
 firstnav: 1
-secondnav: 5
+secondnav: 4
 permalink: /how/performance/
 ---
 
-Since Romana avoids the use of virtual network overlays and [VXLAN encapsulation](/how/background/#vxlan-tenant-isolation), significant performance gains can be achieved.
+Since Romana avoids the use of virtual network overlays and [VXLAN encapsulation](/how/background/#vxlan-tenant-isolation), significant performance gains can be achieved. 
 
-While VXLAN technology is reasonably mature and stable, bandwidth and CPU performance overhead are often cited as [areas for concern]( http://www.enterprisenetworkingplanet.com/netsp/vxlan-beyond-the-hype.html).
+#### Improved Latency on OpenStack Networks
 
-This is because the overlay requires a Virtual Tunnel Endpoint (VTEP) function (either software running on the hypervisor virtual switch, or in hardware on the top of rack switch) to add the proper header to each packet that enters or exits the VXLAN. While line rate throughput can generally be achieved, the actual observed performance impact is [difficult to characterize](http://blog.ipspace.net/2015/02/performance-of-hypervisor-based-overlay.html). 
-
-However, with header overhead [reducing bandwidth by ~6%](http://packetpushers.net/vxlan-udp-ip-ethernet-bandwidth-overheads/), and [CPU overhead taking at least 3%](http://chinog.org/wp-content/uploads/2015/05/Optimizing-Your-Virtual-Switch-for-VXLAN.pdf) the overall performance impact cannot be ignored. The reduced MTU size, for example may introduce packet fragmentation that could significantly impact [performance](http://www.networkworld.com/article/2224654/cisco-subnet/mtu-size-issues.html). 
- 
-But more important to consider than simple stand alone performance benchmarks is the cumulative latency introduced by encap/decap cycles along the complete path. At a minimum, all east/west traffic requires an encap at the source and a decap at the destination, or one complete cycle. 
-
-Also, for all routed VXLAN and north/south traffic, there is an *additional* encap/decap cycle for *each* intermediate router and/or Service Function. This is especially problematic for Cloud Native (i.e. microservice oriented) applications since they frequently apply Service Functions (i.e. load balancers) between *each* microservice.
-
-In addition, since overlay networks remove all topology context from the network, inefficient packet paths are unavoidable. It are these inefficient packet paths that most significantly impact performance.
-
-### Performance Gains on OpenStack Networks
-
-
-The diagram below shows the path packets take when OpenStack VMs on different tenant VXLAN segments communicate. There is an extra encap/dcap cycle required for the router on the Neutron host to forward traffic to the proper endpoint. 
+The diagram below shows the path packets take when OpenStack VMs on different tenant VXLAN segments communicate. There is an extra encap/dcap cycle required to reach the router on the Neutron host to forward traffic to the proper endpoint. 
 
 ![OpenStack VXLAN Routing]({{ site.baseurl }}/images/vxlan.png) 
 
@@ -47,9 +34,9 @@ Traffic destined for a different host (remote traffic) shows about a 50% reducti
 | Romana Networks | 16% | 51% | 100% | 90% |
 {: class='romanatable'}
 
-For traffic that remains on the same network segment (i.e. no VXLAN routing), Romana demonstrates the same performance for local destinations and improved performance for remote destinations. 
+For traffic that remains on the same network segment (i.e. no VXLAN routing), Romana delivers the same performance as standard OpenStack for local destinations and improved performance for remote destinations. 
 
-This is because for local destinations both Romana and Open vSwitch use the Linux kernel to forward packets. For remote destinations, Romana does deliver improved performance (~10%) since no encapsulation is necessary.
+This is because for local destinations both Romana and Open vSwitch use the Linux kernel to forward packets. For remote destinations, Romana delivers improved performance of about 10% since no encapsulation is necessary.
 
 
 
