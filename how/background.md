@@ -3,8 +3,8 @@ layout: page
 title: Helpful Network Background Information
 menu_text: Background
 nav_text: NA
-firstnav: 2
-secondnav: 4
+firstnav: 1
+secondnav: 5
 permalink: /how/background/
 ---
 
@@ -20,13 +20,13 @@ To better understand the operation of Romana and how it is different from other 
 
 ### Routed Access Datacenter
 
-Today's modern datacenters are frequently built using a spine/leaf network design. The details of this approach are beyond the scope of this document, but several good resources are available [here]( http://www.cisco.com/c/en/us/products/collateral/switches/nexus-5000-series-switches/guide_c07-673997.html), [here]( https://www.arista.com/assets/data/pdf/DesignGuides/Arista-Universal-Cloud-Network-Design.pdf), and [here](http://searchdatacenter.techtarget.com/feature/Data-center-network-design-moves-from-tree-to-leaf).
+Today's modern datacenters are frequently built using a spine/leaf network design. The details of this approach are beyond the scope of this document, but several good resources are available [here]( http://www.cisco.com/c/en/us/products/collateral/switches/nexus-5000-series-switches/guide_c07-673997.html), [here]( https://www.arista.com/en/solutions/design-guides), and [here](http://searchdatacenter.techtarget.com/feature/Data-center-network-design-moves-from-tree-to-leaf).
 
 These designs are popular because of their simplicity and performance and are often used as the underlay network for cloud deployments. Unlike layer 2 networks [running STP](https://en.wikipedia.org/wiki/Spanning_Tree_Protocol), they can take advantage layer 3 protocols such as [ECMP](https://en.wikipedia.org/wiki/Equal-cost_multi-path_routing) to take advantage of all available physical links between network devices. In addition, they frequently take advantage of [route aggregation]( http://www.linktionary.com/r/route_aggregation.html) to further simplify operations.
 
 Briefly stated, route aggregation is a method used to simplify router configuration by minimizing the number of routes a network device needs to maintain. This is achieved by assigning network addresses in a way that is 'topologically significant'. That is, each router gets assigned a portion of the entire IP address range based on where the router is located in the network topology. By organizing the addresses hierarchically, the number of routes needed to reach every endpoint is reduced. 
 
-The diagram below shows how route aggregation makes all endpoints in the network reachable with just a few routes configured on the leaf and spine devices. It illustrates how a 10/8 network (with up to 16M IP addresses) could be partitioned across two spines and four leaves so that each spine port forwards packets to one of four /10 networks (one on each leaf) and each leaf forwards packets to one of 64 ports configured with a /16 network.
+The diagram below shows how route aggregation makes all endpoints in the network reachable with just a few routes configured on the leaf and spine devices. It illustrates how a 10/8 network (with up to 16M IP addresses) could be partitioned across two spines and four leafs so that each spine port forwards packets to one of four /10 networks (one on each leaf) and each leaf forwards packets to one of 64 ports configured with a /16 network.
 
 ![Route Aggregation]({{ site.baseurl }}/images/routeagg.png)
 
@@ -62,7 +62,7 @@ Other variations include using only a portion of the complete 10/8 for smaller c
 
 Extending the routed access design on to the hosts also allows the design to work when all hosts are on a flat layer 2 network. In this case, there would need to be a route configured on each host to the router on every other host to maintain the fully routed design.
 
-> [Romana v0.6 Release](/try_romana/) builds an OpenStack DevStack cluster in AWS where each OpenStack Node runs as an EC2 instance in a VPC. Since there are no spine or leaf devices, routes are configured on every Node to every other Node to implement the fully routed design.
+> [Romana v0.6 Release](/try_romana/) builds an OpenStack DevStack or Kubernetes cluster in AWS where each Node runs as an EC2 instance in a VPC. Since there are no spine or leaf devices, routes are configured on every Node to every other Node to implement the fully routed design.
 
 The important point here is that the simplicity of the routed access design is extended on to the virtualization host where it acts just like any other router in the datacenter, forwarding traffic to local tenant endpoints. This is an obvious and natural extension of the highly successful layer 3 routed access datacenter.
 
@@ -76,21 +76,25 @@ The other is to maintain tenant isolation.
 
 ### VXLAN Tenant Isolation
 
-The traditional method to maintain tenant isolation is to create individual layer 2 segments on top of a layer 3 underlay network. These overlay networks typically use VXLAN encapsulation (or similar encapsulation protocol) which supports up to 16M isolated network segments. And just like other layer 2 segments, they must be configured with a CIDR address range and gateways to routers that forward traffic to other VLANs and networks, as necessary. 
-
-Assigning a VXLAN to individual tenant network segments provides layer 2 VLAN style isolation for every segment. If a NAT service is also available, segments can also support overlapping IP addresses. 
+A common way to maintain tenant isolation is to use VXLANs to overlay individual layer 2 segments on top of a layer 3 underlay network. These layer 2 overlay networks must be configured with a CIDR address range and gateways to routers that forward traffic to other VLANs and networks, as necessary. 
 
 While VXLAN technology is reasonably mature and stable, bandwidth and CPU performance overhead are often cited as [areas for concern]( http://www.enterprisenetworkingplanet.com/netsp/vxlan-beyond-the-hype.html).
 
-This is because the overlay requires a Virtual Tunnel Endpoint (VTEP) processor to add a header and to insert the correct field value for each packet that enters or exits the VXLAN. While line rate throughput can be achieved, the actual observed performance impact is [difficult to characterize](http://blog.ipspace.net/2015/02/performance-of-hypervisor-based-overlay.html). However, with header overhead [reducing bandwidth by ~6%](http://packetpushers.net/vxlan-udp-ip-ethernet-bandwidth-overheads/), and [CPU overhead taking at least 3%](http://chinog.org/wp-content/uploads/2015/05/Optimizing-Your-Virtual-Switch-for-VXLAN.pdf) the overall performance impact cannot be ignored. The reduced MTU size, for example may introduce packet fragmentation that could significantly impact [performance](http://www.networkworld.com/article/2224654/cisco-subnet/mtu-size-issues.html).  
+This is because the overlay requires a Virtual Tunnel Endpoint (VTEP) function (either software running on the hypervisor virtual switch, or in hardware on the top of rack switch) to add the proper header to each packet that enters or exits the VXLAN. While line rate throughput can generally be achieved, the actual observed performance impact is [difficult to characterize](http://blog.ipspace.net/2015/02/performance-of-hypervisor-based-overlay.html). 
 
-But more important to consider than simple stand alone performance benchmarks is the cumulative latency introduced by encap/decap cycles along the complete path. At a minimum, all east/west traffic requires an encap at the source and a decap at the destination, or one complete cycle. However, for all routed VXLAN and north/south traffic, there is an *additional* encap/decap cycle for *each* intermediate router and/or Service Function. This is especially problematic for Cloud Native (i.e. microservice oriented) applications since they frequently apply Service Functions (i.e. load balancers) between *each* microservice.
+However, with header overhead [reducing bandwidth by ~6%](http://packetpushers.net/vxlan-udp-ip-ethernet-bandwidth-overheads/), and [CPU overhead taking at least 3%](http://chinog.org/wp-content/uploads/2015/05/Optimizing-Your-Virtual-Switch-for-VXLAN.pdf) the overall performance impact cannot be ignored. The reduced MTU size, for example may introduce packet fragmentation that could significantly impact [performance](http://www.networkworld.com/article/2224654/cisco-subnet/mtu-size-issues.html). 
+ 
+But more important to consider than simple stand alone performance benchmarks is the cumulative latency introduced by encap/decap cycles along the complete path. At a minimum, all east/west traffic requires an encap at the source and a decap at the destination, or one complete cycle. 
 
-In addition, since overlay networks remove all topology context from the network, inefficient packet paths are unavoidable.
+Also, for all routed VXLAN and north/south traffic, there is an *additional* encap/decap cycle for *each* intermediate router and/or Service Function. This is especially problematic for Cloud Native (i.e. microservice oriented) applications since they frequently apply Service Functions (i.e. load balancers) between *each* microservice.
+
+In addition, since overlay networks remove all topology context from the network, inefficient packet paths are unavoidable. It are these inefficient packet paths that most significantly impact performance.
 
 For example, the diagram below shows the path packets take when OpenStack VMs on different tenant VXLAN segments communicate. There is an extra encap/dcap cycle required for the router on the Neutron host to forward traffic to the proper endpoint. 
 
 ![OpenStack VXLAN Routing]({{ site.baseurl }}/images/vxlan.png) 
+
+A simple latency benchmark comparing a Romana network to a VXLAN overlay on OpenStack is described [here](/how/performance/). 
 
 If performance were all it cost to run VXLAN, considering the benefits of segment isolation, it could still be a bargain. However, from an operational perspective, there are other critical challenges to running VXLANs that are not easily addressed.
 
@@ -100,9 +104,9 @@ If performance were all it cost to run VXLAN, considering the benefits of segmen
 
 3. *Interoperability*: When running VXLAN overlays, operators will invariably require VTEPs on virtualization hosts, network devices and other VXLAN gateways. Each VTEP potentially could have different APIs, versions or come from different vendors.  There are no interoperability standards (or even best practices) for VTEPs, which makes coordinating VNIDs difficult, even with a commercial Enterprise SDN solution.
 
-4. *Cost*: To avoid the latency impact of encapsulation, new network devices with VTEP hardware acceleration may be required. In addition, an SDN solution of some kind is necessary to coordinate VNIDs. There is also the operational burden of the integrating and managing the entire environment on an ongoing basis. These costs are not insignificant.
+4. *Cost*: To avoid the performance impact of on-host software encapsulation (vSwitch), new network devices with VTEP hardware acceleration may be required. In addition, an SDN solution of some kind is necessary to coordinate VNIDs. There is also the operational burden of the integrating and managing the entire environment on an ongoing basis. These costs are not insignificant.
 
-Container orchestration systems such as Docker or Kubernetes also use VXLANs for segment isolation. Today, when these systems are run on OpenStack VMs, the result is *double* encapsulation! It will be a long while before these conflicting deployment models are reconciled.
+Finally, today, Container orchestration systems such as Docker or Kubernetes *also* use VXLANs for segment isolation. When these systems are run on OpenStack VMs, the result is *double* encapsulation! It will be a long while before these conflicting deployment models are reconciled.
 
 The net result of higher costs, architectural incompatibility, operational challenges and performance overhead of running VXLANs have operators looking for better ways to provide secure tenant isolation.
 
@@ -114,7 +118,7 @@ The net result of higher costs, architectural incompatibility, operational chall
 
 Service Insertion and Service Chaining are terms used to describe the ability to modify the *path* traffic will use to traverse the network on its way to its final destination. The modified path typically includes one or more network Service Function devices (SFs) that may filter and/or modify the traffic at the network layer, according to an operator-defined policy. An example of an SF is a load balancer, firewall or IDS.
 
-Service Insertion is related to, but different from, application-level request routing. Application request routing is the process by which requests are forwarded to one or more application service endpoints that are available for further processing. Forwarding decisions for application request routing may be based on any application oriented criteria such as the kind of request being made, or even the identity of the requester. Application request routing typically specifies *only* the destination of requests and *not* the path requests should use to get there.
+Service Insertion is related to, but different from, application-level request routing. Application request routing is the process by which requests are forwarded to one or more application service endpoints that are available for further processing. Forwarding decisions for application request routing may be based on any application level criteria such as the kind of request being made, or even the identity of the requester. Application request routing typically specifies *only* the destination of requests and *not* the path requests should use to get there.
 
 Service Insertion is also different from service composition, which is the collection of fixed, developer-specified paths that requests must traverse to complete an application function. An example of this kind of logical path would be specifying what is necessary to complete a user request. For example, a user request requires a path to a webserver, from a web server to an application server, and from an application server to a database server, and so on.
 
@@ -124,9 +128,9 @@ When a destination endpoint is specified and traffic traverses the network, the 
 
 What distinguishes Service Chaining from either request routing or service composition is, unlike these *developer* specified paths, the *network operator* needs to insert SFs *transparently* in the path, *independent* of how applications are designed. 
 
-The obvious example is the operators desire to insert security devices, as needed, anywhere within the network without requiring modifications to the applications. 
+An obvious example is the operator's desire to insert security devices, as needed, anywhere within the network without requiring modifications to the applications. 
 
-The diagram below shows a Service Function (F1) inserted into the path from the source (S1) to the destination (D1). On the left, the traffic flows through the gateway directly to the destination. On the right, by modifying the gateway address of S1 to be the IP address of the Service Function, traffic will not go to the gateway. Instead, it will go to the Service Function where it will apply the desired function then forward traffic to the default gateway where it will be routed to the destination in the standard way.
+The diagram below shows a Service Function (F1) inserted into the path from the source (S1) to the destination (D1). On the left, the traffic flows through the gateway directly to the destination. On the right, by modifying the gateway address of S1 to be the IP address of the Service Function, traffic will not go to the gateway. Instead, traffic will go to the Service Function where it will apply the desired function then forward traffic to the default gateway where it will be routed to the destination in the standard way.
 
 ![Virtualization Hosts]({{ site.baseurl }}/images/insertion.png)
 

@@ -20,6 +20,7 @@ permalink: /faq/
 7. [How are network segments isolated](#how-are-network-segments-isolated)?
 8. [Does it have any layer 2 semantics](#does-it-have-any-layer-2-semantics)?
 9. [How does it scale](#how-does-it-scale)?
+10. [Will I run out of IPv4 Addresses](#will-i-run-out-of-ipv4-addresses)?
 10. [What are the plans for IPv6](#what-are-the-plans-for-ipv6)?
 11. [Does Romana support overlapping IP addresses](#does-romana-support-overlapping-ip-addresses)?
 12. [How does Romana handle NAT](#how-does-romana-handle-nat)?
@@ -55,11 +56,11 @@ OpenContrail uses host based virtual routers [(vRouters)]( https://github.com/Ju
 
 Nuage Networks also uses a host based vRouter, but uses BGP-MP for route distribution. 
 
-On the other hand, Calico uses the linux host as a router, but requires BGP for route distribution. Also, Calico deployment presumes compute hosts are all on a single L2 network and ARP to learn about the other routers in the configuration. 
+Calico uses the Linux host as a router, but requires BGP for route distribution. Also, Calico deployment presumes compute hosts are all on a single L2 network and ARP to learn about the other routers in the configuration. 
 
 When a new endpoint is added with Calico, a new host route (/32 CIDR) is added on the local host. This /32 route is then propagated to all the other hosts via BGP running on the host. 
 
-Romana on the other hand presumes all the hosts on an L3 network and leverages route aggregation to avoid the need for a route distribution protocol.
+Romana on the other lets hosts run on either a layer 2 or layer 3 network and leverages route aggregation to avoid the need for a route distribution protocol.
 
 Also, Calico requires a key value store (KVS) to maintain configuration state for the network. Romana does not need a KVS.
 
@@ -79,6 +80,8 @@ In summary the main differences are:
 #### 4. Does Romana work with OpenStack?
 
 Yes. Romana works with cloud orchestration systems like OpenStack to launch VM and container endpoints. Romana integrates with OpenStack through a Modular Layer 2 device driver and an interface to its new IPAM API.
+
+You can try Romana today with OpenStack running on Amazon EC2 instances. See our [current release](/try_romana/openstack/) for details.
 
 See current [Roadmap](/roadmap/) for details.
 
@@ -100,7 +103,7 @@ See current [Roadmap](/roadmap/) for details.
 
 #### 6. Does Romana work with Docker?
 
-It will. The current [v0.6 release](/roadmap/) does not support Docker, but it is planned for release v0.2.
+It will. The current [v0.6 release](/try_romana/docker/) does not support Docker, but it is planned for a future release.
 
 {% include backtotopbutton.html %}
 
@@ -108,14 +111,14 @@ It will. The current [v0.6 release](/roadmap/) does not support Docker, but it i
 
 #### 7. Does Romana work with Kubernetes?
 
-It will. The current [v0.6 release](/roadmap/) does not support Kubernetes, but it is planned for the next release.
+We are working on support for the Container Network Interface (CNI) in Kubernetes and it will be available soon. Current status [available here](/try_romana/kubernetes/).
 
 {% include backtotopbutton.html %}
 ---
 
 #### 8. Will Romana run in AWS?
 
-Yes. The current release supports OpenStack running in AWS EC2. See current [Roadmap](/roadmap/) for details.
+Yes. The current release supports OpenStack running on AWS EC2 instances. Current status [available here](/try_romana/openstack/).
 
 {% include backtotopbutton.html %}
 
@@ -123,7 +126,7 @@ Yes. The current release supports OpenStack running in AWS EC2. See current [Roa
 
 #### 9. How are network segments isolated?
 
-Romana uses a new layer 3 based approach for tenant and segment isolation. Romana encodes tenant and segment identifiers directly in the IP address and ip tables firewall rules are set to provide isolation. This enables multi-tenant cloud networks to be built without a virtual network overlay. See [Romana Tenant Isolation](/how/romana_details/#romana-tenant-isolation) for  more detail.
+Romana uses a new layer 3 based approach for tenant and segment isolation. Romana encodes tenant and segment identifiers directly in the IP address and Linux *iptables* rules are set to provide isolation. This enables multi-tenant cloud networks to be built without a virtual network overlay. See [Romana Tenant Isolation](/how/romana_details/#romana-tenant-isolation) for  more detail.
 
 {% include backtotopbutton.html %}
 
@@ -145,7 +148,18 @@ Since Romana uses a distributed, service oriented approach, each service can sca
 
 ---
 
-#### 12. What are the plans for IPv6
+#### 12. Will I run out of IPv4 Addresses?
+
+Probably not. A Romana network that has the full use of a 10/8 network can accommodate up to 16 million endpoints. Even considering how Romana's IPAM would allocate these across CIDRs, this is a very large number of endpoints.
+
+The latest [OpenStack User Survey (p34)]( https://www.openstack.org/assets/survey/Public-User-Survey-Report.pdf) indicates that about 36% of deployments have less than 10 Compute Nodes and about 78% of deployments have less than 100. So, for a large majority of cloud deployments there will be ample addresses. 
+
+
+{% include backtotopbutton.html %}
+
+---
+
+#### 13. What are the plans for IPv6
 
 Since Romana tenant and segment isolation relies on [IP addressing](/how/romana_details/#romana-tenant-isolation), larger deployments will exceed the limit of what IPv4 can support.  For this reason, Romana will support IPv6 as soon as practical. However, it is unlikely to be part of the first v1.0 Production Release 
  
@@ -153,7 +167,7 @@ Since Romana tenant and segment isolation relies on [IP addressing](/how/romana_
 
 ---
 
-#### 13. Does Romana Support Overlapping IP addresses?
+#### 14. Does Romana Support Overlapping IP addresses?
 
 No. Romana does not support overlapping IP addresses. To maintain the structure of the [routed access datacenter design](/how/background/#routed-access-datacenter/), IP addresses need to be conform to the address hierarchy.
   
@@ -161,19 +175,17 @@ No. Romana does not support overlapping IP addresses. To maintain the structure 
 
 ---
 
-#### 14. How does Romana handle NAT?
+#### 15. How does Romana handle NAT?
 
 The current release dose not perform NAT on its own. NAT can be done as needed by a gateway router by forwarding traffic to the device. Having control over the routes also allows external IP addressed to be assigned to endpoint interfaces, avoiding NAT entirely.
 
-Variations of this same approach will allow consolidation of external IPs in DMZ, etc.
-
-The current release does not support automated configuration of these kinds of individual routes. See the Romana [Roadmap](/roadmap/) for details on what is currently supported.
+Variations of this same approach will allow consolidation of external IPs in DMZ, etc. However, the current release does not support automated configuration of these kinds of individual routes. See the Romana [Roadmap](/roadmap/) for details on what is currently supported.
 
 {% include backtotopbutton.html %}
 
 ---
 
-#### 15. What kind of performance gains can I expect?
+#### 16. What kind of performance gains can I expect?
 
 Since Romana does not require an overlay, no packet encapsulation is required and since traffic runs directly on the physical network, it can take more direct paths.
 
