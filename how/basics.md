@@ -15,6 +15,8 @@ Romana extends the physical network hierarchy of a [layer 3 routed access design
 
 Another advantage of this approach is that route aggregation makes route distribution unnecessary and collapses the number of Linux *iptables* rules required for segment isolation.
 
+Even though Romana uses a layer 3 tenancy model, it can run on layer 2 or layer 3 networks, as well as on public cloud networks like Amazon's VPC.
+
 Romana includes an intelligent [IP Address Management](/how/romana_details/#ip-address-management) (IPAM) system that assigns IP addresses to VM and container endpoints that maintain the physical address hierarchy. A [Route Manager](/how/romana_details/#route-manager-and-host-agent) configures new routes on the hypervisor and adds firewall rules for tenant isolation and other traffic management policies. 
 
 Service insertion and policy based control (*available in an upcoming  release*) is implemented by reconfiguring the default gateway on endpoint interfaces to steer traffic along specific paths to the IP address of the service endpoint.
