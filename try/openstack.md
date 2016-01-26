@@ -11,17 +11,17 @@ permalink: /try_romana/openstack/
 
 Romana v0.6 lets you build isolated multi-tenant networks in OpenStack without an overlay network. The current installer builds an OpenStack cluster in AWS on EC2 instances.
 
-You will need to set up your laptop with AWS command line tools and have your own AWS account to launch the CloudFormation scripts that provision the EC2 instances as OpenStack nodes and installs Romana. The Romana repository's [README]( https://github.com/romana/romana/blob/release-v0.6.1/README.md) file has the latest detail on how to set up your environment and get started. 
+You will need to set up your laptop with AWS command line tools and have your own AWS account to launch the script that provision the EC2 instances as OpenStack nodes and installs Romana. The Romana repository's [README]( https://github.com/romana/romana/blob/release-v0.6.1/README.md) file has the latest detail on how to set up your environment and get started. 
 
 We will be updating this release soon to also include a local deployment option using Vagrant.
 
-If you just want to launch a few VMs on OpenStack, send us an email and we'll give you an OpenStack account with your GutHub username on a private cluster we have running.
+If you do not want to install your own cluster and just want to launch a few VMs on OpenStack, send us an email and ask for an account on our private OpenStack cluster we have running with Romana. 
 
 #### What Gets Installed
 
 The EC2 installation takes about 20-25 mins to complete (on t2.large instances) and creates an OpenStack DevStack cluster (Liberty release) with a single Controller Node and up to 4 Compute Nodes. Each OpenStack Node runs on a dedicated EC2 instance. Romana installs its OpenStack ML2 and IPAM drivers and creates a Romana router gateway interface on each Compute Node. 
 
-The default configuration partitions the address space so that 8 bits are used for the Host ID, 4 bits for the Tenant and Segment IDs as well as 8 bits for the endpoint ID. While this may not be an efficient allocation for a production deployment, it has the advantage of creating IP addresses that make it easy to see what is happening. 
+The default configuration partitions the address space so that 8 bits are used for the Host ID, 4 bits for the Tenant and Segment IDs as well as 8 bits for the endpoint ID. While this may not be an efficient allocation for a production deployment, it has the advantage of creating IP addresses that make it easy to see what is happening in the example. 
 
 >  This address bit allocation is also different from the example used to illustrate how Romana uses IP addresses for [tenant isolation](/how/romana_details/#romana-tenant-isolation)
 
@@ -30,7 +30,7 @@ Two Tenants are created: 'admin' and 'demo'. They each have up to 2 network segm
 
 #### What You Can Do
 
-Once you have successfully installed OpenStack, you can explore the setup by examining the route tables on the Compute Nodes. You can log in to Horizon at the IP address of the Controller node. The default administrator account is 'admin' with password 'secrete'. 
+Once you have successfully installed OpenStack, you can explore the setup by examining the route tables on the Compute Nodes. You can log in to Horizon at the IP address of the Controller Node. The default administrator account is 'admin' with password 'secrete'. 
 
 You can ssh in to the EC2 instance using it's public IP address. There you will find the local Romana router gateway interface (romana-gw) that is used to access endpoints running on the local host, as well as routes to the *other hosts* that lie on the 192.168.0/24 network (eth0). 
 
@@ -50,7 +50,7 @@ The route table should looks something like the configuration below:
 
 Note that since there are 8 bits allocated for the Host ID, the gateway interfaces will be to /16 networks (32-8-8=16). 
 
-From Horizon, examining the 'admin' project you will see an empty Network. You can start several cirros VMs and put them all on their own segment by specifying a Segment name in the launch Instance 'Advanced Options' tab.
+From Horizon, examining the 'admin' project you will see an empty network. You can start several cirros VMs and put them all on their own segment by specifying a Segment name in the launch Instance 'Advanced Options' tab.
 
 Launch two or three instances on each network segment. Once they have started, you can examine the route table on the Compute Nodes where you will see tap interfaces for each VM running on the node. Note the way the addresses have been set using Host, Tenant and Segment IDs.
 
@@ -65,15 +65,15 @@ If you log in to any of the instances (from Compute Node, 'ssh cirros@IP_address
 
 >Note: A *traceroute* to an instance on a different host will show blank entries for the router hops along the path. This is normal, since ICMP traffic is blocked by default across OpenStack Hosts.
 
-Trying to ping instances on different Segments will fail.
+Trying to ping instances on different Segments will fail as expected since they are isolated.
 
-Try launching more instances as a different Tenant (demo). There you will see addresses being assigned to the instances with a different Tenant ID. Pinging these instances from any of the 'admin' Tenant instances will fail.
+Try launching more instances as a different Tenant (demo). There you will see addresses being assigned to the instances with a different Tenant ID. Pinging these instances from any of the 'admin' Tenant instances will fail as expected since they are separate isolated tenants.
 
-You can relaunch DevStack with a different number of Compute nodes by changing the *devstack_compute_node* value in the [configuration file](https://github.com/romana/romana/blob/master/romana-install/group_vars/all) and running ./romana-setup again.
+You can build a DevStack cluster with a different number of Compute Nodes by changing the *devstack_compute_node* value in the [configuration file](https://github.com/romana/romana/blob/master/romana-install/group_vars/all) and running ./romana-setup again.
 
 Romana provides a basic command line utility list or add new Hosts, Tenants, Segments, etc.  If you are logged in to the OpenStack Controller, you can list the Romana Tenants and/or Hosts with the following commands:
 
 	ubuntu@ip-192-168-0-10:~$ romana show-tenant
 	ubuntu@ip-192-168-0-10:~$ romana show-host
 
-You can visit the other Romana [repositories](https://github.com/romana/core) to see the Go code, run tests, etc.
+You can visit the other Romana repositories to see the [Go code, run tests](https://github.com/romana/core), etc. and the [OpenStack ML2 and IPAM drivers](https://github.com/romana/networking-romana).
