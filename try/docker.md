@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Multi Host Kubernetes with Romana 
+title: Multi Host Docker with Romana 
 menu_text: Docker on EC2
 nav_text: 
 icon:
