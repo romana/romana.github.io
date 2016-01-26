@@ -80,7 +80,7 @@ In summary the main differences are:
 
 #### 4. Can I run Romana on a layer 2 network?
 
-Yes. The Romana imposes almost no restriction on the type of physical network where it is run. It will work on simple switched layer 2 networks, layer 2 fabrics, routed layer 3 networks and even on public cloud networks like Amazon's Virtual Private Cloud.
+Yes. Romana will work on simple switched layer 2 networks, layer 2 fabrics, routed layer 3 networks and even on public cloud networks like Amazon's Virtual Private Cloud.
 
 When Romana runs on layer 2 networks, the Route Manager will configure routes on each host to every other host.
 
