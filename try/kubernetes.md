@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Multi Host Kubernetes with Romana 
+title: Multi-host Kubernetes with Romana 
 menu_text: Kubernetes on EC2
 nav_text: 
 icon:
@@ -12,5 +12,4 @@ permalink: /try_romana/kubernetes/
 
 #### Coming Soon
 
-Romana supports Kubernetes v1.2 which includes support for the [Container Network Interface](https://github.com/appc/cni ) (CNI).  Development is currently taking place on the Romana [romana/core/cni]( https://github.com/romana/core/tree/cni) branch.
-
+Support for Kubernetes v1.2 is currently under development.  Visit our [Slack Channel](http://romana.slack.com) for the latest status.

@@ -16,24 +16,8 @@
             </div>
             <br />
             <div class="mdl-typography--text-center jekyll-mdl-bigger-font">
-              <p>try search</p>
-              <a href="{{ "/search/" | prepend: site.baseurl }}">
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
-                  <i class="material-icons">search</i>
-                </button>
-              </a>
-            </div>
-            <br /><br /><br />
-            <div class="mdl-typography--text-center jekyll-mdl-bigger-font">
-              <p>or check out the latest</p>
-              {% for post in site.posts limit:3 %}
-                 <p>
-                   <span>{{ post.date | date: "%b %-d, %Y" }}</span> &raquo;
-                   <a href="{{ post.url | prepend: site.baseurl }}">
-                   {{ post.title }}</a>
-                 </p>
-              {% endfor %}
-            </div>
+              
+              </div>
           </div>
         </div>
         {% include footer.html %}

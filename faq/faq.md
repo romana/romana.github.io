@@ -26,6 +26,7 @@ permalink: /faq/
 11. [Does Romana support overlapping IP addresses](#does-romana-support-overlapping-ip-addresses)?
 12. [How does Romana handle NAT](#how-does-romana-handle-nat)?
 13. [What kind of performance gains can I expect](#what-kind-of-performance-gains-can-i-expect)?
+14. [Is there any training available](#is-there-any-training-available)?
 
 ---
 
@@ -215,6 +216,16 @@ The table below summarizes the relative performance of an OpenStack network with
 
 
 See this [Performance](/how/performance) page for more detail.
+
+{% include backtotopbutton.html %}
+
+---
+
+#### 18. Is there any training available? 
+
+Soon. We are working with a partner to develop the curriculum for a one day, hands on training workshop and have the first classes in the San Francisco Bay Area sometime in March 2016. 
+
+If you are interested in learning more, send an email to [training@romana.io](mailto:training@romana.io).
 
 {% include backtotopbutton.html %}
 
