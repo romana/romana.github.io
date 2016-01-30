@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Multi Host Docker with Romana 
+title: Multi-host Docker with Romana 
 menu_text: Docker on EC2
 nav_text: 
 icon:
@@ -12,7 +12,4 @@ permalink: /try_romana/docker/
 
 #### Coming Soon
 
-Work is currently underway to support the Docker [Container Network Model]( https://github.com/docker/libnetwork/blob/master/docs/design.md) (CNM) under the Romana [romana/core/cnm]( https://github.com/romana/core/tree/cnm) branch. 
-
-
-
+Work is currently underway to support the Docker [Container Network Model]( https://github.com/docker/libnetwork/blob/master/docs/design.md) (CNM). Visit our [Slack Channel](http://romana.slack.com) for the latest status.

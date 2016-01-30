@@ -8,7 +8,7 @@ title: Romana Cloud Native SDN
 
 
 description: > # this means to ignore newlines until "baseurl:"
-  Romana is a new open source Software Defined Network (SDN) solution that lets data center operators design and deploy multi-tenant cloud computing networks directly on their physical infrastructure without a virtual network overlay. Romana based networks are less expensive to build, easier to operate and deliver higher performance than overlay-based virtual networks.
+  Romana is a new open source Software Defined Network (SDN) solution specifically designed for Cloud Native applications. Romana allows multi-tenant cloud computing networks for OpenStack, Docker and Kubernetes to be built without encapsulation or a virtual network overlay. Romana networks are less expensive to build, easier to operate and deliver higher performance than networks built using alternative overlay based SDN designs.
 
 # Your website URL (e.g. http://romana.github.io or http://romana.io)
 # Used for Sitemap.xml and your RSS feed
@@ -23,13 +23,13 @@ homepage: earlyaccess.html
 # (http://yourusername.github.io/repository-name)
 # and NOT your User repository (http://yourusername.github.io)
 # then add in the baseurl here, like this: "/repository-name"
-baseurl:
+baseurl: 
 
 # Contact/Social Info
 email: info@romana.io
 
 # https://twitter.com/romanaproject
-#twitter_username: romanaproject
+twitter_username: romanaproject
 
 # https://github.com/romana
 github_username:  romana
@@ -41,7 +41,7 @@ github_username:  romana
 #facebook_profile:
 
 # https://plus.google.com/u/0/<gplus_profile>
-#gplus_profile:
+# gplus_profile:
 
 # https://instagram.com/<instagram_username>
 #instagram_username:

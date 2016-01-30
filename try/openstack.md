@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Try Romana Now
+title: Try Romana on OpenStack Now
 menu_text: OpenStack on EC2
 nav_text: Try it Now
 icon: launch
@@ -9,9 +9,9 @@ secondnav: 1
 permalink: /try_romana/openstack/
 ---
 
-Romana v0.6 lets you build isolated multi-tenant networks in OpenStack without an overlay network. The current installer builds an OpenStack cluster in AWS on EC2 instances.
+Romana v0.6.2 lets you build isolated multi-tenant networks in OpenStack without an overlay network. The current installer builds an OpenStack cluster in AWS on EC2 instances.
 
-You will need to set up your laptop with AWS command line tools and have your own AWS account to launch the script that provision the EC2 instances as OpenStack nodes and installs Romana. The Romana repository's [README]( https://github.com/romana/romana/blob/release-v0.6.1/README.md) file has the latest detail on how to set up your environment and get started. 
+You will need to set up your laptop with AWS command line tools and have your own AWS account to launch the script that provision the EC2 instances as OpenStack nodes and installs Romana. The Romana repository's [README]( https://github.com/romana/romana/) file has the latest detail on how to set up your environment and get started. 
 
 We will be updating this release soon to also include a local deployment option using Vagrant.
 
@@ -36,34 +36,52 @@ You can ssh in to the EC2 instance using it's public IP address. There you will 
 
 The route table should looks something like the configuration below:
 
-    ubuntu@ip-192-168-0-10:~$ route -n
-    Kernel IP routing table
-    Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
-    0.0.0.0         192.168.0.1     0.0.0.0         UG    0      0        0 eth0
-    10.0.0.0        0.0.0.0         255.255.0.0     U     0      0        0 romana-gw
-    10.1.0.0        192.168.0.11    255.255.0.0     UG    0      0        0 eth0
-    10.2.0.0        192.168.0.12    255.255.0.0     UG    0      0        0 eth0
-    10.3.0.0        192.168.0.13    255.255.0.0     UG    0      0        0 eth0
-    10.4.0.0        192.168.0.14    255.255.0.0     UG    0      0        0 eth0
-    192.168.0.0     0.0.0.0         255.255.255.0   U     0      0        0 eth0
-    192.168.122.0   0.0.0.0         255.255.255.0   U     0      0        0 virbr0
-
+	ubuntu@ip-192-168-0-10:~$ route -n
+	Kernel IP routing table
+	Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+	0.0.0.0         192.168.0.1     0.0.0.0         UG    0      0        0 eth0
+	10.0.0.0        0.0.0.0         255.255.0.0     U     0      0        0 romana-gw
+	10.1.0.0        192.168.0.11    255.255.0.0     UG    0      0        0 eth0
+	10.2.0.0        192.168.0.12    255.255.0.0     UG    0      0        0 eth0
+	10.3.0.0        192.168.0.13    255.255.0.0     UG    0      0        0 eth0
+	10.4.0.0        192.168.0.14    255.255.0.0     UG    0      0        0 eth0
+	192.168.0.0     0.0.0.0         255.255.255.0   U     0      0        0 eth0
+	
 Note that since there are 8 bits allocated for the Host ID, the gateway interfaces will be to /16 networks (32-8-8=16). 
 
 From Horizon, examining the 'admin' project you will see an empty network. You can start several cirros VMs and put them all on their own segment by specifying a segment name in the launch instance 'Advanced Options' tab.
 
-Launch two or three instances on each network segment. Once they have started, you can examine the route table on the Compute Nodes where you will see tap interfaces for each VM running on the node. Note the way the addresses have been set using Host, Tenant and Segment IDs.
+Launch three or four instances on each network segment. Once they have started, you can examine the route table on the Compute Nodes where you will see tap interfaces for each VM running on the node. Note the way the addresses have been set using Host, Tenant and Segment IDs as shown in the example below.
 
+	ubuntu@ip-192-168-0-10:~$ route -n
+	Kernel IP routing table
+	Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+	0.0.0.0         192.168.0.1     0.0.0.0         UG    0      0        0 eth0
+	10.0.0.0        0.0.0.0         255.255.0.0     U     0      0        0 romana-gw
+	10.0.18.6       0.0.0.0         255.255.255.255 UH    0      0        0 tapec18d46c-a2
+	10.0.18.7       0.0.0.0         255.255.255.255 UH    0      0        0 tap62d53610-fb
+	10.0.19.4       0.0.0.0         255.255.255.255 UH    0      0        0 tap4276a515-3c
+	10.0.19.5       0.0.0.0         255.255.255.255 UH    0      0        0 tapbec29031-63
+	10.1.0.0        192.168.0.11    255.255.0.0     UG    0      0        0 eth0
+	10.2.0.0        192.168.0.12    255.255.0.0     UG    0      0        0 eth0
+	10.3.0.0        192.168.0.13    255.255.0.0     UG    0      0        0 eth0
+	10.4.0.0        192.168.0.14    255.255.0.0     UG    0      0        0 eth0
+	192.168.0.0     0.0.0.0         255.255.255.0   U     0      0        0 eth0
+	
 If you log in to any of the instances (from Compute Node, 'ssh cirros@IP_address', or use the Console tab of the Horizon instance detail), you will be able to ping other instances on the same segment. If you *traceroute* the path to another instance on the *same* host, you will see the local Host IP address as a router hop along the path. 
 
+	$ traceroute 10.0.19.4
+	traceroute to 10.0.19.4 (10.0.19.4), 30 hops max, 46 byte packets
+ 	1  ip-192-168-0-10 (192.168.0.10)  770.429 ms  0.037 ms  0.032 ms
+ 	2  db-1 (10.0.19.4)  661.990 ms  0.380 ms  0.905 ms
 
-    ubuntu@ip-192-168-0-10:~$ traceroute 10.1.19.5
-    traceroute to 10.1.19.5 (10.1.19.5), 30 hops max, 46 byte packets
-    1  ip-192-168-0-10 (192.168.0.10)  0.299 ms  0.033 ms  0.185 ms
-    2  10.1.19.5 (10.1.19.5)  1.158 ms  0.643 ms  0.326 ms
-    $
+Note: A *traceroute* to an instance on a different host will show blank entries (* * *) for the router hops along the path. This is normal, since ICMP traffic is blocked by default across OpenStack Hosts.
 
->Note: A *traceroute* to an instance on a different host will show blank entries (* * *) for the router hops along the path. This is normal, since ICMP traffic is blocked by default across OpenStack Hosts.
+	$ traceroute 10.1.18.5
+	traceroute to 10.1.18.5 (10.1.18.5), 30 hops max, 46 byte packets
+ 	1  ip-192-168-0-10 (192.168.0.10)  0.807 ms  0.038 ms  0.818 ms
+ 	2  *  *  *
+ 	3  10.1.18.5 (10.1.18.5)  1.359 ms  0.922 ms  1.874 ms
 
 Trying to ping instances on different segments will fail as expected since they are isolated.
 
