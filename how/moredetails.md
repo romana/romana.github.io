@@ -27,7 +27,7 @@ To better understand the operation of Romana, it is helpful to also understand t
 
 Romana networks are built and managed by the set of [configuration and control services](/how/romana_arch/) that make up the Romana Cloud Native SDN solution. 
 
-Central to Romana's approach is intelligent [IP Address Management](/how/romana_details/#ip-address-management) that extends a layer 3 [routed access design](/how/background/#routed-access-datacenter) on to hypervisors, and the automated configuration of endpoint routes and access control. These functions are two of the Romana control services that together let operators build multi-tenant Cloud Native Networks. 
+Central to Romana's approach is intelligent [IP Address Management](/how/romana_details/#ip-address-management) that extends a layer 3 [routed access design](/how/background/#routed-access-datacenter) on to hypervisors, VMs and container endpoints and the automated configuration of routes and access control. These functions are two of the Romana control services that together let operators build multi-tenant Cloud Native Networks. 
 
 ---
 
