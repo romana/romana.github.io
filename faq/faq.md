@@ -62,7 +62,7 @@ Calico uses the Linux host as a router, but requires BGP for route distribution.
 
 When a new endpoint is added with Calico, a new host route (/32 CIDR) is added on the local host. This /32 route is then propagated to all the other hosts via BGP running on the host. 
 
-Romana on the other lets hosts run on either a layer 2 or layer 3 network and leverages route aggregation to avoid the need for a route distribution protocol.
+Romana on the other hand lets hosts run on either a layer 2 or layer 3 network and leverages route aggregation to avoid the need for a route distribution protocol.
 
 Also, Calico requires a key value store (KVS) to maintain configuration state for the network. Romana does not need a KVS.
 
