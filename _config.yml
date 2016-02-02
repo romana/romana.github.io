@@ -52,3 +52,7 @@ github_username:  romana
 
 # Build settings
 markdown: kramdown
+
+#gems
+gems:
+ - jekyll-sitemap
