@@ -12,7 +12,7 @@ description: > # this means to ignore newlines until "baseurl:"
 
 # Your website URL (e.g. http://romana.github.io or http://romana.io)
 # Used for Sitemap.xml and your RSS feed
-url: romana.io
+url: http://romana.io
 
 # Homepage URL. Used for links to homepage in templates so all templated don't
 # need to be updated when obscure urls used
