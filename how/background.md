@@ -62,7 +62,7 @@ Other variations include using only a portion of the complete 10/8 for smaller c
 
 Extending the routed access design on to the hosts also allows the design to work when all hosts are on a flat layer 2 network. In this case, there would need to be a route configured on each host to the router on every other host to maintain the fully routed design.
 
-> [Romana v0.6 Release](/try_romana/) builds an OpenStack DevStack or Kubernetes cluster in AWS where each Node runs as an EC2 instance in a VPC. Since there are no spine or leaf devices, routes are configured on every Node to every other Node to implement the fully routed design.
+> [Romana v0.6.3 Release](/try_romana/openstack) builds an OpenStack DevStack or Kubernetes cluster in AWS where each Node runs as an EC2 instance in a VPC. Since there are no spine or leaf devices, routes are configured on every Node to every other Node to implement the fully routed design.
 
 The important point here is that the simplicity of the routed access design is extended on to the virtualization host where it acts just like any other router in the datacenter, forwarding traffic to local tenant endpoints. This is an obvious and natural extension of the highly successful layer 3 routed access datacenter.
 

@@ -52,7 +52,7 @@ See [Cloud Native SDN](/cloud/cloud_native_sdn) for more details.
 
 #### 3. How is Romana Different from other Layer 3 Based SDN solutions?
 
-There are several SDN solutions available today that rely on layer 3 networks to varying degrees. Among them are [OpenContrail](www.opencontrail.org), [Calico](www.projectcalico.org), and [Nuage Networks]( http://www.nuagenetworks.net/).  While each of these solutions provide similar layer 3 functionality, there are important operational differences.
+There are several SDN solutions available today that rely on layer 3 networks to varying degrees. Among them are [OpenContrail](http://www.opencontrail.org), [Calico](http://www.projectcalico.org), and [Nuage Networks]( http://www.nuagenetworks.net/).  While each of these solutions provide similar layer 3 functionality, there are important operational differences.
 
 OpenContrail uses host based virtual routers [(vRouters)]( https://github.com/Juniper/contrail-vrouter) to maintain VRFS and MPLS to isolate networks. vRouters get updated via XMPP and operators can optionally run an VXLAN overlay to provide layer 2 connectivity. Romana does not use host based router, it uses the routing capabilities of the Linux kernel and does not require MPLS for network multitanancy.
 
