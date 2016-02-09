@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Multi-host Kubernetes with Romana 
-menu_text: Kubernetes on EC2
+menu_text: Kubernetes
 nav_text: 
 icon:
 firstnav: 2

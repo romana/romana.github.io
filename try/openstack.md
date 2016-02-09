@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Try Romana on OpenStack Now
-menu_text: OpenStack on EC2
+menu_text: OpenStack
 nav_text: Try it Now
 icon: launch
 firstnav: 2
@@ -9,13 +9,11 @@ secondnav: 1
 permalink: /try_romana/openstack/
 ---
 
-Romana v0.6.2 lets you build isolated multi-tenant networks in OpenStack without an overlay network. The current installer builds an OpenStack cluster in AWS on EC2 instances.
+Romana v0.6.2 lets you build isolated multi-tenant networks in OpenStack without an overlay network. The current installer builds an OpenStack cluster in AWS on EC2 instances or locally on your laptop in Virtualbox VMs configured with Vagrant.
 
-You will need to set up your laptop with AWS command line tools and have your own AWS account to launch the script that provision the EC2 instances as OpenStack nodes and installs Romana. The Romana repository's [README]( https://github.com/romana/romana/) file has the latest detail on how to set up your environment and get started. 
+To run in AWS, you will need to set up your laptop with the AWS command line tools and have your own AWS account to launch the script that provision the EC2 instances as OpenStack nodes and installs Romana. The Romana repository's [README]( https://github.com/romana/romana/) file has the latest detail on how to set up your environment and get started. 
 
-We will be updating this release soon to also include a local deployment option using Vagrant.
-
-If you do not want to install your own cluster and just want to launch a few VMs on OpenStack, send us an email and ask for an account on our private OpenStack cluster we have running with Romana. 
+Local Virtualbox installation requires Ubuntu 14.04 LTS, but should work similarly on other Linux or Mac OS X environments.
 
 #### What Gets Installed
 
@@ -32,20 +30,17 @@ Two OpenStack tenants (projects) are created: 'admin' and 'demo'. They each have
 
 Once you have successfully installed OpenStack, you can explore the setup by examining the route tables on the Compute Nodes. You can log in to Horizon at the IP address of the Controller Node. The default administrator account is 'admin' with password 'secrete'. 
 
-You can ssh in to the EC2 instance using it's public IP address. There you will find the local Romana router gateway interface (romana-gw) that is used to access endpoints running on the local host, as well as routes to the *other hosts* that lie on the 192.168.0/24 network (eth0). 
+You can ssh in to the EC2 instance using it's public IP address. There you will find the local Romana router gateway interface (romana-gw) that is used to access endpoints running on the local host, as well as routes to the *other hosts* that lie on the 192.168.99.0/24 network (eth0). 
 
 The route table should looks something like the configuration below:
 
-	ubuntu@ip-192-168-0-10:~$ route -n
+	ubuntu@ip-192-168-99-10:~$ route -n
 	Kernel IP routing table
 	Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
-	0.0.0.0         192.168.0.1     0.0.0.0         UG    0      0        0 eth0
+	0.0.0.0         192.168.99.1    0.0.0.0         UG    0      0        0 eth0
 	10.0.0.0        0.0.0.0         255.255.0.0     U     0      0        0 romana-gw
-	10.1.0.0        192.168.0.11    255.255.0.0     UG    0      0        0 eth0
-	10.2.0.0        192.168.0.12    255.255.0.0     UG    0      0        0 eth0
-	10.3.0.0        192.168.0.13    255.255.0.0     UG    0      0        0 eth0
-	10.4.0.0        192.168.0.14    255.255.0.0     UG    0      0        0 eth0
-	192.168.0.0     0.0.0.0         255.255.255.0   U     0      0        0 eth0
+	10.1.0.0        192.168.99.11   255.255.0.0     UG    0      0        0 eth0
+	192.168.99.0    0.0.0.0         255.255.255.0   U     0      0        0 eth0
 	
 Note that since there are 8 bits allocated for the Host ID, the gateway interfaces will be to /16 networks (32-8-8=16). 
 
@@ -53,35 +48,31 @@ From Horizon, examining the 'admin' project you will see an empty network. You c
 
 Launch three or four instances on each network segment. Once they have started, you can examine the route table on the Compute Nodes where you will see tap interfaces for each VM running on the node. Note the way the addresses have been set using Host, Tenant and Segment IDs as shown in the example below.
 
-	ubuntu@ip-192-168-0-10:~$ route -n
+	ubuntu@ip-192-168-99-10:~$ route -n
 	Kernel IP routing table
 	Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
-	0.0.0.0         192.168.0.1     0.0.0.0         UG    0      0        0 eth0
+	0.0.0.0         192.168.99.1    0.0.0.0         UG    0      0        0 eth0
 	10.0.0.0        0.0.0.0         255.255.0.0     U     0      0        0 romana-gw
-	10.0.18.6       0.0.0.0         255.255.255.255 UH    0      0        0 tapec18d46c-a2
-	10.0.18.7       0.0.0.0         255.255.255.255 UH    0      0        0 tap62d53610-fb
-	10.0.19.4       0.0.0.0         255.255.255.255 UH    0      0        0 tap4276a515-3c
-	10.0.19.5       0.0.0.0         255.255.255.255 UH    0      0        0 tapbec29031-63
-	10.1.0.0        192.168.0.11    255.255.0.0     UG    0      0        0 eth0
-	10.2.0.0        192.168.0.12    255.255.0.0     UG    0      0        0 eth0
-	10.3.0.0        192.168.0.13    255.255.0.0     UG    0      0        0 eth0
-	10.4.0.0        192.168.0.14    255.255.0.0     UG    0      0        0 eth0
-	192.168.0.0     0.0.0.0         255.255.255.0   U     0      0        0 eth0
+	10.0.18.5       0.0.0.0         255.255.255.255 UH    0      0        0 tapa2ce27af-ba
+	10.0.18.6       0.0.0.0         255.255.255.255 UH    0      0        0 tap0ac95cd0-70
+	10.0.19.5       0.0.0.0         255.255.255.255 UH    0      0        0 tap72d6054e-51
+	10.1.0.0        192.168.99.11   255.255.0.0     UG    0      0        0 eth0
+	192.168.99.0    0.0.0.0         255.255.255.0   U     0      0        0 eth0
 	
 If you log in to any of the instances (from Compute Node, 'ssh cirros@IP_address', or use the Console tab of the Horizon instance detail), you will be able to ping other instances on the same segment. If you *traceroute* the path to another instance on the *same* host, you will see the local Host IP address as a router hop along the path. 
 
-	$ traceroute 10.0.19.4
-	traceroute to 10.0.19.4 (10.0.19.4), 30 hops max, 46 byte packets
- 	1  ip-192-168-0-10 (192.168.0.10)  770.429 ms  0.037 ms  0.032 ms
- 	2  db-1 (10.0.19.4)  661.990 ms  0.380 ms  0.905 ms
+	$ traceroute -n -w 1 10.0.18.6
+	traceroute to 10.0.18.6 (10.0.18.6), 30 hops max, 46 byte packets
+ 	1  192.168.99.10  34.191 ms  0.038 ms  0.441 ms
+ 	2  10.0.18.6  196.423 ms  0.286 ms  1.154 ms
 
 Note: A *traceroute* to an instance on a different host will show blank entries (* * *) for the router hops along the path. This is normal, since ICMP traffic is blocked by default across OpenStack Hosts.
 
-	$ traceroute 10.1.18.5
-	traceroute to 10.1.18.5 (10.1.18.5), 30 hops max, 46 byte packets
- 	1  ip-192-168-0-10 (192.168.0.10)  0.807 ms  0.038 ms  0.818 ms
+		$ traceroute -n -w 1 10.1.18.7
+	traceroute to 10.1.18.7 (10.1.18.7), 30 hops max, 46 byte packets
+ 	1  192.168.99.10  0.129 ms  0.035 ms  1.539 ms
  	2  *  *  *
- 	3  10.1.18.5 (10.1.18.5)  1.359 ms  0.922 ms  1.874 ms
+ 	3  10.1.18.7  1.242 ms  0.906 ms  1.499 ms
 
 Trying to ping instances on different segments will fail as expected since they are isolated.
 
