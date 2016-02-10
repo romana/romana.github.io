@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Multi-host Docker with Romana 
-menu_text: Docker on EC2
+menu_text: Docker
 nav_text: 
 icon:
 firstnav: 2
