@@ -9,7 +9,7 @@ secondnav: 1
 permalink: /try_romana/openstack/
 ---
 
-Romana v0.6.2 lets you build isolated multi-tenant networks in OpenStack without an overlay network. The current installer builds an OpenStack cluster in AWS on EC2 instances or locally on your laptop in Virtualbox VMs configured with Vagrant.
+Romana v0.6 lets you build isolated multi-tenant networks in OpenStack without an overlay network. The current installer builds an OpenStack cluster in AWS on EC2 instances or locally on your laptop in Virtualbox VMs configured with Vagrant.
 
 To run in AWS, you will need to set up your laptop with the AWS command line tools and have your own AWS account to launch the script that provision the EC2 instances as OpenStack nodes and installs Romana. The Romana repository's [README]( https://github.com/romana/romana/) file has the latest detail on how to set up your environment and get started. 
 
@@ -63,14 +63,14 @@ If you log in to any of the instances (from Compute Node, 'ssh cirros@IP_address
 
 	$ traceroute -n -w 1 10.0.18.6
 	traceroute to 10.0.18.6 (10.0.18.6), 30 hops max, 46 byte packets
- 	1  192.168.99.10  34.191 ms  0.038 ms  0.441 ms
+ 	1  10.0.0.1   34.191 ms  0.038 ms  0.441 ms
  	2  10.0.18.6  196.423 ms  0.286 ms  1.154 ms
 
 Note: A *traceroute* to an instance on a different host will show blank entries (* * *) for the router hops along the path. This is normal, since ICMP traffic is blocked by default across OpenStack Hosts.
 
 		$ traceroute -n -w 1 10.1.18.7
 	traceroute to 10.1.18.7 (10.1.18.7), 30 hops max, 46 byte packets
- 	1  192.168.99.10  0.129 ms  0.035 ms  1.539 ms
+ 	1  10.0.0.1   0.129 ms  0.035 ms  1.539 ms
  	2  *  *  *
  	3  10.1.18.7  1.242 ms  0.906 ms  1.499 ms
 
