@@ -11,10 +11,11 @@ secondnav: 9
 permalink: /blog/ 
 ---
 
-Read our latest post: [2/12/2016 Network Policy Demonstration at Kubernetes Meetup](/blog/MeetupDemo)
+Read our latest post: [2/16/2016 Cloud Native SDN with Romana at KubeCon Europe 2016](/blog/KubeCon)
 
 ---
 
 
 #### Earlier Posts
 
+[2/12/2016 Network Policy Demonstration at Kubernetes Meetup](/blog/MeetupDemo)
