@@ -4,8 +4,8 @@ title: Roadmap
 menu_text: Roadmap
 nav_text: Roadmap
 icon: map
-firstnav: 6
-secondnav: 9
+firstnav: 2
+secondnav: 5
 permalink: /roadmap/
 ---
 
