@@ -20,6 +20,6 @@ Romana is all open source and available today. The [current v0.6 release](/code/
 
 There's still a lot to do before its finished and we'd love some [help](/code/).
 
-Get started by learning about [Cloud Native Networks](/cloud/cloud_native_networks/).
+Get started by learning about [Cloud Native Networks](/cloud/cloud_native_networks/). To learn how Romana works [start here](/how/romana_basics/).
 
-To learn how Romana works [start here](/how/romana_basics/).
+We'll be presenting Romana and how Cloud Native SDN lets Kubernetes run with multi-tenant and policy based networking at [KubeCon Europe 2016]( https://kubecon.io/) ([#kubecon](https://twitter.com/search?q=%23kubecon)). Learn more [here](/blog/KubeCon/).
