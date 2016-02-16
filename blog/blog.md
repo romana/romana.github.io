@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Romana Blog
+title: Welcome to the Romana Blog
 menu_text: Blog
 nav_text: Blog
 icon: content_copy
@@ -11,15 +11,10 @@ secondnav: 9
 permalink: /blog/ 
 ---
 
-### Romana Blog Posts
+Read our latest post: [2/12/2016 Network Policy Demonstration at Kubernetes Meetup](/blog/MeetupDemo)
 
 ---
 
-Welcome to the Romana Blog.
 
-[2.16.16. Kubernetes with Romana Demo](/blog/FirstPost)
-
-[2.17.16. Kubernetes with Romana Demo](/blog/SecondPost)
-
-[2.18.16. Kubernetes with Romana Demo](/blog/ThirdPost)
+#### Earlier Posts
 
