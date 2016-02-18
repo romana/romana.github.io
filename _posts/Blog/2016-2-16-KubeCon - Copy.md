@@ -1,10 +1,10 @@
 ---
 layout: post
 title: Romana Selected to deliver Cloud Native SDN Session at KubeCon Europe 2016
+categories:
+- blog
 permalink: /blog/KubeCon/
 ---
-
-### Cloud Native SDN with Romana at KubeCon Europe 2016
 
 We are delighted to have been selected to present at the upcoming [KubeCon Europe 2016]( https://kubecon.io/) ([#kubecon](https://twitter.com/search?q=%23kubecon)).
 
