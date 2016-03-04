@@ -17,20 +17,22 @@ Local Virtualbox installation requires Ubuntu 14.04 LTS, but should work similar
 
 #### What Gets Installed
 
-The EC2 installation takes about 20-25 mins to complete (on t2.large instances) and creates an OpenStack DevStack cluster (Liberty release) with a single Controller Node and up to 4 Compute Nodes. Each OpenStack Node runs on a dedicated EC2 instance. Romana installs its OpenStack ML2 and IPAM drivers and creates a Romana router gateway interface on each Compute Node. 
+The installation takes about 20-25 mins to complete (on t2.large instances) and creates an OpenStack DevStack cluster (Liberty release) with a single Controller Node and up to 4 Compute Nodes. Each OpenStack Node runs on a dedicated VM (on your laptop when you use Vagrant or as an EC2 instance). Romana installs its OpenStack ML2 and IPAM drivers and creates a Romana router gateway interface on each Compute Node. 
 
-The default configuration partitions the address space so that 8 bits are used for the Host ID, 4 bits for the Tenant and Segment IDs as well as 8 bits for the endpoint ID. While this may not be an efficient allocation for a production deployment, it has the advantage of creating IP addresses that make it easy to see what is happening in the example. 
+OpenStack is configured by the Romana ML2 driver in a way similar to the [Flat Network configuration using the Linux Bridge](http://docs.openstack.org/liberty/networking-guide/scenario-classic-lb.html). However, Romana does not use the Linux bridge, but instead creates an [tap](https://en.wikipedia.org/wiki/TUN/TAP) interface into the Linux kernel.
+
+The default configuration partitions the address space so that 8 bits are used for the Host ID, 4 bits for the Tenant and Segment IDs as well as 8 bits for the Endpoint ID. While this may not be an efficient allocation for a production deployment, it has the advantage of creating IP addresses that make it easy to see what is happening in the example. 
 
 >  This address bit allocation is also different from the example used to illustrate how Romana uses IP addresses for [tenant isolation](/how/romana_details/#romana-tenant-isolation)
 
-Two OpenStack tenants (projects) are created: 'admin' and 'demo'. They each have up to 2 network segments named 's1' and 's2'. The segment is specified by setting a value for the 'Romana Network Segment' field in the 'Advanced Options' tab in Horizon when an Instance is launched. 
+Two OpenStack tenants (projects) are created: 'admin' and 'demo'. They each have up to 2 network segments named 'frontend' and 'backend'. The segment is specified by setting a value for the 'Romana Network Segment' field in the 'Advanced Options' tab in Horizon when an Instance is launched. 
 
 
 #### What You Can Do
 
 Once you have successfully installed OpenStack, you can explore the setup by examining the route tables on the Compute Nodes. You can log in to Horizon at the IP address of the Controller Node. The default administrator account is 'admin' with password 'secrete'. 
 
-You can ssh in to the EC2 instance using it's public IP address. There you will find the local Romana router gateway interface (romana-gw) that is used to access endpoints running on the local host, as well as routes to the *other hosts* that lie on the 192.168.99.0/24 network (eth0). 
+You can ssh in to the VM directly using it's IP address [as a convenience, the installation summary will provide you with the IPs and ssh comand to access them directly]. There you will find the local Romana router gateway interface (romana-gw) that is used to access endpoints running on the local host, as well as routes to the *other hosts* that lie on the 192.168.99.0/24 network (eth0). 
 
 The route table should looks something like the configuration below:
 
