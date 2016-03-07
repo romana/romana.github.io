@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Multi-host Kubernetes with Romana 
+title: Multi-tenant Kubernetes Networks with Romana 
 menu_text: Kubernetes
 nav_text: 
 icon:
@@ -23,70 +23,71 @@ To support tenant isolation and more advanced network policies, the default inst
 
 >  This address bit allocation is also different from the example used to illustrate how Romana uses IP addresses for [tenant isolation](/how/romana_details/#romana-tenant-isolation)
 
-Two Kubernetes tenants, or application 'owners' are created: 't1' and 't2'. They each have up to 2 network segments named 'frontend' and 'backend'. The tenant and segment are specified by setting a value for the 'owner' and 'tier' labels in the Pod specification as shown below. A command line tool is available to add new tenants and segments as well.
-
-
-	apiVersion: v1
-	 kind: Pod
-	 metadata:
-	  name: nginx-frontend
-	  labels:
-	    app: nginx
-	    owner: t1
-	    tier: frontend
-	 spec:
-	 containers:
-	   - name: nginx
-	    image: nginx
-	    ports:
-	   - containerPort: 80
-
-	apiVersion: v1
-	 kind: Pod
-	 metadata:
-	  name: nginx-frontend
-	  labels:
-	   app: nginx
-	   owner: t1
-	   tier: backend
-	 spec:
-	 containers:
-	   - name: nginx
-	   image: nginx
-	  ports:
-	  - containerPort: 80
-
-
->Note: The final form of Kubernetes Network Policies will allow *network isolation* to be applied to an entire namespace. When isolation is enabled for a namespace, the default policy will be to block all traffic in and out of Pods. A specific Network Policy needs to be applied to the Pod to indicate the allowed communications. The current release of Romana uses 'owner' labels but will be updated to use namespace isolation as soon as practical.
-
 #### Kubernetes v1.2 Network Policy
 
 Romana is installed as a Third Party resource for Kubernetes, which lets it watch for Pod and Network Policy changes and respond by configuring the network as necessary. By default, the network policy for Kubernetes is to behave just as it always has: All Pods have complete access to all other Pods. 
 
-However, new network policies may also be configured by applying a NetworkPolicy resource as shown below:
+For more granular control of traffic to Pods, you can isolate them, then apply a more specific Network Policy.  Network isolation is enabled on a per namespaces basis allowing Kubernetes operators to create isolated namespaces for use by individual project tenants.
 
-	kind: NetworkPolicy
-	apiVersion: romana.io/demo/v1
+The Romana installation creates two Kubernetes namespaces: 'tenant-a' and 'tenant-b' and enables network isolation for each by setting the 'network-isolation' annotation to 'on' as shown below.
+
+	apiVersion: v1
+	kind: Namespace
 	metadata:
-	 name: policy1
-	 namespace: default
+	 name: "tenant-a"
 	 labels:
-	 - owner: t1
-	 spec:
-	  podSelector:		// Standard label selector - selects pods.
-	   tier: backend
-	 allowIncoming:		// (Optional) List of allow rules.
-	  - toPorts:		// (Optional) List of dest ports to open.
-	  - port: 80		// (Optional) Numeric or named port 
-	  protocol: TCP		// [ TCP | UDP]
-	 from:			// (Optional) List of sources.
-	  - pods:		// (Optional) Standard label selector.
-	  tier: frontend	// (Optional) Standard label selector.
+	  name: "tenant-a"
+	 annotations:
+	  net.alpha.kubernetes.io/network-isolation: "on"
 
-This policy will allow the backend Pods to accept TCP traffic on port 80 from the fontend Pods.
+When network isolation is enabled, all Pods are isolated and all communication is disabled. A specific network policy then needs to be applied to Pods to enable communications. Any label selector can be used to identify the Pods that get a network policy. The example below shows a NetworkPolicy named 'pol1' allowing incoming TCP traffic on port 80 to Pods with a 'segment' label of 'backend' to accept traffic from Pods labeled 'frontend'
+
+	"metadata": {
+	 "name" : "pol1"
+	},
+	"apiVersion" : "romana.io/demo/v1",
+	"kind" : "NetworkPolicy",
+	"spec" : { 
+	 "podSelector" : { 
+	  "segment" : "backend" 
+	 },
+	"allowIncoming" : {
+	 "toPorts" : [
+	  {
+	   "port": 80,
+	   "protocol": "TCP"
+	  }
+	 ],
+	 "from" : [
+	  {
+	    "pods" : {
+	   "segment" : "frontend"
+	  }
+	 }
+	 ]
+	}
+}
+
 
 #### What You Can Do
 
-Installed on each node is a demo script that sets up Pods with different tenant owners and confirms traffic isolation between the Pods using network policies like the one shown above. The [Using Romana on Kubernetes page](https://github.com/romana/romana/blob/master/kubernetes_romana.md) on GitHub has all the details. 
+Installed on each node is a demo script that sets up Pods in different namespaces (tenants) with different segment label values.
+
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	 name: nginx-backend
+	 namespace: tenant-a
+	 labels:
+	  app: nginx
+	  segment: backend
+	spec:
+  	 containers:
+	 - name: nginx
+	image: nginx
+	 ports:
+	 - containerPort: 80
+
+You can step through the script to see the policy being applied and traffic being enabled between the Pods. The [Using Romana on Kubernetes page](https://github.com/romana/romana/blob/master/kubernetes_romana.md) on GitHub has all the details. 
 
 
