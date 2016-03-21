@@ -26,6 +26,6 @@ Permalinks are used for each page so we have clean urls. Links have the form of 
 
 To comment on these pages, make a branch of this repository and make your comments directly in the page markup file. Generate a pull request so everyone to see your comments.
 
-If you want to render the site locally, you will have to install Jekyll on your laptop. See details [here](help.github.com/articles/using-jekyll-with-pages/).
+If you want to render the site locally, you will have to install Jekyll on your laptop. See details [here](http://help.github.com/articles/using-jekyll-with-pages/).
 
 See the [issues pages](https://github.com/romana/romana.github.io/issues) for the list of known issues.
