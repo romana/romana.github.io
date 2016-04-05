@@ -10,6 +10,7 @@ permalink: /cloud/cloud_native_networks/
 
 ---
 
+Building and operating scalable, secure, high-performance multi-tenant cloud computing networks is extremely difficult.  One common approach is to deploy a virtual network using VXLAN overlays for micro segmentation and a commercial Enterprise SDN controller.
 
 These overlay-based virtual networks were designed to address the challenges of deploying virtual machines on an enterprise network and are ill-suited to the challenges of the emerging container-based and [Cloud Native architectural style](/cloud/cloud_native_arch). 
 

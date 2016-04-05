@@ -16,6 +16,7 @@ Romana is a new network and security automation solution for Cloud Native applic
 
 Romana enables multi-tenant networking and secures applications on standard layer 3 networks so they can be deployed easily on public and private clouds, and even across the internet. 
 
+Integration with cloud orchestration systems lets developers use their existing tools and workflow to build secure multi-tier applications with the deployment flexibility they need.
 
 Romana lets private cloud operators build multi-tenant Cloud Native Networks that are easier to operate and deliver higher performance than networks built using overlay virtual networks. Its innovative layer 3 approach enables seamless hybrid cloud deployment and lets container orchestration systems transparently scale capacity across private and public clouds worldwide.
 
