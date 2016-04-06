@@ -20,11 +20,11 @@ To compare how Romana's Network Automation and Security solution differs from tr
 
 The goal of Enterprise SDN was to virtualize enterprise networks in their entirety, enabling datacenter and legacy applications to run unchanged in virtualized environments. 
 
-The canonical example of Enterprise SDN is [VMware NSX](https://www.vmware.com/products/nsx). The defining characteristic here is the use of overlays and VTEPs to build isolated layer 2 virtual networks. Some implementations go further with efforts to virtualize many layer 3 and layer 4-7 functions.
+The canonical example of Enterprise SDN is [VMware NSX](https://www.vmware.com/products/nsx). The defining characteristic is the use of overlays and VTEPs to build isolated layer 2 virtual networks. Some implementations go further with efforts to virtualize many layer 3 and layer 4-7 functions.
 
 This is very different from the requirements for Cloud Native applications, which rely on modern DevOps automation for Continuous Integration and Continuous Deployment (CD/CD).  
 
-Without the enterprise SDN requirements, Romana can focus on the automation of network provisioning and security and avoid the complexity that traditional SDN solutions introduce, such as VXLAN overlays for enterprise virtual networks. 
+Without the Enterprise SDN requirements, Romana can focus on the automation of network provisioning and security and avoid the complexity that traditional SDN solutions introduce, such as VXLAN overlays for enterprise virtual networks. 
 
 ---
 
