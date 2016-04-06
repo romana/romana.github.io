@@ -8,10 +8,10 @@ permalink: /blog/newrelease/
 
 We're making a lot of great progress toward our first production release of Romana. Since we launched the project a few weeks ago we've gotten lots of great feedback and Romana is already part of a bunch of new deployment projects that are anxious for the first production ready release. 
 
-Today we updated the repos to [version v0.8](https://github.com/romana/romana), which include a number of important new features.
+Today we updated the repos to [version v0.8](https://github.com/romana/romana), which includes a number of important new features.
 
 * Kubernetes and OpenStack support
-* Packaged installer for Kubernetes and DevStack on EC2 and local Vagrant clusters
+* Packaged installer for Kubernetes and OpenStack on EC2 and local Vagrant clusters
 * [CNI](https://github.com/appc/cni) Support
 * Improved CLI
 * Kubernetes Network Policy API extensions
