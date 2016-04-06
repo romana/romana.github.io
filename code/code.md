@@ -18,7 +18,7 @@ Become a member of the Romana community. Just send an invite request to join us 
 * [Romana User]( https://groups.google.com/forum/?hl=en#!forum/romana-user)
 
 
-We are taking pull requests and looking for contributors to join the effort. We're working on specific near term improvements, as well as major new features for the next release. See our [Roadmap](/roadmap/) or the [open issues](http://www.github.com/romana/romana/issues) on GitHub for more detail.
+We are taking pull requests and looking for contributors to join the effort. We're working on specific near term improvements, as well as major new features for the next release. See our [Roadmap](https://github.com/romana/romana/wiki/Roadmap/) or the [open issues](http://www.github.com/romana/romana/issues) on GitHub for more detail.
 
 <p>
 <p>
