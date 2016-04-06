@@ -12,14 +12,18 @@ secondnav: 0
 
 ---
 
-Romana is a new Software Defined Network solution specifically designed for Cloud Native applications. Romana allows isolated cloud computing networks for OpenStack, Docker and Kubernetes to be built without encapsulation or a virtual network overlay. 
+Romana is a new network and security automation solution for Cloud Native applications. Romana automates the creation of isolated *Cloud Native Networks* and secures applications with a distributed firewall that applies access control policies consistently across all endpoints and services, wherever they run. 
 
-Romana networks are less expensive to build, easier to operate and deliver higher performance than networks built using alternative overlay based SDN designs. Its innovative layer 3 approach enables seamless hybrid cloud deployment and lets container orchestration systems transparently scale capacity across private and public clouds worldwide.
+Romana enables multi-tenant networking and secures applications on standard layer 3 networks so they can be deployed easily on public and private clouds, and even across the internet. 
 
-Romana is all open source and available today. The [current v0.6 release](/code/) lets you [build OpenStack](/try_romana/openstack/) and [Kubernetes](/try_romana/kubernetes/) clusters with policy based, isolated networks. 
+Integration with cloud orchestration systems lets developers use their existing tools and workflow to build secure multi-tier applications with the deployment flexibility they need.
+
+Romana lets private cloud operators build multi-tenant Cloud Native Networks that are easier to operate and deliver higher performance than networks built using overlay virtual networks. Its innovative layer 3 approach enables seamless hybrid cloud deployment and lets container orchestration systems transparently scale capacity across private and public clouds worldwide.
+
+Romana is all open source and available today. The [current v0.8 release](/code/) lets you [build OpenStack](/try_romana/openstack/) and [Kubernetes](/try_romana/kubernetes/) clusters with secure, isolated networks and policy based control. 
 
 There's still a lot to do before its finished and we'd love some [help](/code/).
 
 Get started by learning about [Cloud Native Networks](/cloud/cloud_native_networks/). To learn how Romana works [start here](/how/romana_basics/).
 
-We'll be presenting Romana and how Cloud Native SDN lets Kubernetes run with isolated multi-tenant and policy based networking at [KubeCon Europe 2016]( https://kubecon.io/) ([#kubecon](https://twitter.com/search?q=%23kubecon)). Learn more [here](/blog/KubeCon/).
+We recently presented Romana at [KubeCon Europe 2016]( https://kubecon.io/) demonstrating how Kubernetes clusters can be built with Cloud Native Networks. You can watch the presentation [here](https://www.youtube.com/watch?v=f-dLKtK6qCs).
