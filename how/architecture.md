@@ -17,7 +17,7 @@ Romana integrates directly into Cloud Orchestration systems so that developers c
 
 #### Romana Services
 
-The Romana Cloud Native SDN is implemented using the following services:
+Romana Cloud Native Networks are built using the following services:
 
 - [Root Service](#root-service)
 - [Authentication Service](#authorization-service)

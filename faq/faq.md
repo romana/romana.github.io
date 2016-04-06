@@ -43,7 +43,7 @@ The [Cloud Native Foundation](https://cncf.io/) avoids defining it at all, prefe
 
 #### 2. What are Cloud Native Networks?
 
-Cloud Native Networks are networks that are built to meet the requirements of Cloud Native applications.  Cloud Native Networks do not need layer 2 networks so can be built without an virtual network overlay. Romana Cloud Native SDN lets operators build Cloud Native Networks that are easier to deploy and maintain and can deliver higher performance that cloud networks build using alternative SDN techniques. 
+Cloud Native Networks are networks that are built to meet the requirements of Cloud Native applications.  Cloud Native Networks do not need layer 2 networks so can be built without an virtual network overlay. Romana lets operators build Cloud Native Networks that are easier to deploy and maintain and can deliver higher performance that cloud networks build using alternative SDN techniques. 
 
 See [Cloud Native Networks](/cloud/cloud_native_networks) for more details.
 
