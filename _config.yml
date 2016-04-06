@@ -8,7 +8,7 @@ title: Romana Cloud Native SDN
 
 
 description: > # this means to ignore newlines until "baseurl:"
-Romana is a new open source network and security automation solution for Cloud Native applications. Romana automates the creation of isolated Cloud Native Networks and secures applications with a distributed firewall that applies access control policies consistently across all endpoints and services, wherever they run.
+ Romana is a new open source network and security automation solution for Cloud Native applications. Romana automates the creation of isolated Cloud Native Networks and secures applications with a distributed firewall that applies access control policies consistently across all endpoints and services, wherever they run.
 
 # Your website URL (e.g. http://romana.github.io or http://romana.io)
 # Used for Sitemap.xml and your RSS feed
