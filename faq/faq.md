@@ -10,7 +10,7 @@ permalink: /faq/
 ---
 
 1. [What does Cloud Native mean](#what-does-cloud-native-mean)?
-2. [What is Cloud Native SDN](#what-is-cloud-native-sdn)?
+2. [What are Cloud Native Networks](#what-are-cloud-native-networks)?
 2. [How is Romana different from other layer 3 based SDN alternatives](#how-is-romana-different-from-other-layer-3-based-sdn-solutions)?
 2. [How is Romana different from other container network alternatives like Flannel or Weave](#how-is-romana-different-from-other-container-network-alternatives-like-flannel-or-weave)?
 3. [Can I run Romana on a layer 2 network](#can-i-run-romana-on-a-layer-2-network)?
@@ -41,11 +41,11 @@ The [Cloud Native Foundation](https://cncf.io/) avoids defining it at all, prefe
 
 ---
 
-#### 2. What is Cloud Native SDN?
+#### 2. What are Cloud Native Networks?
 
-Cloud Native SDN is a specific kind of Software Defined Networking approach focused on building and operating Cloud Native Networks. Cloud Native Networks do not need layer 2 networks so can be built without an virtual network overlay. Romana Cloud Native SDN lets operators build Cloud Native Networks that are easier to deploy and maintain and can deliver higher performance that cloud networks build using alternative SDN techniques. 
+Cloud Native Networks are networks that are built to meet the requirements of Cloud Native applications.  Cloud Native Networks do not need layer 2 networks so can be built without an virtual network overlay. Romana Cloud Native SDN lets operators build Cloud Native Networks that are easier to deploy and maintain and can deliver higher performance that cloud networks build using alternative SDN techniques. 
 
-See [Cloud Native SDN](/cloud/cloud_native_sdn) for more details.
+See [Cloud Native Networks](/cloud/cloud_native_networks) for more details.
 
 {% include backtotopbutton.html %}
 
@@ -112,7 +112,7 @@ Yes. Romana works with cloud orchestration systems like OpenStack to launch VM a
 
 You can try Romana today with OpenStack running on Amazon EC2 instances. See our [current release](/try_romana/openstack/) for details.
 
-See current [Roadmap](/roadmap/) for details.
+See current [Roadmap](https://github.com/romana/romana/wiki/Roadmap/) for details.
 
 
 {% include backtotopbutton.html %}
@@ -123,7 +123,7 @@ See current [Roadmap](/roadmap/) for details.
 
 Soon. The current release does not support this, but we plan to in the future. If you would like to contribute to this effort, please let us know.
 
-See current [Roadmap](/roadmap/) for details.
+See current [Roadmap](https://github.com/romana/romana/wiki/Roadmap/) for details.
 
 
 {% include backtotopbutton.html %}
@@ -208,7 +208,7 @@ No. Romana does not support overlapping IP addresses. To maintain the structure 
 
 The current release dose not perform NAT on its own. NAT can be done as needed by a gateway router by forwarding traffic to the device. Having control over the routes also allows external IP addressed to be assigned to endpoint interfaces, avoiding NAT entirely.
 
-Variations of this same approach will allow consolidation of external IPs in DMZ, etc. However, the current release does not support automated configuration of these kinds of individual routes. See the Romana [Roadmap](/roadmap/) for details on what is currently supported.
+Variations of this same approach will allow consolidation of external IPs in DMZ, etc. However, the current release does not support automated configuration of these kinds of individual routes. See the Romana [Roadmap](https://github.com/romana/romana/wiki/Roadmap/) for details on what is currently supported.
 
 {% include backtotopbutton.html %}
 
