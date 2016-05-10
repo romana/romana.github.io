@@ -67,12 +67,15 @@ Romana on the other hand lets hosts run on either a layer 2 or layer 3 network a
 
 Also, Calico requires a key value store (KVS) to maintain configuration state for the network. Romana does not need a KVS.
 
+Of these solutions only Romana and Calico support the new [Kubernetes network policy functions](/blog/MeetupDemo/).
+
 In summary the main differences are:
 
 |  | Romana| OpenContrail | Nuage | Calico |
 | Network | Layer 3 | Layer 3 | Layer 3 | Layer 2 |
 | Route Distribution | Static | MXPP | BGP-MP | BGP |
 | Configuration State | DB | DB | DB | KVS |
+| K8s Network Policy | Yes | No | No | Yes |
 {: class='romanatable'}
 
 
