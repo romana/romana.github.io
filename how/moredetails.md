@@ -25,7 +25,7 @@ To better understand the operation of Romana, it is helpful to also understand t
 
 ### Introduction
 
-Cloud Native Networks are built and managed by Romana's [configuration and control services](/how/romana_arch/). Central to this approach is intelligent [IP Address Management](/how/romana_details/#ip-address-management) that extends a layer 3 [routed access design](/how/background/#routed-access-datacenter) on to hypervisors, VMs and container endpoints and the automated configuration of routes and access control. These functions are two of the Romana control services that together let operators build multi-tenant Cloud Native Networks. 
+Cloud Native Networks are built and managed by Romana's configuration and control services. Central to this approach is intelligent [IP Address Management](/how/romana_details/#ip-address-management) that extends a layer 3 [routed access design](/how/background/#routed-access-datacenter) on to hypervisors, VMs and container endpoints and the automated configuration of routes and access control. These functions are two of the Romana control services that together let operators build multi-tenant Cloud Native Networks. 
 
 ---
 
@@ -35,7 +35,7 @@ A common way to maintain tenant isolation is to use VXLANs to overlay individual
 
 However, since Cloud Native applications do not require layer 2 networks, Romana can avoid an overlay network for tenant isolation as long as isolation can be enforced at layer 3.
 
-Fortunately, isolation can be achieved at layer 3 with a host based firewall by configuring Linux *iptables* rules on the hypervisor to allow communication only among valid endpoints. The local Romana [Agent](/how/romana_arch/#romana-agents/) is available to configure these firewall rules as needed. 
+Fortunately, isolation can be achieved at layer 3 with a host based firewall by configuring Linux *iptables* rules on the hypervisor to allow communication only among valid endpoints. The local Romana Agent is available to configure these firewall rules as needed. 
 
 Maintaining these firewall rules and access control list (ACLs) for all endpoints quickly grows into a large and complex data management problem. The problem becomes even more difficult when sophisticated traffic management policies are required.
 
@@ -70,7 +70,7 @@ Across all hosts, the total number of CIDRs is the total number of routes on eac
 
 Romana's layer 3 isolation approach requires that VM and container endpoints receive IP addresses that maintain the network address hierarchy.
 
-Romana does this with its own [IP Address Management system](/how/romana_arch/#ipam-service) what works with cloud orchestration systems such as OpenStack to maintain a list of all tenants and the network segments and endpoints they create. 
+Romana does this with its own IP Address Management system what works with cloud orchestration systems such as OpenStack to maintain a list of all tenants and the network segments and endpoints they create. 
 
 For OpenStack, Romana provides an OpenStack ML2 plugin and IPAM API Driver. Whenever a new tenant, segment or endpoint is created, Romana updates its database. 
 
