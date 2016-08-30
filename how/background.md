@@ -30,7 +30,7 @@ The diagram below shows how route aggregation makes all endpoints in the network
 
 ![Route Aggregation]({{ site.baseurl }}/images/routeagg.png)
 
-With this configuration, each spine device is configured with the *same* four static routes, one to each leaf device. Each leaf device is configured with *one route to each port* (ignoring ECMP and other fabric related configuration details of spines or leafs). The routes on the leafs are sequential and differ across leaf devices only by an offset in the second octet of the CIDR.
+With this configuration, since each host announces its own CIDR to the network, each spine device is automatically configured with the *same* four routes, one to each leaf device. Each leaf device is automatically configured with *one route to each port* (ignoring ECMP and other fabric related configuration details of spines or leafs). The routes on the leafs are sequential and differ across leaf devices only by an offset in the second octet of the CIDR.
 
 The simplicity of this design is undeniable. It is compact, intuitive and predictable, and delivers high performance as well. Which is why it is so popular among large data center operators and the basis for most cloud network underlay designs. 
 
