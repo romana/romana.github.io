@@ -20,10 +20,8 @@ Integration with cloud orchestration systems lets developers use their existing 
 
 Romana lets private cloud operators build multi-tenant Cloud Native Networks that are easier to operate and deliver higher performance than networks built using overlay virtual networks. Its innovative layer 3 approach enables seamless hybrid cloud deployment and lets container orchestration systems transparently scale capacity across private and public clouds worldwide.
 
-Romana is all open source and available today. The [current v0.9 release](/code/) lets you [build OpenStack](/try_romana/openstack/) and [Kubernetes](/try_romana/kubernetes/) clusters with secure, isolated networks and policy based control. Romana runs in any IaaS, so application developers running Kubernetes in a public cloud now have a way to apply network and security policies to all pod communications. 
+Romana is all open source and available today. The [current v0.9.3 release](/code/) lets you [build OpenStack](/try_romana/openstack/) and [Kubernetes](/try_romana/kubernetes/) clusters with secure, isolated networks and policy based control. Romana runs in any IaaS, so application developers running Kubernetes in a public cloud now have a way to apply network and security policies to all pod communications. 
 
 There's still a lot to do before its finished and we'd love some [help](/code/).
 
 Get started by learning about [Cloud Native Networks](/cloud/cloud_native_networks/). To learn how Romana works [start here](/how/romana_basics/).
-
-We recently presented Romana at [KubeCon Europe 2016]( https://kubecon.io/) demonstrating how Kubernetes clusters can be built with Cloud Native Networks. You can watch the presentation [here](https://www.youtube.com/watch?v=f-dLKtK6qCs).
