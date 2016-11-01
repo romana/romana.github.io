@@ -38,7 +38,7 @@ The simplicity of this design is undeniable. It is compact, intuitive and predic
 
 Allocating a /16 CIDR with 64K IP addresses to a single port does not make a lot of sense until you realize that for cloud computing networks, the host attached to this port is a virtualization host that will use these available IP addresses for local VMs or containers.
 
-For example, on the [Google Compute Engine]( https://cloud.google.com/compute/) IaaS platform, when you launch a Kubernetes VM, by default it is allocated a [complete /24 network]( http://kubernetes.io/v1.0/docs/admin/networking.html#how-to-achieve-this ) so that when pods are launched on that VM, they will all be on the same network since they each get one of the addresses from within the assigned range. 
+For example, on the [Google Compute Engine]( https://cloud.google.com/compute/) IaaS platform, when you launch a Kubernetes VM, by default it is allocated a complete /24 network so that when pods are launched on that VM, they will all be on the same network since they each get one of the addresses from within the assigned range. 
 
 Using this as a simple baseline example, if you allocate a /24 network to each VM, having a /16 available for the entire virtualization host would accommodate up to 253 VMs (255 minus gateway and broadcast addresses). 
 
@@ -62,7 +62,7 @@ Other variations include using only a portion of the complete 10/8 for smaller c
 
 Extending the routed access design on to the hosts also allows the design to work when all hosts are on a flat layer 2 network. In this case, there would need to be a route configured on each host to the router on every other host to maintain the fully routed design.
 
-> [Romana v0.6.3 Release](/try_romana/openstack) builds an OpenStack DevStack or Kubernetes cluster in AWS where each Node runs as an EC2 instance in a VPC. Since there are no spine or leaf devices, routes are configured on every Node to every other Node to implement the fully routed design.
+> [Romana v0.6.3 Release](/try_romana/installation) builds an OpenStack DevStack or Kubernetes cluster in AWS where each Node runs as an EC2 instance in a VPC. Since there are no spine or leaf devices, routes are configured on every Node to every other Node to implement the fully routed design.
 
 The important point here is that the simplicity of the routed access design is extended on to the virtualization host where it acts just like any other router in the datacenter, forwarding traffic to local tenant endpoints. This is an obvious and natural extension of the highly successful layer 3 routed access datacenter.
 
