@@ -80,7 +80,7 @@ When Romana runs on layer 2 networks, the Route Manager will configure routes on
 
 Yes. Romana works with cloud orchestration systems like OpenStack to launch VM and container endpoints. Romana integrates with OpenStack through a Modular Layer 2 device driver and an interface to its new IPAM API.
 
-You can try Romana today with OpenStack running on Amazon EC2 instances. See our [current release](/try_romana/openstack/) for details.
+You can try Romana today with OpenStack running on Amazon EC2 instances. See our [current release](/try_romana/installation/) for details.
 
 See current [Roadmap](https://github.com/romana/romana/wiki/Roadmap/) for details.
 
@@ -117,7 +117,7 @@ Yes. Current status [available here](/try_romana/kubernetes/).
 
 #### 9. Will Romana run in AWS?
 
-Yes. The current release supports OpenStack running on AWS EC2 instances. Current status [available here](/try_romana/openstack/).
+Yes. The current release supports OpenStack running on AWS EC2 instances. Current status [available here](/try_romana/installation/).
 
 {% include backtotopbutton.html %}
 
