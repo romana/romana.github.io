@@ -17,7 +17,6 @@ To better understand the operation of Romana, it is helpful to also understand t
 - [IP Address Management](/how/romana_details/#ip-address-management)
 - [Route Manager and Host Agent](/how/romana_details/#route-manager-and-host-agent) 
 - [Microservices](/how/romana_details/#microservices) 
-- [Service Insertion](/how/romana_details/#service-insertion) 
 - [Policy Based Control](/how/romana_details/#policy-based-control)
 - [Deploying Romana](/how/romana_details/#deploying-romana) 
 
@@ -105,24 +104,11 @@ Also, since an overlay is not necessary for Romana segments, all existing (physi
 {% include backtotopbutton.html %}
 ---
 
-### Service Insertion
-
-Interconnecting various microservices to compose more complicated Cloud Native applications is typically done by the application developer by naming service endpoints, then adding them to a Service Discovery registry. When services need to communicate, they look for the named service in the registry to learn the IP address (or addresses) where the service is available, and open a connection directly with the service endpoint. The path that traffic actually takes between service endpoints is generally not something developer cares about. 
-
-Operators, on the other hand, frequently want to steer traffic through different paths because of different policy objectives (security, encryption, etc.).  These traffic policies can not be left to the developer to apply, which means operators need a way to transparently steer traffic through Service Functions, independent of how individual microservices ordinarily communicate.
-
-Since Romana has individual CIDRs that identify traffic flows, it can insert Service Functions along the path simply by specifying the next hop router to be the IP address of the next Service Function in the chain.
-
-The Route Manager specifies the next hop address when it sets up the gateway in initial route. Modifying the route to use a different address is straightforward. 
-
-Defining these traffic path is the job of the [Romana Service Policy Manager](#policy-based-control).
-
-{% include backtotopbutton.html %}
----
-
 ### Policy Based Control
 
-To be implemented in a future release.
+Romana allows the fine grained control and management of network traffic via network policies. The Romana network policies format was inspired by the Kubernetes network policy specification. However, Romana policies can be applied in Kubernetes as well as OpenStack environments. Furthermore, Romana extends the policies with additional features, such as the ability to control network traffic not only for containers or VMs, but also for bare metal servers.
+
+See the wiki [page](https://github.com/romana/romana/wiki/Romana-policies) and [examples](https://github.com/romana/core/tree/master/policy/examples) in the Romana romana and core repositories.
 
 {% include backtotopbutton.html %}
 ---
@@ -133,7 +119,7 @@ Romana may be deployed as part of an OpenStack private cloud, or on public cloud
 
 Docker and Kubernetes may then run in either of these cloud environments so that application developers using these systems see no changes to their standard development workflow. 
 
-Details on running the current release on EC2 are available for both [OpenStack](/try_romana/openstack/) and [Kubernetes](/try_romana/kubernetes/).
+Details on running the current release on EC2 are available for both [OpenStack](/try_romana/installation/) and [Kubernetes](/try_romana/kubernetes/).
 
 {% include backtotopbutton.html %}
 
