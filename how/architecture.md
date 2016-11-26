@@ -6,8 +6,8 @@ nav_text: NA
 permalink: /how/romana_arch/
 ---
 
-Romana is implemented as a collection of microservices that together automate creation, administration and control of [Cloud Native
-Networks](/cloud/cloud_native_networks/). A brief description of each service is provided below. For more detail, as well as a description of the service interactions, please see the [Architecture Wiki](https://github.com/romana/romana/wiki) on GitHub.
+Romana is implemented as a collection of microservices that together automate creation, administration and control of Cloud Native
+networks. A brief description of each service is provided below. For more detail, as well as a description of the service interactions, please see the [Architecture Wiki](https://github.com/romana/romana/wiki) on GitHub.
 
 #### Cloud Orchestration
 
