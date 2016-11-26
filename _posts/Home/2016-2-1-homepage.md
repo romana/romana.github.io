@@ -16,7 +16,7 @@ Romana is a new network and security automation solution for Cloud Native applic
 
 Romana applies network policy and secures applications on standard layer 3 networks so they can be deployed easily on public and private clouds, and even across the internet. 
 
-Integration with [Kubernetes](https://kubernetes.io) and other cloud orchestration systems lets application developers use their existing tools and workflow to apply network policy to their applications with the deployment flexibility they need.
+Integration with [Kubernetes](http://kubernetes.io) and other cloud orchestration systems lets application developers use their existing tools and workflow to apply network policy to their applications with the deployment flexibility they need.
 
 Cloud Native Networks are easier to operate and deliver higher performance than networks built using overlay virtual networks. Romana's innovative layer 3 approach enables seamless hybrid cloud deployment and lets container orchestration systems transparently scale capacity across private and public clouds worldwide.
 
