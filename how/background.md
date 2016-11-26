@@ -14,7 +14,6 @@ To better understand the operation of Romana and how it is different from other 
 
 - [Routed Access Datacenter](/how/background/#routed-access-datacenter)   
 - [VXLAN Tenant Isolation](/how/background/#vxlan-tenant-isolation)
-- [Service Insertion](/how/background/#service-insertion) 
 
 ---
 
@@ -62,7 +61,7 @@ Other variations include using only a portion of the complete 10/8 for smaller c
 
 Extending the routed access design on to the hosts also allows the design to work when all hosts are on a flat layer 2 network. In this case, there would need to be a route configured on each host to the router on every other host to maintain the fully routed design.
 
-> [Romana v0.6.3 Release](/try_romana/installation) builds an OpenStack DevStack or Kubernetes cluster in AWS where each Node runs as an EC2 instance in a VPC. Since there are no spine or leaf devices, routes are configured on every Node to every other Node to implement the fully routed design.
+> [Romana](/try_romana/installation) builds an OpenStack DevStack or Kubernetes cluster in AWS where each Node runs as an EC2 instance in a VPC. Since there are no spine or leaf devices, routes are configured on every Node to every other Node to implement the fully routed design.
 
 The important point here is that the simplicity of the routed access design is extended on to the virtualization host where it acts just like any other router in the datacenter, forwarding traffic to local tenant endpoints. This is an obvious and natural extension of the highly successful layer 3 routed access datacenter.
 
@@ -111,37 +110,3 @@ Finally, today, Container orchestration systems such as Docker or Kubernetes *al
 The net result of higher costs, architectural incompatibility, operational challenges and performance overhead of running VXLANs have operators looking for better ways to provide secure tenant isolation.
 
 {% include backtotopbutton.html %}
-
----
-
-### Service Insertion
-
-Service Insertion and Service Chaining are terms used to describe the ability to modify the *path* traffic will use to traverse the network on its way to its final destination. The modified path typically includes one or more network Service Function devices (SFs) that may filter and/or modify the traffic at the network layer, according to an operator-defined policy. An example of an SF is a load balancer, firewall or IDS.
-
-Service Insertion is related to, but different from, application-level request routing. Application request routing is the process by which requests are forwarded to one or more application service endpoints that are available for further processing. Forwarding decisions for application request routing may be based on any application level criteria such as the kind of request being made, or even the identity of the requester. Application request routing typically specifies *only* the destination of requests and *not* the path requests should use to get there.
-
-Service Insertion is also different from service composition, which is the collection of fixed, developer-specified paths that requests must traverse to complete an application function. An example of this kind of logical path would be specifying what is necessary to complete a user request. For example, a user request requires a path to a webserver, from a web server to an application server, and from an application server to a database server, and so on.
-
-Sometimes these functional destinations are specified directly by their numerical IP address, but today with microservice based application architectures, they are more likely to be specified by name. In this case, a separate name-to-IP resolution service, such as DNS, would be used for service discovery. 
-
-When a destination endpoint is specified and traffic traverses the network, the standard path will be through the default route from the source to the destination. Changing this path for Service Insertion requires reconfiguration of the devices that lie along the standard path.
-
-What distinguishes Service Chaining from either request routing or service composition is, unlike these *developer* specified paths, the *network operator* needs to insert SFs *transparently* in the path, *independent* of how applications are designed. 
-
-An obvious example is the operator's desire to insert security devices, as needed, anywhere within the network without requiring modifications to the applications. 
-
-The diagram below shows a Service Function (F1) inserted into the path from the source (S1) to the destination (D1). On the left, the traffic flows through the gateway directly to the destination. On the right, by modifying the gateway address of S1 to be the IP address of the Service Function, traffic will not go to the gateway. Instead, traffic will go to the Service Function where it will apply the desired function then forward traffic to the default gateway where it will be routed to the destination in the standard way.
-
-![Virtualization Hosts]({{ site.baseurl }}/images/insertion.png)
-
-This is a simple example where there is only one SF to be inserted and it is on the same local network as the source.  More complex examples with multiple SFs spread across different networks would follow the same basic approach of modifying the next hop gateway address to be the IP address of the next SF in the chain.
-
-However, when an SF is on a different network from the source (or previous SF), packets are sometimes tunneled using modified headers that also include service chain metadata. See the [Network Service Header](https://datatracker.ietf.org/doc/draft-ietf-sfc-nsh/) (NSH) and [Service Function Chaining]( https://datatracker.ietf.org/doc/rfc7498/) (SFC) RFCs for details.
-
-Specifying Service Chains and determining what traffic uses which chain requires some kind of network traffic policy and configuration manager.
-
-{% include backtotopbutton.html %}
-
----
-
-

@@ -17,13 +17,14 @@ permalink: /faq/
 3. [Can I run Romana on my existing OpenStack underlay network](#can-i-run-romana-on-my-existing-openstack-underlay-network)?
 4. [Does Romana work with Docker](#does-romana-work-with-docker)?
 5. [Does Romana work with Kubernetes](#does-romana-work-with-kubernetes)?
+5. [Does Romana support Kubernetes Network Policy](#does-romana-support-kubernetes-network-policy)?
 6. [Will Romana run in AWS](#will-romana-run-in-aws)?
 7. [How are network segments isolated](#how-are-network-segments-isolated)?
 8. [Does it have any layer 2 semantics](#does-it-have-any-layer-2-semantics)?
 9. [How does it scale](#how-does-it-scale)?
 10. [Will I run out of IPv4 Addresses](#will-i-run-out-of-ipv4-addresses)?
-10. [What are the plans for IPv6](#what-are-the-plans-for-ipv6)?
-11. [Does Romana support overlapping IP addresses](#does-romana-support-overlapping-ip-addresses)?
+11. [What are the plans for IPv6](#what-are-the-plans-for-ipv6)?
+12. [Does Romana support overlapping IP addresses](#does-romana-support-overlapping-ip-addresses)?
 12. [How does Romana handle NAT](#how-does-romana-handle-nat)?
 13. [What kind of performance gains can I expect](#what-kind-of-performance-gains-can-i-expect)?
 14. [Is there any training available](#is-there-any-training-available)?
@@ -115,15 +116,22 @@ Yes. Current status [available here](/try_romana/kubernetes/).
 {% include backtotopbutton.html %}
 ---
 
-#### 9. Will Romana run in AWS?
+#### 9. Does Romana support Kubernetes Network Policy?
 
-Yes. The current release supports OpenStack running on AWS EC2 instances. Current status [available here](/try_romana/installation/).
+Yes. Romana was the first Kubernetes network provider to demonstrate network policy enforcement. You can learn more about it [here](/blog/MeetupDemo/).
+
+{% include backtotopbutton.html %}
+---
+
+#### 10. Will Romana run in AWS?
+
+Yes. The current release supports both Kubernetes and OpenStack running on AWS EC2 instances. Current status [available here](/try_romana/installation/).
 
 {% include backtotopbutton.html %}
 
 ---
 
-#### 10. How are network segments isolated?
+#### 11. How are network segments isolated?
 
 Romana uses a new layer 3 based approach for tenant and segment isolation. Romana encodes tenant and segment identifiers directly in the IP address and Linux *iptables* rules are set to provide isolation. This enables multi-tenant cloud networks to be built without a virtual network overlay. See [Romana Tenant Isolation](/how/romana_details/#romana-tenant-isolation) for  more detail.
 
@@ -131,7 +139,7 @@ Romana uses a new layer 3 based approach for tenant and segment isolation. Roman
 
 ---
 
-#### 11. Does it have any layer 2 semantics?
+#### 12. Does it have any layer 2 semantics?
 
 No. Cloud Native applications are built on simple cloud networks where no layer 2 networks are available. Romana implements only the features that are needed for [Cloud Native Networks](/cloud/cloud_native_networks/).
 
@@ -139,7 +147,7 @@ No. Cloud Native applications are built on simple cloud networks where no layer 
 
 ---
 
-#### 12. How does it scale?
+#### 13. How does it scale?
 
 Since Romana uses a distributed, service oriented approach, each service can scale by simply adding more service instances. See [Romana Architecture](/how/romana_arch/) for details.
 
@@ -147,7 +155,7 @@ Since Romana uses a distributed, service oriented approach, each service can sca
 
 ---
 
-#### 13. Will I run out of IPv4 Addresses?
+#### 14. Will I run out of IPv4 Addresses?
 
 Probably not. A Romana network that has the full use of a 10/8 network can accommodate up to 16 million endpoints. Even considering how Romana's IPAM would allocate these across CIDRs, this is a very large number of endpoints.
 
@@ -158,7 +166,7 @@ The latest [OpenStack User Survey (p34)]( https://www.openstack.org/assets/surve
 
 ---
 
-#### 14. What are the plans for IPv6
+#### 15. What are the plans for IPv6
 
 Since Romana tenant and segment isolation relies on [IP addressing](/how/romana_details/#romana-tenant-isolation), larger deployments will exceed the limit of what IPv4 can support.  For this reason, Romana will support IPv6 as soon as practical. However, it is unlikely to be part of the first v1.0 Production Release 
  
@@ -166,7 +174,7 @@ Since Romana tenant and segment isolation relies on [IP addressing](/how/romana_
 
 ---
 
-#### 15. Does Romana Support Overlapping IP addresses?
+#### 16. Does Romana Support Overlapping IP addresses?
 
 No. Romana does not support overlapping IP addresses. To maintain the structure of the [routed access datacenter design](/how/background/#routed-access-datacenter/), IP addresses need to be conform to the address hierarchy.
   
@@ -174,7 +182,7 @@ No. Romana does not support overlapping IP addresses. To maintain the structure 
 
 ---
 
-#### 16. How does Romana handle NAT?
+#### 17. How does Romana handle NAT?
 
 The current release dose not perform NAT on its own. NAT can be done as needed by a gateway router by forwarding traffic to the device. Having control over the routes also allows external IP addressed to be assigned to endpoint interfaces, avoiding NAT entirely.
 
@@ -184,7 +192,7 @@ Variations of this same approach will allow consolidation of external IPs in DMZ
 
 ---
 
-#### 17. What kind of performance gains can I expect?
+#### 18. What kind of performance gains can I expect?
 
 Since Romana does not require an overlay, no packet encapsulation is required and since traffic runs directly on the physical network, it can take more direct paths.
 
@@ -208,9 +216,9 @@ See this [Performance](/how/performance) page for more detail.
 
 ---
 
-#### 18. Is there any training available? 
+#### 19. Is there any training available? 
 
-Soon. We are working with a partner to develop the curriculum for a one day, hands on training workshop and have the first classes in the San Francisco Bay Area sometime in March 2016. 
+Yes. We are working with a partner to develop the curriculum for a one day, hands on training workshop and have the next classes in the San Francisco Bay Area sometime in March 2017. 
 
 If you are interested in learning more, send an email to [training@romana.io](mailto:training@romana.io).
 
