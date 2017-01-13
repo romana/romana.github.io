@@ -22,4 +22,7 @@ Cloud Native Networks are easier to operate and deliver higher performance than 
 
 Romana is all open source and is deployed successfully today on servers running thousands of container workloads by operators of some of the largest on-line applications. The [current v0.9.8 release](/code/) lets you build [Kubernetes](/try_romana/kubernetes/) and [OpenStack](/try_romana/installation/) clusters with secure, isolated networks and policy based control. Romana runs in any IaaS, so application developers running Kubernetes in a public cloud now have a way to apply network and security policies to all pod communications. 
 
-To learn how Romana works [start here](/how/romana_basics/).
+#### Romana v0.9.8 Available Now
+
+Romana v0.9.8 was just [released](https://github.com/romana/romana) and has many new features and enhancements to improve performance, scalability and manageability. More details [here](/blog/release0-9-8/).
+
