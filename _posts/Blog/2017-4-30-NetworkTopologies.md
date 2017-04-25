@@ -18,7 +18,7 @@ New datacenters today often use a layer 3 [leaf/spine](http://searchdatacenter.t
 
 Based on the requirements of the specific cluster deployment, users can install route distribution software that best suits their needs. For simple flat networks (i.e layer 2 networks), Romana directly configures routes on nodes and no other software is needed.
 
-To inject routes to pod networks on upstream network devices, Romana v1.5 can now configure either [exabg](https://github.com/Exa-Networks/exabgp/wiki) or [Bird]( http://bird.network.cz/) on hosts. If you'd rather use a full featured router, or want to build secure, fault tolerant networks across EC2 regions, zones and providers all without an overlay, [Quagga](http://www.nongnu.org/quagga/) can be used to forward traffic between networks.
+To inject routes to pod networks on upstream network devices, Romana v1.5 can now configure either [exabg](https://github.com/Exa-Networks/exabgp/wiki) or [Bird](http://bird.network.cz/) on hosts. If you'd rather use a full featured router, or want to build secure, fault tolerant networks across EC2 regions, zones and providers all without an overlay, [Quagga](http://www.nongnu.org/quagga/) can be used to forward traffic between networks.
 
 Together, these new TA-IPAM and route distribution features enable a variety of new standard, HA and hybrid configuration options for datacenter deployment and across the public cloud.
 

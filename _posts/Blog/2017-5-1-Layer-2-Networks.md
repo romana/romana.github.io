@@ -6,9 +6,11 @@ categories:
 permalink: /blog/layer-2-networks/
 ---
 
+*This post is the second in a series that [introduces]( /blog/topology-aware-IPAM/) Romana's new topology aware IPAM (TA-IPAM) and layer 3 deployment options* 
+
 Installing Romana on simple layer 2 network is, by far, the most common deployment option in use today. Romana from the very start has supported this configuration. This network topology relies on layer 2 broadcast traffic to learn about the other nodes on the network. 
 
-Since every node already knows about all the other nodes, Romana can simply install routes to every other node via the local Romana agent and no route distribution software is necessary. The Romana agent pulls the routes from etcd that gets updated by the Romana controller when Kubernetes pod creation and network policy events occur. 
+Since every node knows about all the other nodes and since they also provide a path to every endpoint, Romana can simply install routes locally on the nodes to establish complete endpoint reachability.  No other route distribution software is necessary since the Romana agent pulls the necessary routes from etcd, which gets updated by the Romana controller when Kubernetes pod creation and network policy events occur. 
 
 [Diagram Here]
 
