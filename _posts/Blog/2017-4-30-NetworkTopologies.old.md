@@ -1,16 +1,18 @@
 ---
 layout: post
-title: Topology Aware IPAM Enables Wide Range of New Network Deployments 
+title: Topology Aware IPAM Enables New Kubernetes Deployments in Cloud and on Premises 
 categories:
 - blog
 permalink: /blog/topology-aware-IPAM/
 ---
 
-Today we are happy to release Romana v1.5, which includes important new features for topology aware IP Address Management (TA-IPAM) and operation in more complex layer 3 networks. Romana v1.5 also has updated support for both [kops](https://github.com/kubernetes/kops) and [kargo]( https://github.com/kubernetes-incubator/kargo) providing new installation options on bare metal servers as well as deployment across EC2 regions and VPCs.
+Today we are happy to release Romana v1.5, which includes important new features including topology aware IP Address Management (TA-IPAM) for multi-network deployments. Romana v1.5 also has updated support for both [kops](https://github.com/kubernetes/kops) and [kargo]( https://github.com/kubernetes-incubator/kargo) providing new installation options on bare metal servers and across EC2 VPC Availability Zones.
 
-Topology aware IPAM is important because it lets users capture the network topology of their deployment so that orchestration systems like OpenStack and Kubernetes can schedule pods and VMs anywhere without having to also update or distribute new network routes. 
+Topology aware IPAM is important because it lets operators capture network topology so that orchestration systems like OpenStack and Kubernetes can schedule pods and VMs across multiple networks, without the need to update routers. 
 
-For layer 2 networks, TA-IPAM is a powerful new feature that lets users extend VLANs into their container deployments. For layer 3 networks, TA- IPAM lets containers and VMs be scheduled on any available node, without updating network routes.
+Multi-network clusters are part of every high-availability configuration that split clusters across network availability zones as well as datacenter deployments on routed layer 3 networks. 
+
+Topology aware IPAM and multi-network support also lets users secure their pods and VMs using existing data center security infrastructure by steering traffic into their existing security devices where existing security policy can be enforced. 
 
 Topology aware IPAM is also important when IP addresses are scarce because it avoids the overprovisioning of addresses that typically occurs to allow flexible resource placement (as in OpenStack [Routed Provider Networks](https://docs.openstack.org/ocata/networking-guide/config-routed-networks.html), for example). 
 
