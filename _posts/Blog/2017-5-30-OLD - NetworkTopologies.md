@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Topology Aware IPAM Enables New Kubernetes Deployments in Cloud and on Premises 
+title: OLD Topology Aware IPAM Post in Cloud and on Premises 
 categories:
 - blog
 permalink: /blog/topology-aware-IPAM/
