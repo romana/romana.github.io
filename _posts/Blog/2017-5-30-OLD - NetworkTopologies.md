@@ -3,7 +3,7 @@ layout: post
 title: OLD Topology Aware IPAM Post in Cloud and on Premises 
 categories:
 - blog
-permalink: /blog/topology-aware-IPAM/
+permalink: /blog/old-topology-aware-IPAM/
 ---
 
 Today we are happy to release Romana v1.5, which includes important new features including topology aware IP Address Management (TA-IPAM) for multi-network deployments. Romana v1.5 also has updated support for both [kops](https://github.com/kubernetes/kops) and [kargo]( https://github.com/kubernetes-incubator/kargo) providing new installation options on bare metal servers and across EC2 VPC Availability Zones.

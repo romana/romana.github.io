@@ -23,9 +23,9 @@ Romana enables the simplest, highest performing production-ready Kubernetes clus
 * Clusters larger than 50 nodes
 * Network policy enforcing Namespace and EC2 service isolation
 
-More detail and examples of Kubernetes clusters across EC2 availability Zones, and how you can build them using kops is provided in this [post](/blog/multi-region-networks/). 
+More detail and examples of Kubernetes clusters split across EC2 availability Zones, and how you can build them using kops is provided in this [post](/blog/multi-region-networks/). 
 
-Romana v1.5 multi-network support for OpenStack means that Projects can launch VMs on independent Provider Networks. Kubernetes clusters can also use independent pod networks and launch pods on them spec annotations that specify on which network to connect.
+Romana v1.5 multi-network support for OpenStack means that Projects can launch VMs on independent Provider Networks. Kubernetes clusters can also use independent pod networks and launch pods on them through pod annotations that specify which network to use.
 
 Details and examples of multi-network Kubernetes and OpenStack clusters are provide in the following [post](/blog/multi-region-networks/).
 
