@@ -14,13 +14,14 @@ Multi-network clusters are necessary for high-availability configurations split 
 
 ![Multi-network Topologies]({{ site.baseurl }}/images/Networks.bmp)
 
-Romana v1.6 with TA-IPAM is unique among Kubernetes network providers because it supports HA Kubernetes clusters across EC2 Availability Zones without an overlay network, delivering native performance and visibility. Large EC2 deployments without an overlay are now possible as well, since Romana can be configured to avoid the 50 route VPC limit. 
+Romana v1.6 with TA-IPAM is unique among Kubernetes network providers because it supports HA Kubernetes clusters across EC2 Availability Zones without an overlay network, delivering native performance and visibility. Large EC2 deployments without an overlay are now possible as well, since Romana uses route aggregation to always remain within VCP's 50 route limit. 
 
 Romana v1.6 also supports new egress traffic policies that let users block traffic to external endpoints. When used in AWS, egress filtering controls pod access to other AWS services (i.e. RDS, etc.) without proxy filters or complex IAM. 
 
 Romana enables the simplest, highest performing production-ready Kubernetes clusters in AWS by supporting:
 
-* Native network performance and visibility 
+* Native network performance and visibility
+* VPC Route aggregation for large clusters 
 * HA failover across AZs
 * Kubernetes Network Policy APIs
 * Egress filtering for AWS service isolation
