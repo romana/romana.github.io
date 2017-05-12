@@ -2,10 +2,10 @@
 layout: page
 title: Romana as a Kubernetes Network Add-on
 menu_text: Kubernetes
-nav_text: 
-icon:
+nav_text: Try it Now
+icon: launch
 firstnav: 2
-secondnav: 2
+secondnav: 1
 permalink: /try_romana/kubernetes/
 ---
 

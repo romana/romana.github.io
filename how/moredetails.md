@@ -8,44 +8,29 @@ secondnav: 2
 permalink: /how/romana_details/
 ---
 
-To better understand the operation of Romana, it is helpful to also understand the basics of a layer 3 routed access datacenter design and tenant isolation techniques. If you are unfamiliar with any of these concepts, a brief summary is available [here](/how/background/).
-
-### Topics
-
-- [Introduction](/how/romana_details/#introduction)
-- [Romana Tenant Isolation](/how/romana_details/#romana-tenant-isolation)
-- [IP Address Management](/how/romana_details/#ip-address-management)
-- [Host Agent](/how/romana_details/#host-agent) 
-- [Microservices](/how/romana_details/#microservices) 
-- [Policy Based Control](/how/romana_details/#policy-based-control)
-
----
-
 ### Introduction
 
-Cloud Native Networks are built and managed by Romana's configuration and control services. Central to this approach is intelligent [IP Address Management](/how/romana_details/#ip-address-management) and [route configuration](/how/romana_details/#host-agent) that builds complete layer 3 networks on hosts. Romana then creates a gateway and routes to these networks on hosts so that the Linux kernel can forward traffic directly to endpoints and enforce network policy without the overhead of encapsulation.
+Cloud Native Networks are built and managed by Romana's configuration and control services. Central to this approach is automated [network configuration on hosts](/how/romana_details/#host-agent) along with topology aware [IP Address Management](/how/romana_details/#ip-address-management). Together they build on-host networks for VMs and container endpoints so that the Linux kernel can forward traffic and enforce network policy without the overhead of encapsulation.
 
 ---
 
-### Romana Tenant Isolation
+### Romana Network Isolation
 
-A common way to maintain tenant isolation is to use VXLANs to overlay individual layer 2 segments on top of a layer 3 underlay network. A summary of this overlay approach is described [here](/how/background/#vxlan-tenant-isolation/).
+A common way to maintain network isolation is to use VXLANs to overlay individual layer 2 segments on top of a layer 3 underlay network. A summary of this overlay approach is described [here](/how/background/#vxlan-network-isolation/).
 
-However, since Cloud Native applications do not require layer 2 networks, Romana can avoid an overlay network for tenant isolation as long as isolation can be enforced at layer 3.
+However, since Cloud Native applications do not require layer 2 networks, Romana can avoid an overlay network for network isolation as long as isolation can be enforced at layer 3.
 
-Fortunately, isolation can be achieved at layer 3 with a host based firewall by configuring Linux *iptables* rules on the hypervisor to allow communication only among valid endpoints. The local Romana Agent is available to configure these firewall rules as needed. 
+Fortunately, isolation can be achieved at layer 3 with a host based firewall by configuring Linux *iptables* rules on the host to allow communication only among valid endpoints. The local Romana Agent is available to configure these firewall rules as needed. 
 
 Maintaining these firewall rules and access control list (ACLs) for all endpoints quickly grows into a large and complex data management problem. The problem becomes even more difficult when sophisticated traffic management policies are required.
 
-To reduce rule management complexity and simplify the network further, Romana extends the way layer 3 network designs capture network topology in the IP address by also including a tenant and segment identifier. 
-
-In the same way that a layer 3 network design assigns a network CIDR to every physical switch port, Romana assigns, a CIDR for each tenant.  Similarly, within each tenant network, each segment gets its own network as well.
+To reduce rule management complexity and simplify the network further, Romana assigns a complete CIDR for each on-host network where policy can be applied to all endpoint with a single rule. Romana's intelligent, topology aware IP address management ensures only valid addresses that maintain existing routes are assigned to endpoints. 
 
 The diagram below is an example of how Romana can partition an IPv4 address to capture host, tenant and segment identity. 
 
 ![Route Aggregation]({{ site.baseurl }}/images/cidr.png)
 
-> Note: For simplicity, the example shown uses 8 bits for each range, which makes the resulting IP addresses readable in four octet dot address notation. The actual number of bits used for Host, Tenant and Segment IDs is configurable. 
+> Note: For simplicity, the example shown uses 8 bits for each prefix, which makes the resulting IP addresses easily readable in four octet dot address notation. The actual number of bits used for prefix or blocks configurable. 
 
 In this example all traffic for Host 1 (Host ID = 1), would go to the 10.1/16 network. Of this, traffic to Tenant 1 (ID=1) would be directed to the 10.1.1/24 network. Traffic for Tenant 2 (ID=2) would go to 10.1.2/24. Traffic to Tenant 1 Segment 1 (ID=1) would go to 10.1.1.16/28 (1 in bits 25-28 of address, or 00010000=16). For Host 2, all CIDRs would be the same, except that 1 would be replaced by 2, the ID of Host 2.
 

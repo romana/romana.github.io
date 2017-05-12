@@ -21,17 +21,17 @@ Romana v1.6 also supports new egress traffic policies that let users block traff
 Romana enables the simplest, highest performing production-ready Kubernetes clusters in AWS by supporting:
 
 * Native network performance and visibility
+* Highly available, multi-master configurations across AZs
 * VPC Route aggregation for large clusters 
-* HA failover across AZs
-* Kubernetes Network Policy APIs
+* Kubernetes Network Policy APIs for pod isolation
 * Egress filtering for AWS service isolation
 
-More detail and examples of Kubernetes clusters split across EC2 Availability Zones, and how you can build them using kops is provided in this [post](/blog/multi-region-networks/). 
+Details on how to deploy Kubernetes clusters split across EC2 Availability Zones, and how you can build them using kops is provided in this [post](/blog/multi-zone-networks/). 
 
-Romana v1.6 multi-network support for OpenStack means that Projects can launch VMs on independent Provider Networks. Kubernetes clusters can also use independent pod networks and launch pods on them through pod annotations that specify which network to use.
+Romana v1.6 multi-network support for OpenStack means that users can launch VMs on independent Provider Networks. Kubernetes clusters can also use independent pod networks and launch pods on them through pod annotations that specify which network to use.
 
-Details and examples of multi-network Kubernetes and OpenStack clusters are provide in the following posts [here](/blog/multi-region-networks/) and [here](/blog/multi-provider-networks/).
+Details and examples of multi-network Kubernetes and OpenStack clusters are available [here](/blog/multi-network-deployments/).
 
-Romana v1.6 also has updated support for both [kops](https://github.com/kubernetes/kops) and [kargo]( https://github.com/kubernetes-incubator/kargo) for automated deployment of production Kubernetes cluster configurations.
+Romana v1.6 also has updated support for both [kops](https://github.com/kubernetes/kops) and [kargo]( https://github.com/kubernetes-incubator/kargo) for automated deployment of production Kubernetes cluster configurations in the datacenter and AWS.
 
 Romana v1.6 is available today, [here](https://github.com/romana/romana) on GitHub. 

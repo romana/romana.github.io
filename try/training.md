@@ -5,7 +5,7 @@ menu_text: Training
 nav_text: 
 icon:
 firstnav: 2
-secondnav: 4
+secondnav: 3
 permalink: /try_romana/training/
 ---
 

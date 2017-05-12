@@ -1,12 +1,12 @@
 ---
 layout: page
 title: Try Romana on Now
-menu_text: Installation
+menu_text: OpenStack
 nav_text: Try it Now
-icon: launch
+icon: 
 firstnav: 2
-secondnav: 1
-permalink: /try_romana/installation/
+secondnav: 2
+permalink: /try_romana/openstack/
 ---
 
 #  Installation
