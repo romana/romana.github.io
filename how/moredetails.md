@@ -10,88 +10,51 @@ permalink: /how/romana_details/
 
 ### Introduction
 
-Cloud Native Networks are built and managed by Romana's configuration and control services. Central to this approach is automated [network configuration on hosts](/how/romana_details/#host-agent) along with topology aware [IP Address Management](/how/romana_details/#ip-address-management). Together they build on-host networks for VMs and container endpoints so that the Linux kernel can forward traffic and enforce network policy without the overhead of encapsulation.
+Cloud Native Networks are built and managed by Romana's configuration and control service that manages routes, policy and IP addresses across network endpoints. This Romana service communicates with agents running on hosts to configure endpoints. Together, they build on-host networks for VMs and container endpoints so that the Linux kernel can forward traffic and enforce network policy. Topology aware IP address management lets the network use existing aggregated routes, eliminating the need for a virtual network overlay and route updates in the network when adding new endpoints.
+
+![Romana Details]({{ site.baseurl }}/images/RomanaDetails.png)
 
 ---
 
-### Romana Network Isolation
+### Network Isolation
 
-A common way to maintain network isolation is to use VXLANs to overlay individual layer 2 segments on top of a layer 3 underlay network. A summary of this overlay approach is described [here](/how/background/#vxlan-network-isolation/).
+A common way to maintain network isolation is to use a layer 2 virtual network overlay (VXLAN). However, since Cloud Native applications do not require layer 2 networks, Romana can avoid an overlay by providing the necessary endpoint isolation directly on the host using standard Linux IP packet filtering.
 
-However, since Cloud Native applications do not require layer 2 networks, Romana can avoid an overlay network for network isolation as long as isolation can be enforced at layer 3.
+The local Romana agent builds a host-based firewall by configuring Linux *iptables* rules on the host to allow communication only among valid endpoints. Firewall rules and access control list (ACLs) are compiled from a network policy that describes valid endpoint communications.
 
-Fortunately, isolation can be achieved at layer 3 with a host based firewall by configuring Linux *iptables* rules on the host to allow communication only among valid endpoints. The local Romana Agent is available to configure these firewall rules as needed. 
+Rules for all endpoints can quickly grow into a large, complex data management problem. The problem becomes even more difficult when sophisticated traffic management policies are required.
 
-Maintaining these firewall rules and access control list (ACLs) for all endpoints quickly grows into a large and complex data management problem. The problem becomes even more difficult when sophisticated traffic management policies are required.
+Romana reduces rule management complexity by assigning a complete CIDR to each isolated segment so that policy rules can be applied more easily to all endpoints within the range. 
 
-To reduce rule management complexity and simplify the network further, Romana assigns a complete CIDR for each on-host network where policy can be applied to all endpoint with a single rule. Romana's intelligent, topology aware IP address management ensures only valid addresses that maintain existing routes are assigned to endpoints. 
+### Topology Aware IP Address Management
 
-The diagram below is an example of how Romana can partition an IPv4 address to capture host, tenant and segment identity. 
+Topology Aware IP Address Management (TA-IPAM) is a way for Romana to assign CIDR blocks so that existing network configurations remain intact, eliminating the need for an overlay network or route distribution. With Romana, even HA configurations that span network availability zones can run [without an overlay](/how/network_configurations). 
 
-![Route Aggregation]({{ site.baseurl }}/images/cidr.png)
+Complete CIDRs on hosts, allocated using TA-IPAM, enables route aggregation and simplifies policy enforcement. However, for efficient use of IP addresses, CIDR blocks should not be too large since even one isolated endpoint reserves all the addresses in the block. Romana provides flexibility with configurable length CIDRs (default /29 for 8 addresses per block). For isolated segments larger than a single block would allow, blocks are grouped, as necessary, into a single larger segment. 
 
-> Note: For simplicity, the example shown uses 8 bits for each prefix, which makes the resulting IP addresses easily readable in four octet dot address notation. The actual number of bits used for prefix or blocks configurable. 
+Topology aware IPAM lets AWS VPC deployments run across availability zones using only VPC routes, eliminating the need for tunnels or an overlay network. 
 
-In this example all traffic for Host 1 (Host ID = 1), would go to the 10.1/16 network. Of this, traffic to Tenant 1 (ID=1) would be directed to the 10.1.1/24 network. Traffic for Tenant 2 (ID=2) would go to 10.1.2/24. Traffic to Tenant 1 Segment 1 (ID=1) would go to 10.1.1.16/28 (1 in bits 25-28 of address, or 00010000=16). For Host 2, all CIDRs would be the same, except that 1 would be replaced by 2, the ID of Host 2.
+The following Romana configuration shows how easy it is represent the topology of a three AZ configuration using VPC routes:
 
-Endpoints that are in a specific segment would have IP addresses from the CIDR range of the segment. VM1 (ID=11) on Host 1 for Tenant 1 Segment 1 would get 10.1.1.27 (16+11=27).
-
-In summary, for each virtualization host, there is a CIDR that identifies traffic to the entire host; a longer CIDR that identifies traffic to each tenant on the host; and for each tenant, there is an even longer CIDR that identifies traffic to each segment. 
-
-|Level|ID|CIDR|
-|Host|1|10.1/16 |
-|Tenant|1|10.1.1/24|
-|Segment|1|10.1.1.16/28|
-{: class='romanatable'}
-
-Across all hosts, the total number of CIDRs is the total number of routes on each Host, times the number of hosts deployed. It is the job of the Romana [Route Manager](#route-manager-and-host-agent) to create, set, update and manage these routes across the entire network.
-
-{% include backtotopbutton.html %}
----
-
-### IP Address Management
-
-Romana's layer 3 isolation approach requires that VM and container endpoints receive IP addresses that maintain the network address hierarchy.
-
-Romana does this with its own IP Address Management system what works with cloud orchestration systems including Kubernetes and OpenStack to maintain a list of all tenants and the network segments and endpoints they create. 
-
-For OpenStack, Romana provides an OpenStack ML2 plugin and IPAM API Driver. Whenever a new tenant, segment or endpoint is created, Romana updates its database. 
-
-When a new VM is launched in OpenStack, Romana learns which tenant is launching it and the segment on which they wish it to be placed. When OpenStack identifies the host for the VM, Romana's IPAM calculates the IP address based on the Host ID, Tenant ID and Segment ID.  This address is then assigned to the VM interface using the OpenStack IPAM API.
-
-For Kubernetes, IPAM integration takes place via the CNI plugin.
-
-{% include backtotopbutton.html %}
----
-
-### Host Agent
-
-Romana uses the native routing functions in the Linux kernel for packet forwarding and does not require any additional kernel software (dataplane kernel modules, etc.). Configuring routes on the host is done with standard Linux *ip route* commands, which are issued locally via the Romana Agent. 
-
-Before any endpoints can be configured, the Host Agent, must first configure the default gateway interface on the host that local endpoints use. When a new endpoint is launched on a host, the Agent configures a route. Normally, these routes are simply default routes to the host gateway. 
-
-{% include backtotopbutton.html %}
----
-
-### Microservices
-
-Cloud Native applications are frequently deployed using a [microservices](http://thenewstack.io/best-practices-for-developing-cloud-native-applications-and-microservice-architectures/) based design pattern. This requires replicated elements within a service be identified individually, yet all be managed collectively as a unified service. These requirements are well suited to a layer 2 networking model since it provides network isolation as well as explicit access control and membership affinity through its gateway and CIDR.
-
-Since Romana maintains a CIDR for each tenant segment, it is inherently service oriented because network segments define microservice boundaries. And since network segments define a service boundary, the CIDR that controls traffic in and out of a segment can also be used to steer traffic among microservices.
-
-
-{% include backtotopbutton.html %}
----
+<pre><code>
+{
+"type" : "vpc",
+"num-azs" : 3,
+"prefix-groups" : "max",
+"network" : "10.192.0.0/16"
+}
+</code></pre>
 
 ### Policy Based Control
 
-Romana allows the fine grained control and management of network traffic via network policies. The Romana network policies format was inspired by the Kubernetes network policy specification. However, Romana policies can be applied in Kubernetes as well as OpenStack environments. Furthermore, Romana extends the policies with additional features, such as egress policies and the ability to control network traffic not only for containers or VMs, but also for bare metal servers.
+Romana supports fine-grained control of network traffic via network policies. Romana network policies can be applied to ingress and egress traffic on VM and container endpoints, as well as on the host itself. This lets Romana enforce a range of security policies that is beyond what is possible with standard OpenStack Security Groups or the Kubernetes [Network Policy API](https://kubernetes.io/docs/concepts/services-networking/networkpolicies/). 
 
-See the wiki [page](https://github.com/romana/romana/wiki/Romana-policies) and [examples](https://github.com/romana/core/tree/master/policy/examples) in the Romana romana and core repositories.
+Egress traffic filtering lets Romana prevent access to other datacenter resources or cloud services that might otherwise be accessible on the network.
 
-{% include backtotopbutton.html %}
+See the Romana GitHub [Wiki](https://github.com/romana/romana/wiki/Romana-policies) for  examples of egress policies [protecting AWS RDS services](https://github.com/romana/core/tree/master/policy/examples) and other host resources.
 
+### Host Agent
 
+The Romana Agent runs on every host and watches an etcd datastore for configuration updates. Romana uses the native routing functions in the Linux kernel for packet forwarding and does not require any additional kernel software (dataplane kernel modules, etc.). Configuring routes on the host is done with standard Linux *ip route* commands, which are issued locally via the Romana Agent.
 
-
-
+For Kubernetes deployments there is also a CNI plugin that configures pod interfaces as necessary.
