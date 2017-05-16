@@ -8,9 +8,9 @@ firstnav: 0
 secondnav: 0
 ---
 
-#### Romana v1.6 Available Now
+#### Romana v2.0 Available Now
 
-Romana v1.6 is now [available](https://github.com/romana/romana) with important new features for simple, scalable, reliable, high-performance deployments in the datacenter and public cloud. 
+Romana v2.0 is now [available](https://github.com/romana/romana) with important new features for simple, scalable, reliable, high-performance deployments in the datacenter and public cloud. 
 
 Romana's new topology aware IP Address Management (TA-IPAM) uses IP addresses more efficiently and enables multi-network deployments. New HA deployment options are now possible in the datacenter and across EC2 VPC Availability Zones, without the overhead and complexity of a network overlay or route distribution updates.
 
@@ -28,6 +28,6 @@ Integration with [Kubernetes](http://kubernetes.io) and [OpenStack]( https://www
 
 Cloud Native Networks are easier to operate and deliver higher performance than networks built using overlay virtual networks. Romana's innovative layer 3 approach enables seamless hybrid cloud deployment and lets cloud orchestration systems transparently scale capacity across private and public clouds worldwide.
 
-Romana is all open source and is deployed successfully today on servers running thousands of container workloads by operators of some of the largest on-line applications. The [current v1.6 release](/code/) lets you build [Kubernetes](/try_romana/kubernetes/) and [OpenStack](/try_romana/installation/) clusters with secure, isolated networks and policy based control. 
+Romana is all open source and is deployed successfully today on servers running thousands of container workloads by operators of some of the largest on-line applications. The [current v2.0 release](/code/) lets you build [Kubernetes](/try_romana/kubernetes/) and [OpenStack](/try_romana/installation/) clusters with secure, isolated networks and policy based control. 
 
 

@@ -49,7 +49,7 @@ The following Romana configuration shows how easy it is represent the topology o
 
 Romana supports fine-grained control of network traffic via network policies. Romana network policies can be applied to ingress and egress traffic on VM and container endpoints, as well as on the host itself. This lets Romana enforce a range of security policies that is beyond what is possible with standard OpenStack Security Groups or the Kubernetes [Network Policy API](https://kubernetes.io/docs/concepts/services-networking/networkpolicies/). 
 
-Egress traffic filtering lets Romana prevent access to other datacenter resources or cloud services that might otherwise be accessible on the network.
+Egress traffic filtering lets Romana control access to other datacenter resources or cloud services that might otherwise be accessible on the network.
 
 See the Romana GitHub [Wiki](https://github.com/romana/romana/wiki/Romana-policies) for  examples of egress policies [protecting AWS RDS services](https://github.com/romana/core/tree/master/policy/examples) and other host resources.
 
@@ -57,4 +57,4 @@ See the Romana GitHub [Wiki](https://github.com/romana/romana/wiki/Romana-polici
 
 The Romana Agent runs on every host and watches an etcd datastore for configuration updates. Romana uses the native routing functions in the Linux kernel for packet forwarding and does not require any additional kernel software (dataplane kernel modules, etc.). Configuring routes on the host is done with standard Linux *ip route* commands, which are issued locally via the Romana Agent.
 
-For Kubernetes deployments there is also a CNI plugin that configures pod interfaces as necessary.
+For Kubernetes deployments, there is also a CNI plugin that configures pod interfaces as necessary.

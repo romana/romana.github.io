@@ -10,7 +10,7 @@ permalink: /how/network_configurations/
 
 ### Network Configurations
 
-Romana supports layer 3, layer 3 and Amazon VPC network configurations. Romana captures [network topology](/how/romana_details/) so that once the network is configured, VM and container endpoints can come and go without reconfiguration. Romana advertises the endpoint networks so that the network can be configured automatically. 
+Romana supports layer 2, layer 3 and Amazon VPC network configurations. Romana captures [network topology](/how/romana_details/) so that once the network is configured, VM and container endpoints can come and go without reconfiguration. Romana advertises on-host networks so that the external devices can learn how to reach all endpoints.
 
 ### Layer 2 Networks
 
@@ -41,8 +41,12 @@ For example, to indicate a routed network with two subnets, the Romana spec woul
 
 #### Route Advertisement
 
-This information provides the information needed for topology aware [IP address assignment](/how/romana_details/) as well as route advertisement.
+This specification provides the information needed for topology aware [IP address assignment](/how/romana_details/) as well as route advertisement.
 
 Routes may be advertisement by BGP agents, route reflectors and other network infrastructure to automatically update the network.
 
-For Amazon VPC subnets, Romana runs a process that takes this network toplogy information and updates the VPC route table.  
+For Amazon VPC subnets, the Romana agent will add routes automatically to the VPC route table. The agent will add one route for each EC2 instance so that traffic has a direct path to the correct instance. 
+
+For very large VPC configurations that require routes beyond the limit of the VCP route table, Romana topologies can be specified to use an E2 instance as a routing instance to forward traffic to the destination node.
+
+Healthchecks are run against routing instances so that when a routing instance fails, routes will be updated to ensure the network is always available.
