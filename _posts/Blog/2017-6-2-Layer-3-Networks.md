@@ -6,22 +6,24 @@ categories:
 permalink: /blog/layer-3-networks/
 ---
 
-*This post is the third in a series that [introduces]( /blog/topology-aware-IPAM/) Romana's new topology aware IPAM (TA-IPAM) and layer 3 deployment options* 
+*This post is the third in a series that [introduces](/blog/topology-aware-IPAM/) Romana's new topology aware IPAM (TA-IPAM) and layer 3 deployment options* 
 
-Running Romana on layer 3 networks introduces the added complexity of configuring the network to know how to reach pods and VMs that get launched by cloud orchestration systems on hosts. As we learned in the previous [post](/blog/layer-2-networks), layer 2 networks learn about other endpoints via broadcast messages. With layer 3 networks, there may be other devices along the path to the endpoints and these devices need routes to be added explicitly. 
+Running Romana on layer 3 networks introduces the added complexity of configuring the network to know how to reach pods and VMs across subnets. As we learned in the previous [post](/blog/layer-2-networks), layer 2 networks learn about other nodes via broadcast messages. With layer 3 networks, there may be other devices along the path to the nodes and these devices need routes to be added explicitly. 
 
-Automating route distribution is problem that was solved long ago and there are several popular open source alternatives available. Romana v1.5 support [exabg](https://github.com/Exa-Networks/exabgp/wiki). [Bird](http://bird.network.cz/) and [Quagga](http://www.nongnu.org/quagga/) to meet a variety of distinct deployment requirements.
+Every datacenter network supports automatic route distribution. Routing software distributes routes across devices using one or more popular route distribution protocol such as BGP or OSPF. The choice of routing protocol depends on many factors, including the size of the network and other user specific requirements.
 
-For datacenter deployments running a fully routed network design, each host becomes its own [stub network[(https://en.wikipedia.org/wiki/Stub_network). This simple L3 configuration requires only that the host network announce the default upstream to the Top of Rack device. 
+To establish VM and container reachability, devices need to be updated with routes to these endpoints. Since Romana assigns complete CIDRs to nodes, only one route is necessary for all endpoints within the range.  Romana v2.0 advertises this route to the upstream network device. From there, the device propagates the routes throughout the network as necessary.
+
+Romana support both OSPF and BGP to accommodate all datacenter deployments. Node peering to only the upstream device avoids node-to-node (i.e. full mesh) peering and route aggregation to full CIDRs eliminates the overhead of route updates with each added endpoint.
+
+With support for both layer 2 and layer 3 networks using industry standard protocols, Romana can now deployed using any network design or vendor technology. 
 
 [Insert Diagram Here}
 
-This simple form of route distribution is provided by simple BGP speakers that don't include many of the other features typically found in a router. Two popular BGP speakers are exaBGP and Bird. Romana v1.5 will install one of these alternatives on hosts that require route distribution.
+### AWS Deployments
 
-For deployments in EC2 that span multiple regions, routing is also required. However, since EC2 instances are on layer 2 segments, several  routed network design alternatives are possible. The details of multi-region EC2 deployments are details in the next [post](/blog/multi-region-networks).
+For deployments in EC2 VPCs that span multiple Availability Zones (AZs), route configuration is also required. Romana v2.0 includes support to update native VPC routing. This enables clusters to span availability zones without an overlay. 
 
-For more complicated datacenter deployments the might include dual homed hosts, L2 access networks, or require hybrid cloud networking, Romana v1.5 also supports installation and configuration of Free Range Router software on hosts as necessary.
-
-
-
+AWS deployments that span AZs frequently need more VPC routes than are allowed (50 by default). An overlay network is a common way to get around this limitation, but that adds complexity and reduces performance and visibility. 
+With Romana v2.0, nodes can be configured to forward traffic to other nodes within the same zone, enabling large clusters to use native VPC networking while still avoiding the VPC route limit. 
 
