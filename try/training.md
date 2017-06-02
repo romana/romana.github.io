@@ -9,7 +9,7 @@ secondnav: 3
 permalink: /try_romana/training/
 ---
 
-We are working with a partner to develop the curriculum for a one day, hands on training workshop and have the first classes in the San Francisco Bay Area soon. 
+[Kumulus Technologies](https://kumul.us/) has a one day, hands on training class for Kubernetes that includes a module covering Romana networking.  Self-paced classes are available as well. 
 
 If you are interested in learning more, send an email to [training@romana.io](mailto:training@romana.io).
 
