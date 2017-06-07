@@ -8,15 +8,19 @@ permalink: /blog/topology-aware-IPAM/
 
 Today we are happy to release Romana v2.0, which includes important architectural advances to increase deployment flexibility and simplify operations. 
 
-Fundamental to Romana is intelligent IP address management that lets real network CIDRs define isolation boundaries.  This has numerous advantages including eliminating overlays and using route aggregation to minimize network configuration updates, which enables higher performance and simpler, more secure operations. 
+Fundamental to Romana is intelligent IP address management that lets real network CIDRs define isolation boundaries.  This has numerous advantages including eliminating overlays and using route aggregation to minimize network updates, which enables higher performance and simpler, more secure operations. 
 
-However, Romana v1.0 IPAM provided only very simple IP address allocation, which results in inefficient use of addresses. This is a problem in the datacenter where addresses may be scarce and complicates deployment across subnets. 
+However, Romana v1.x IPAM provided only very simple IP address allocation, which results in inefficient use of addresses. This is a problem in the datacenter where addresses may be scarce and complicates deployment across subnets. 
 
-Romana v2.0 with Topology Aware IP Address Management (TA-IPAM) and route advertisement support solves both of these problems.
+Romana v2.0 with Topology Aware IP Address Management (TA-IPAM) and OSPF network advertisement support solves both of these problems.
 
-Topology aware IPAM lets operators capture network topology so that orchestration systems like OpenStack and Kubernetes have the flexibility they need to schedule pods and VMs anywhere on the network, even across different subnets. A single, aggregated route advertised from hosts configures network devices and topology aware IPAM ensures that new endpoints are reachable via these existing routes.
+Topology aware IPAM lets operators capture network topology so that orchestration systems like OpenStack and Kubernetes have the flexibility they need to schedule pods and VMs anywhere on the network, even across different subnets. Real network CIDRs on hosts lets simple network advertisements automatically configure upstream network devices. Topology aware IPAM ensures that new endpoints are reachable without route distribution. OSPF link-state advertisements enable fail over and load balancing all at layer 3. 
 
-Romana v2.0 works on both layer 2 and layer 3 networks and does not rely on any vendor specific IP fabric or route distribution protocol enabling the widest range of deployment options across datacenters and the public cloud.
+Romana v2.0 is network agnostic and works on both layer 2 and layer 3 networks and does not rely on any vendor specific IP fabric. 
+
+### Federated Cluster Support
+
+For federated Kubernetes clusters, or when endpoints must be reachable from external networks, Romana v2.0 can also distribute routes via BGP, enabling the widest range of deployment options across datacenters and the public cloud.
 
 ### Multi-network support
 
