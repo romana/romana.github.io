@@ -8,9 +8,11 @@ firstnav: 0
 secondnav: 0
 ---
 ### Romana v2.0 Beta Available Now
+Romana v2.0 is now available with important new features for simple, scalable, reliable, high-performance deployments in the datacenter and public cloud.
 
 Romana's new topology aware IP Address Management (TA-IPAM) uses IP addresses more efficiently and enables multi-network deployments. New HA deployment options are now possible in the datacenter and across EC2 VPC Availability Zones, without the overhead and complexity of a network overlay or route distribution updates.
 
+More details here.
 
 ### Welcome to the Romana Project
 
