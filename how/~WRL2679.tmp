@@ -10,29 +10,7 @@ permalink: /how/romana_details/
 
 ### Introduction
 
-Romana uses topology-aware IP address Management (IPAM) in conjunction with route configuration and advertisement to build simple, scalable, high performance Cloud Native networks. 
-
-### Topology Aware IPAM
-
-IP address management 
-
-Orchestration systems like Kubernetes are configured with a network CIDR for pod and service endpoints. Addresses in this network are split among hosts without regard for the network topology (i.e. subnets). This works well for flat network topologies where each host knows about all the other hosts on the network segment. Routes on the host to all the other hosts is all that is necessary for all pods to be reachable.
-
-Problems emerge when hosts are on different subnets. This is typical when clusters are split across network availably zones for high availability.  In these HA deployments, hosts are not aware of hosts in the other subnets and need routes in the network to reach the other zones.
-
-Topology aware IPAM is a way to minimize the route information that is required by the network. For example, if the full pod network CIDR is split into two subnets, the network only requires one route for each subnet. Operation with only one route per subnet is possible only if Kubernetes is aware of the network topology and issues IP addresses to pods based on which subnet the host is located.
-
-Romana provides this kind of 
-
- Pods can reach every other pod on the network as long as the host can learn the IP addressed of all the other hosts on the network. Luckily, layer 2 networks support this kind of direct host discovery.
-
-If every host knows about all the other hosts, Romana can simply install *inter-host* routes on each host so that every pod is reachable. 
-
-
-
-Cloud Native networks 
-
-are built and managed by Romana's configuration and control services. Central to this approach is intelligent [IP Address Management](/how/romana_details/#ip-address-management) and [route configuration](/how/romana_details/#host-agent) that builds complete layer 3 networks on hosts. Romana then creates a gateway and routes to these networks on hosts so that the Linux kernel can forward traffic directly to endpoints and enforce network policy without the overhead of encapsulation.
+Cloud Native Networks are built and managed by Romana's configuration and control services. Central to this approach is intelligent [IP Address Management](/how/romana_details/#ip-address-management) and [route configuration](/how/romana_details/#host-agent) that builds complete layer 3 networks on hosts. Romana then creates a gateway and routes to these networks on hosts so that the Linux kernel can forward traffic directly to endpoints and enforce network policy without the overhead of encapsulation.
 
 ---
 
