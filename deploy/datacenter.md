@@ -43,5 +43,3 @@ Romana supports routed network deployment options by advertising the pod network
 Often, HA clusters are built by splitting hosts across different subnets. This has the effect of segmeting a layer 2 network with a router, as shown in figure x.
 
 For these configurations, the Romana agent will install routes on hosts as it normally would for a flat layer 2 deployment. However, Romana will also advertise the pod network upstream to the router so that traffic can reach the other subnet.
-
-### Amazon VPCs
