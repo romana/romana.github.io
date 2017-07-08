@@ -11,6 +11,7 @@ permalink: /code/
 
 All the code is available right now [here](http://www.github.com/romana/romana) on GitHub.
 
+Become a member of the Romana community. Just send an invite request to [slack@romana.io](mailto:slack@romana.io) to join us on Slack.
 
 * [Romana Slack Channel](http://romana.slack.com)
 
