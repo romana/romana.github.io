@@ -17,7 +17,25 @@ Romana works in conjunction with cloud orchestration systems and issues IP addre
 
 Route aggregation makes route distribution unnecessary when new endpoints are added and collapses the number of Linux *iptables* rules required for segment isolation.
 
+<<<<<<< HEAD
 Romana is network agnostic and runs on layer 2 VLANs and VXLANs, layer 3 networks and public cloud networks like Amazon's VPC. New network advertisement features automate network configuration of top-of-rack devices as well as VPC route tables.
 
 For Kubernetes users, Romana is the only CNI provider that lets HA clusters split across zones apply policy to native VPC networks. 
 Route aggregation avoids VPC route limitations, enabling native VPC networking on large clusters.
+=======
+More details on how Romana works are available [here](/how/romana_details/). 
+
+Or jump right to the topic you want to learn more about.
+
+---
+
+### Romana Details  
+
+- [Introduction](/how/romana_details/#introduction)
+- [Romana Tenant Isolation](/how/romana_details/#romana-tenant-isolation)
+- [IP Address Management](/how/romana_details/#ip-address-management)
+- [Route Manager and Host Agent](/how/romana_details/#route-manager-and-host-agent) 
+- [Microservices](/how/romana_details/#microservices) 
+- [Service Insertion](/how/romana_details/#service-insertion) 
+- [Policy Based Control](/how/romana_details/#policy-based-control) 
+>>>>>>> refs/remotes/origin/master
