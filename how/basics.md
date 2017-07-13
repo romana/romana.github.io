@@ -19,9 +19,6 @@ Even though Romana uses a layer 3 isolation model, it can run on layer 2 or laye
 
 More details on how Romana works are available [here](/how/romana_details/). 
 
-Background information in the form of a brief overview of layer 3 routed access datacenter [design](/how/background/#routed-access-datacenter),  VXLAN tenant [isolation](/how/background/#vxlan-tenant-isolation) and service chaining [techniques](/how/background/#service-insertion) 
-are available [here](/how/background/).
-
 Or jump right to the topic you want to learn more about.
 
 ---
@@ -34,15 +31,4 @@ Or jump right to the topic you want to learn more about.
 - [Route Manager and Host Agent](/how/romana_details/#route-manager-and-host-agent) 
 - [Microservices](/how/romana_details/#microservices) 
 - [Service Insertion](/how/romana_details/#service-insertion) 
-- [Policy Based Control](/how/romana_details/#policy-based-control)  
-
-
----
-
-### Technology Background 
-
-- [Technology Background](/how/background/)
-- [Routed Access Datacenter](/how/background/#routed-access-datacenter)
-- [VXLAN Tenant Isolation](/how/background/#vxlan-tenant-isolation)
-- [Service Insertion](/how/background/#service-insertion) 
-
+- [Policy Based Control](/how/romana_details/#policy-based-control) 
