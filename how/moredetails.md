@@ -29,9 +29,7 @@ Cloud Native Networks are built and managed by Romana's configuration and contro
 
 ### Romana Tenant Isolation
 
-A common way to maintain tenant isolation is to use VXLANs to overlay individual layer 2 segments on top of a layer 3 underlay network. A summary of this overlay approach is described [here](/how/background/#vxlan-tenant-isolation/).
-
-However, since Cloud Native applications do not require layer 2 networks, Romana can avoid an overlay network for tenant isolation as long as isolation can be enforced at layer 3.
+A common way to maintain tenant isolation is to use VXLANs to overlay individual layer 2 segments on top of a layer 3 underlay network. However, since Cloud Native applications do not require layer 2 networks, Romana can avoid an overlay network for tenant isolation as long as isolation can be enforced at layer 3.
 
 Fortunately, isolation can be achieved at layer 3 with a host based firewall by configuring Linux *iptables* rules on the hypervisor to allow communication only among valid endpoints. The local Romana Agent is available to configure these firewall rules as needed. 
 
