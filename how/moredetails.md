@@ -16,11 +16,11 @@ Orchestration systems like Kubernetes are configured with a network CIDR with ad
 
 Problems, however, emerge when hosts are on different subnets. This is typical when clusters are split across network zones for high availability. In these HA deployments, hosts are not aware of hosts in the other subnets and need routes in the network to reach the other zones. 
 
-Topology aware IPAM is a way to minimize the route information that is required by the network. For example, if the full pod network CIDR is split into subnets, the network requires only one route for each subnet. *However*, operation with only one route per subnet is possible *only* if Kubernetes is aware of the network topology and can assign IP addresses based on which subnet the host is located. Romana's topology-aware IPAM enables this kind of pod scheduling. 
+Topology aware IPAM is a way to minimize the route information that is required by the network. With Romana, the full pod network CIDR is split into subnets that reflect network topology so that only a single route to each subnet is required. This operation is only possible when Kubernetes is made aware of the topology so that it can assign IP addresses based on which subnet a pod is located.
 
-Romana allows pod networks to be specified by one or more network prefix. Each prefix is then split into address groups that are assigned to each network zone. Romana's *topology-aware IPAM* ensures pods only get addresses from the group that is associated with a zone. Since within a zone, all pods have addresses from within the same network prefix, they all are reachable via the same route in the network, eliminating additional route updates. 
+Romana enables this kind of pod scheduling. *Topology-aware IPAM* ensures pods only get addresses from within the subnet range. This way they all are reachable via a single route to the subnet. And since this route is valid for addresses in the range, route updates are not necessary when new endpoints are added.
 
-Efficient use of addresses and flexibility of host deployment options is possible by allowing address groups to be added to a zone as necessary. 
+Efficient use of addresses and flexibility of host deployment options is possible by allowing new networks and subnets to be added as necessary. 
 
 ### Network Advertisement 
 
@@ -30,9 +30,9 @@ Configuring local subnet routes on hosts directly avoids full-mesh peering that 
 
 *VCP Route Advertisement* 
 
-For network advertisement in EC2, Romana will update the VCP route table directly via the API in a manner similar to kubnet's EC2 cloud provider function. This lets applications use native VPC networking, avoid an overlay and deliver the highest performance VPCs can provide.
+For network advertisement in EC2, Romana will update the VCP route table directly via the API in a manner similar to kubnet's EC2 cloud provider function. This lets applications use native VPC networking, avoid an overlay and deliver the highest network performance VPCs can provide.
 
-In addition, unlike kubnet, since Romana aggregates routes, when you want to build a large cluster you do not need to worry about running out of VPC routes. Romana will configure Kubernetes nodes to forward traffic to other nodes, effectively turning them into routers.
+In addition, unlike kubnet, Romana requires only one route between subnets, so when you want to build a large cluster you do not need to worry about running out of VPC routes. Romana will configure Kubernetes nodes to forward traffic to other nodes, effectively turning them into routers.
 
 Romana performs healthcheck on VPC routes and configures a failover route on instance failure. This now allows users to build HA clusters across availability zones that use native VPC networking.
 
