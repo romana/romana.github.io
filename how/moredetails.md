@@ -37,9 +37,3 @@ In addition, unlike kubnet, Romana requires only one route between subnets, so w
 Romana performs healthcheck on VPC routes and configures a failover route on instance failure. This now allows users to build HA clusters across availability zones that use native VPC networking.
 
 Together, these new features let users build HA clusters that support network policy, all with native VPC networking.
-
-### Micro-segmentation and Isolation
-
-Romana isolates endpoints with traffic filters applied to network CIDRs. Network interfaces tap directly into the kernel providing isolation from other endpoints on the host that might otherwise share a linux bridge where Ethernet frames flow freely. This lets packet filtering at layer 3 using iptable rules enforce isolation and network security policy. 
-
-Applying network policy to complete CIDRs v. individual endpoints reduces the number of filter rules that need to be applied, reducing complexity and simplifying operations. 

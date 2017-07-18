@@ -25,7 +25,7 @@ The most popular network configuration for Kubernetes is on a simple flat layer 
 
 In each of these cases, hosts are all on the same segment, which means Romana can configure the pod network by simply installing routes on each host.
 
-No route advertisement is necessary because all pods run on an adjacent host. Hosts use ARP to learn IPs of all other hosts on the segment, and the installed routes indicate which host it should forward traffic to in order to reach pods. The local Romana agent gathers the route information from the Kubernetes Master node and configures the host directly, eliminating the need to run route distribution software on nodes.
+No route advertisement is necessary because all pods run on adjacent hosts. Hosts use ARP to learn IPs of all other hosts on the segment and the installed routes indicate which host it should forward traffic to in order to reach pods. The local Romana agent gathers the route information from the Kubernetes Master node and configures the host directly, eliminating the need to run route distribution software on nodes.
 
 ![Flat Layer 2 Networks]({{ site.baseurl }}/images/FlatL2.png)
 
@@ -40,16 +40,16 @@ Kubernetes clusters run the same on VXLANs as they do on regular LANs or VLANs. 
 
 New datacenter network designs often use an IP fabric to route traffic across a set of spine and leaf devices.
 
-Hosts attached to different leaf devices are on different subnets but can still communicate because a route is installed to forward traffic. Similarly, a Kubernetes pod network needs routes on these devices to forward traffic between subnets.
+Hosts attached to different leaf devices are on different subnets but can still communicate because a route is installed to forward traffic. Similarly, the Kubernetes pod network needs routes on these devices to forward traffic between subnets.
 
-Romana supports routed network deployment by advertising the pod network from each host to the upstream routing device. Romana can use either BGP or OSPF to announce these routes. Since the upstream device (typically the top-of-rack switch) will get routes from each of hosts, there is no need for full mesh peering among nodes. For routing on the host configurations, Romana will update the host router directly and let it propagate the routes across the network.
+Romana supports routed network deployment by advertising the pod network from each host to the upstream routing device. Romana can use either BGP or OSPF to announce these routes. Since the upstream device (typically the top-of-rack switch) will get routes from each host, there is no need for full mesh peering among nodes. For routing on the host configurations, Romana will update the host router directly and let it propagate the routes across the network.
 
 ![Routed Layer 3 Networks]({{ site.baseurl }}/images/RoutedL3.png)
 
 
 ### Segmented Layer 2 Networks
 
-Often, HA clusters are built by splitting hosts across different subnets, creating separate availability zones. This is done by segmenting a layer 2 network with a router, as shown in the figure below.
+Often, HA clusters are built by splitting hosts across different subnets, creating separate availability zones. This is done by segmenting a layer 2 network with a router, as shown below.
 
 ![Segmented Layer 2 Networks]({{ site.baseurl }}/images/SegL2.png)
 
