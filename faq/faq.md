@@ -12,7 +12,7 @@ permalink: /faq/
 1. [How is Romana different from other container network alternatives like Flannel or Weave](#how-is-romana-different-from-flannel-or-weave)?
 1. [How is Romana different from other layer 3 container network alternatives like Calico](#how-is-romana-different-from-calico)?
 1. [What are the network requirements for Romana](#what-are-the-network-requirements-for-romana)?
-1. [Will Romana Run in AWS](#will-romana-run-in-aws)?
+1. [Will Romana run in AWS](#will-romana-run-in-aws)?
 1. [Does Romana support Kubernetes running on other public clouds](#does-romana-support-kubernetes-running-on-other-public-clouds)?
 1. [Does Romana work with OpenStack](#does-romana-work-with-openstack)?
 1. [How are network segments isolated](#how-are-network-segments-isolated)?
@@ -58,7 +58,7 @@ Yes. Romana will run on public cloud. However, today, route advertisement for la
 
 #### 6. Does Romana work with OpenStack?
 
-Yes. Romana lets users build multi-tenant networks on routed provider networks with standard Neutron. See [this blog post](/blog/routed_provider_networks/) for more detail.
+Yes. Romana lets users build multi-tenant networks on routed provider networks with standard Neutron. See [this blog post](/blog/routed-provider-networks/) for more detail.
 
 ---
 

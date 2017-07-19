@@ -16,4 +16,4 @@ Romana isolates endpoints with traffic filters applied to network CIDRs. Network
 
 Applying network policy to complete CIDRs v. individual endpoints reduces the number of filter rules that need to be applied, reducing complexity and simplifying operations. 
 
-Romana supports Kubernetes NetworkPolicy APIs for namespace isolation as an well as its own expanded network policy enforcement capability for both ingress and egress traffic filtering as well as host protection policies.
+Romana supports Kubernetes NetworkPolicy APIs for namespace isolation as well as its own expanded network policy enforcement capability for both ingress and egress traffic filtering and host protection policies.

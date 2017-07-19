@@ -9,10 +9,10 @@ secondnav: 9
 permalink: /code/
 ---
 
-All the code is available right now [here](http://www.github.com/romana/romana) on GitHub.
+All Romana code is available right now, [here](http://www.github.com/romana/romana) on GitHub.
 
 Become a member of the Romana community. Just send an invite request to [slack@romana.io](mailto:slack@romana.io) to join us on Slack.
 
 * [Romana Slack Channel](http://romana.slack.com)
 
-We are taking pull requests and looking for contributors to join the effort. We're working on specific near term improvements, as well as major new features for the next release. See our [Roadmap](https://github.com/romana/romana/wiki/Roadmap/) or the [open issues](http://www.github.com/romana/romana/issues) on GitHub for more detail.
+We are taking pull requests and looking for contributors to join the effort. We're working on specific near term improvements, as well as major new features for the next release.
