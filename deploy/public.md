@@ -24,7 +24,7 @@ Romana lets users avoid these limitations and deploy production clusters across 
 
 ### Single Availability Zone Deployment
 
-EC2 instances running in a single VPC Availability Zone can rely on routes installed by Romana to reach all pods. No VPC routes are necessary. Routes are installed on each host the same as when deployed in the datacenter on a [flat layer 2 network](/deploy_romana/datacenter/#flat-layer-2-networks).
+Kubernetes pods on instances running in a single VPC Availability Zone use routes installed by Romana to reach all pods. No VPC routes are necessary. Routes are installed on each host the same as when deployed in the datacenter on a [flat layer 2 network](/deploy_romana/datacenter/#flat-layer-2-networks).
 
 
 ### Multiple Availability Zone Deployment
