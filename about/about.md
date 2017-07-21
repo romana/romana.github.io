@@ -9,7 +9,7 @@ secondnav: 9
 permalink: /about/
 ---
 
-Romana is a network and security automation solution for Cloud Native applications. Romana automates the creation of isolated Cloud Native networks and secures applications using microsegmentation and a distributed firewall that applies access control policies consistently across all endpoints and services, wherever they run.
+Romana is a network and security automation solution for Cloud Native applications. Romana automates the creation of isolated Cloud Native networks and secures applications using microsegmentation and enforces access control policies on all endpoints, wherever they run.
 
 Integration with cloud orchestration systems lets developers use their existing tools and workflow to build secure applications with the deployment flexibility they need.
 

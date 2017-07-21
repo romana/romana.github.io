@@ -17,7 +17,7 @@ Romana is network agnostic and supports a wide range deployment options includin
 * Routing on the host (RoH) network configurations
 * Amazon VPCs
 
-Amazon EC2 is one of the most popular platforms for running Kubernetes but when it comes to networking, EC2 has some limits that make deploying production clusters unnecessarily complex and unable to operate with peak performance. 
+Amazon EC2 is one of the most popular platforms for running Kubernetes but when it comes to networking, EC2 has some limits that make deploying production clusters unnecessarily complex and unable to operate with peak performance.
 
 Romana lets users avoid these limitations and deploy production clusters across availability zones without an overlay and deliver native VPC network performance at any scale.
 
@@ -29,9 +29,9 @@ Kubernetes pods on instances running in a single VPC Availability Zone use route
 
 ### Multiple Availability Zone Deployment
 
-Highly available clusters are typically split across subnets in different availability zones and require VPC routes for traffic between subnets. Romana avoids the limit to the maximum number of VPC routes (default of 50) which caps the size of clusters that can use native VPC networking.
+Highly available clusters are typically split across subnets in different availability zones and require VPC routes for traffic between subnets. Romana avoids the limit on the number of VPC routes (default of 50) which caps the size of clusters that can use native VPC networking.
 
-#### Network Advertisement in EC2*
+#### Network Advertisement in EC2
 
 Romana updates the VCP route table directly via the API. This lets applications use native VPC networking, avoid an overlay and deliver the highest network performance possible.
 

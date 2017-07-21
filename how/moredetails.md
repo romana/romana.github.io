@@ -12,19 +12,19 @@ Romana uses topology-aware IP address Management (IPAM) in conjunction with rout
 
 ### Topology Aware IPAM 
 
-Orchestration systems like Kubernetes are configured with a network CIDR with addresses for pod and service endpoints. This network might have 16k or more addresses available for the pod network. Addresses in this network are typically split and assigned to hosts without regard for the network topology (i.e. subnets). This works fine for flat network topologies where each host knows about all the other hosts on the network segment. Routes on the host to all the other hosts is all that is necessary for all pods to be reachable. 
+Orchestration systems like Kubernetes are configured with a network CIDR with addresses for pod and service endpoints. A typical network might have 16k or more addresses available for the pods. Addresses in this network are split and assigned to hosts without regard for network topology (i.e. subnets). This works fine for simple, flat network topologies where each host knows about all the other hosts on the network segment. Routes on the host to all the other hosts is all that is necessary for all pods to be reachable. 
 
 Problems, however, emerge when hosts are on different subnets. This is typical when clusters are split across network zones for high availability. In these HA deployments, hosts are not aware of hosts in the other subnets and need routes in the network to reach the other zones. 
 
 Topology aware IPAM is a way to minimize the route information that is required by the network. With Romana, the full pod network CIDR is split into subnets that reflect network topology so that only a single route to each subnet is required. This operation is only possible when Kubernetes is made aware of the topology so that it can assign IP addresses based on which subnet a pod is located.
 
-Romana enables this kind of pod scheduling. *Topology-aware IPAM* ensures pods only get addresses from within the subnet range. This way they all are reachable via a single route to the subnet. And since this route is valid for addresses in the range, route updates are not necessary when new endpoints are added.
+Romana enables this kind of pod scheduling. *Topology-aware IPAM* ensures pods only get addresses from within the correct subnet range. This way they all are reachable via a single route to the subnet. And since this route is valid for all addresses in the range, route updates are not necessary when new endpoints are added.
 
 Efficient use of addresses and flexibility of host deployment options is possible by allowing new networks and subnets to be added as necessary. 
 
 ### Network Advertisement 
 
-Configuring network devices with routes is best done by network advertisement using standard network routing protocols. Romana supports industry standard protocols including BGP and OSPF. Because Romana configures routes to all hosts within subnet directly, network advertisement is only necessary for routes between subnets. This is achieved by peering with the router that forwards traffic between zones, typically a top-of-rack device.
+Configuring network devices with routes is best done by network advertisement using standard network routing protocols. Romana supports industry standard protocols including BGP and OSPF. Because Romana uses its local agent to directly configure routes to other hosts within subnet, network advertisement is only necessary for routes between subnets. This is achieved by peering with the router that forwards traffic between zones, typically a top-of-rack device.
 
 Configuring local subnet routes on hosts directly avoids full-mesh peering that would be required to advertise routes to all hosts in a zone. 
 

@@ -53,4 +53,4 @@ Often, HA clusters are built by splitting hosts across different subnets, creati
 
 ![Segmented Layer 2 Networks]({{ site.baseurl }}/images/SegL2.png)
 
-For these configurations, the Romana agent will install routes on hosts as it normally would for a layer 2 deployment. However, Romana will also advertise the pod network upstream to the router so that traffic can reach the other subnet.
+For these configurations, the Romana agent will install routes on hosts as it normally would for a layer 2 deployment. In addition, Romana will also advertise the pod network upstream to the router so that traffic can reach the other subnet.
