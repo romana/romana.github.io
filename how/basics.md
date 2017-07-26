@@ -10,9 +10,9 @@ permalink: /how/romana_basics/
 ---
 
 
-Romana is a network and security automation solution for Cloud Native applications. Romana automates the creation of isolated Cloud Native networks and secures applications using microsegmentation and enforces access control policies on all endpoints, wherever they run.
+Romana is a network and security automation solution for cloud native applications. Romana automates the creation of isolated cloud native networks and secures applications using microsegmentation and enforces access control policies on all endpoints, wherever they run.
 
-Microsegmentation of the network enables fine-grained access control policies to be applied to all application traffic. Romana uses familiar layer 3 network techniques to build secure, Cloud Native networks without a virtual network overlay.
+Microsegmentation of the network enables fine-grained access control policies to be applied to all application traffic. Romana uses familiar layer 3 network techniques to build secure, cloud native networks without a virtual network overlay.
 
 Romana works in conjunction with cloud orchestration systems and issues IP addresses using an intelligent, topology-aware IP Address Management (IPAM) system. Each microsegment is made up of one or more network CIDRs that define the segment boundary. Romana then installs routes to these segments on hosts and network devices so that they can forward traffic directly to endpoints and enforce network policy without the overhead of encapsulation. 
 

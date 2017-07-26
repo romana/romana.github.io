@@ -25,7 +25,7 @@ permalink: /faq/
 
 Both Flannel and Weave build overlay networks and encapsulate traffic between hosts, negatively affecting performance.
 
-Romana does need an overlay and can deliver native network performance, even in VPCs, across zones. Also, Romana not bridge traffic so network policy can be applied at layer 3 with iptables rules on the host. Support for network policy APIs with flannel requires a separate network policy controller from Canal and Weave requires a network policy controller to run on every node.
+Romana does need an overlay and can deliver native network performance, even in Amazon VPCs, across zones. Also, Romana does not bridge traffic so network policy can be applied at layer 3 with iptables rules on the host. Support for network policy APIs with flannel requires a separate network policy controller from Canal and Weave requires a network policy controller to run on every node.
 
 ---
 
@@ -45,7 +45,7 @@ Romana is network agnostic and does not impose any technology or topology restri
 
 #### 4. Will Romana run in AWS?
 
-Yes. Romana supports [kops](https://github.com/kubernetes/kops), the popular AWS installation and operations project for Kubernetes. Romana allows Kubernetes clusters to use native VPC networking across availability zones. Romana avoids the VPC route limitations by aggregating routes to stay within the 50 route. More details [here](/deploy_romana/public_cloud/)
+Yes. Romana supports [kops](https://github.com/kubernetes/kops), the popular AWS installation and operations project for Kubernetes. Romana allows Kubernetes clusters to use native VPC networking across availability zones. Romana avoids the VPC route limitations by aggregating routes to stay within the 50 route limit. More details [here](/deploy_romana/public_cloud/)
 
 
 ---

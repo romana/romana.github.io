@@ -8,7 +8,7 @@ secondnav: 2
 permalink: /how/romana_details/
 ---
 
-Romana uses topology-aware IP address Management (IPAM) in conjunction with route configuration and advertisement to build simple, scalable, high performance Cloud Native networks.
+Romana uses topology-aware IP address Management (IPAM) in conjunction with route configuration and advertisement to build simple, scalable, high performance cloud native networks.
 
 ### Topology Aware IPAM 
 
@@ -24,16 +24,16 @@ Efficient use of addresses and flexibility of host deployment options is possibl
 
 ### Network Advertisement 
 
-Configuring network devices with routes is best done by network advertisement using standard network routing protocols. Romana supports industry standard protocols including BGP and OSPF. Because Romana uses its local agent to directly configure routes to other hosts within subnet, network advertisement is only necessary for routes between subnets. This is achieved by peering with the router that forwards traffic between zones, typically a top-of-rack device.
+Configuring network devices with routes is best done by network advertisement using standard network routing protocols. Romana supports industry standard protocols including BGP and OSPF. Because Romana uses its local agent to directly configure routes to other hosts within the same subnet, network advertisement is only necessary for routes between subnets. This is achieved by peering with the router that forwards traffic between zones, typically a top-of-rack device. 
 
 Configuring local subnet routes on hosts directly avoids full-mesh peering that would be required to advertise routes to all hosts in a zone. 
 
-*VCP Route Advertisement* 
+*VPC Route Advertisement* 
 
-For network advertisement in EC2, Romana will update the VCP route table directly via the API in a manner similar to kubnet's EC2 cloud provider function. This lets applications use native VPC networking, avoid an overlay and deliver the highest network performance VPCs can provide.
+For network advertisement in EC2, Romana updates the VPC route table directly via the API in a manner similar to kubnet's EC2 cloud provider function. This lets applications use native VPC networking, avoid an overlay and deliver the highest network performance VPCs can provide.
 
 In addition, unlike kubnet, Romana requires only one route between subnets, so when you want to build a large cluster you do not need to worry about running out of VPC routes. Romana will configure Kubernetes nodes to forward traffic to other nodes, effectively turning them into routers.
 
-Romana performs healthcheck on VPC routes and configures a failover route on instance failure. This now allows users to build HA clusters across availability zones that use native VPC networking.
+Romana performs healthchecks on VPC routes and configures a failover route on instance failure. This now allows users to build HA clusters across availability zones that use native VPC networking.
 
 Together, these new features let users build HA clusters that support network policy, all with native VPC networking.

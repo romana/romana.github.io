@@ -9,7 +9,7 @@ secondnav: 1
 permalink: /deploy_romana/datacenter/
 ---
 
-Romana is network agnostic and supports a wide range deployment options including:
+Romana is network agnostic and supports a wide range of deployment options including:
 
 * Flat and segmented layer 2 networks
 * Layer 2 virtual networks
@@ -25,7 +25,7 @@ The most popular network configuration for Kubernetes is on a simple flat layer 
 
 In each of these cases, hosts are all on the same segment, which means Romana can configure the pod network by simply installing routes on each host.
 
-No route advertisement is necessary because all pods run on adjacent hosts. Hosts use ARP to learn IPs of all other hosts on the segment and the installed routes indicate which host it should forward traffic to in order to reach pods. The local Romana agent gathers the route information from the Kubernetes Master node and configures the host directly, eliminating the need to run route distribution software on nodes.
+No route advertisement is necessary because all pods run on adjacent hosts. Hosts use ARP to learn IPs of all other hosts on the segment and the installed routes indicate which host it should forward traffic to in order to reach pods. Romana has a network topology map and configures the host directly, eliminating the need to run route distribution software on nodes.
 
 ![Flat Layer 2 Networks]({{ site.baseurl }}/images/FlatL2.png)
 
