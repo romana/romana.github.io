@@ -39,7 +39,7 @@ Initially, Romana adds a route for each node, up to the VPC limit.
 
 ![AWS VPC Availability Zones]({{ site.baseurl }}/images/VPCZones.png)
 
-For large clusters, Romana automatically configures some nodes to forward traffic to other nodes, effectively turning them into routers. Traffic is spread across available nodes to avoid traffic bottlenecks.
+For larger clusters, Romana then automatically configures some nodes to forward traffic to other nodes, effectively turning them into routers. Traffic is spread across available nodes to avoid traffic bottlenecks.
 
 ![AWS VPC Availability Zones]({{ site.baseurl }}/images/VPCZones.51.png)
 

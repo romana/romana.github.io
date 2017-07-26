@@ -10,7 +10,7 @@ secondnav: 0
 ### New! Preview Romana v2.0 Today
 > A preview release of Romana v2.0 is now available. It provides important new features for simple, scalable, reliable, high-performance deployments.
 <br><br>
-Romana's new topology aware IP address management uses addresses more efficiently and enables multi-network deployments. New HA deployment options are now possible in the datacenter and across EC2 VPC Availability Zones, without the overhead and complexity of a network overlay or route distribution updates.F
+Romana's new topology aware IP address management uses addresses more efficiently and enables multi-network deployments. New HA deployment options are now possible in the datacenter and across EC2 VPC Availability Zones, without the overhead and complexity of a network overlay or route distribution updates.
 <br><br>
 More details [here](/blog/romana-v2-preview/). 
 

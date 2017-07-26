@@ -9,7 +9,7 @@ secondnav: 9
 permalink: /faq/
 ---
 
-1. [How is Romana different from other container network alternatives like Flannel or Weave](#how-is-romana-different-from-flannel-or-weave)?
+1. [How is Romana different from other container network alternatives like flannel or Weave](#how-is-romana-different-from-flannel-or-weave)?
 1. [How is Romana different from other layer 3 container network alternatives like Calico](#how-is-romana-different-from-calico)?
 1. [What are the network requirements for Romana](#what-are-the-network-requirements-for-romana)?
 1. [Will Romana run in AWS](#will-romana-run-in-aws)?
@@ -25,7 +25,7 @@ permalink: /faq/
 
 Both Flannel and Weave build overlay networks and encapsulate traffic between hosts, negatively affecting performance.
 
-Romana does need an overlay and can deliver native network performance, even in Amazon VPCs, across zones. Also, Romana does not bridge traffic so network policy can be applied at layer 3 with iptables rules on the host. Support for network policy APIs with flannel requires a separate network policy controller from Canal and Weave requires a network policy controller to run on every node.
+Romana does not need an overlay and can deliver native network performance, even in Amazon VPCs, across zones. Also, Romana does not bridge traffic so network policy can be applied at layer 3 with iptables rules on the host. Support for network policy APIs with flannel requires a separate network policy controller from Canal and Weave requires a network policy controller to run on every node.
 
 ---
 
