@@ -21,4 +21,3 @@ Route aggregation makes route distribution unnecessary when new endpoints are ad
 Romana is network agnostic and runs on layer 2 LANs and VLANs as well as IP fabrics running VXLANs, layer 3 networks and public cloud networks like Amazon's VPC. New network advertisement features automate network configuration of top-of-rack devices as well as VPC route tables.
 
 For Kubernetes users, Romana is the only CNI provider that lets HA clusters split across zones apply policy to native VPC networks. Route aggregation avoids VPC route limitations, enabling native VPC networking on large clusters.
-
