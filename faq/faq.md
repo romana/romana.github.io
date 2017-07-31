@@ -21,19 +21,22 @@ permalink: /faq/
 
 #### 1. How is Romana Different from Flannel or Weave?
 
-[Flannel](https://coreos.com/flannel/docs/latest/) and [Weave](https://www.weave.works/products/weave-net/) create a local bridge on each container host and assign it a network address range. This lets local container endpoints communicate directly. Off-host traffic is encapsulated and tunneled across the physical network to the destination host. Other configurations are possible as well.
+[flannel](https://coreos.com/flannel/docs/latest/) and [Weave](https://www.weave.works/products/weave-net/) create a local bridge on each container host and assign it a network address range. This lets local container endpoints communicate directly. Off-host traffic is encapsulated and tunneled across the physical network to the destination host. Other configurations are possible as well.
 
-Both Flannel and Weave build overlay networks and encapsulate traffic between hosts, negatively affecting performance.
+Both flannel and Weave build overlay networks and encapsulate traffic between hosts, negatively affecting performance.
 
-Romana does not need an overlay and can deliver native network performance, even in Amazon VPCs, across zones. Also, Romana does not bridge traffic so network policy can be applied at layer 3 with iptables rules on the host. Support for network policy APIs with flannel requires a separate network policy controller from Canal and Weave requires a network policy controller to run on every node.
+Romana does not need an overlay and can deliver native network performance, even across zones in Amazon VPCs. Also, Romana does not bridge traffic so network policy can be applied at layer 3 with iptables rules on the host. Support for network policy APIs with flannel requires a separate network policy controller from Canal and Weave requires a network policy controller to run on every node.
 
 ---
 
 #### 2. How is Romana Different from Calico?
 
-Romana and Calico are similar in that they both use layer 3 for container networks. However, Romana is network agnostic and does not impose any specific technology or topology. Romana uses IP address management together with route advertisement to eliminate the need for an overlay network, even across VPC subnets.
+Romana and Calico are similar in that they both use layer 3 for container networks. However, Romana is network agnostic and does not impose any specific technology or topology.
 
+Romana uses IP address management together with route advertisement to eliminate the need for an overlay network, even across VPC subnets.
 Romana's topology-aware IPAM reduces the need for route updates when new endpoints are added and does not require full mesh peering of nodes.
+
+Romana can be deployed on flat layer 2 network segments as well as IP fabrics running VXLAN as an overlay virtual network. Routed layer 3 networks are also supported with automatic configuration of upstream network devices. See [Datacenter Deployment Options](/deploy_romana/datacenter/) for more details.
 
 ---
 
@@ -45,14 +48,13 @@ Romana is network agnostic and does not impose any technology or topology restri
 
 #### 4. Will Romana run in AWS?
 
-Yes. Romana supports [kops](https://github.com/kubernetes/kops), the popular AWS installation and operations project for Kubernetes. Romana allows Kubernetes clusters to use native VPC networking across availability zones. Romana avoids the VPC route limitations by aggregating routes to stay within the 50 route limit. More details [here](/deploy_romana/public_cloud/)
-
+Yes. Romana supports [kops](https://github.com/kubernetes/kops), the popular AWS installation and operations project for Kubernetes. Romana allows Kubernetes clusters to use native VPC networking across availability zones. Romana avoids the VPC route limitations by aggregating routes to stay within the 50 route limit. More details [here](/deploy_romana/public_cloud/).
 
 ---
 
 #### 5. Does Romana support Kubernetes on other public clouds?
 
-Yes. Romana will run on public cloud. However, today, route advertisement for layer 3 networks is only available for AWS VPCs. This means that for other public clouds clusters will use only inter-node routes. More details [here]/deploy_romana/public_cloud/
+Yes. With [kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/), Romana can be installed on Kubernetes clusters running on any public cloud. However, today, route advertisement for layer 3 networks is only available for AWS VPCs. This means that for other public clouds clusters will use only inter-node routes. More details [here](/deploy_romana/public_cloud/).
 
 ---
 
