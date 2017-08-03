@@ -19,7 +19,7 @@ permalink: /faq/
 
 ---
 
-#### 1. How is Romana Different from Flannel or Weave?
+#### 1. How is Romana Different from flannel or Weave?
 
 [flannel](https://coreos.com/flannel/docs/latest/) and [Weave](https://www.weave.works/products/weave-net/) create a local bridge on each container host and assign it a network address range. This lets local container endpoints communicate directly. Off-host traffic is encapsulated and tunneled across the physical network to the destination host. Other configurations are possible as well.
 
