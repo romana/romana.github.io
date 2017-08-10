@@ -9,26 +9,15 @@ secondnav: 1
 permalink: /how/romana_basics/
 ---
 
-Romana creates isolated Cloud Native networks and applies security and network policy to them using standard layer 3 networking techniques. Just like networks on the public internet, isolation and access is based on IP address ranges that identify what traffic is allowed and where it can flow. Romana uses these familiar layer 3 techniques to build secure, Cloud Native networks without a virtual network overlay.
 
-Romana controls IP addresses on VM and container endpoints through an [IP Address Management](/how/romana_details/) (IPAM) system which lets complete layer 3 networks become the unit of isolation. Romana then creates a gateway and routes to these networks on hosts so that the Linux kernel can forward traffic directly to endpoints and enforce network policy without the overhead of encapsulation.
+Romana is a network and security automation solution for cloud native applications. Romana automates the creation of isolated cloud native networks and secures applications using microsegmentation and enforces access control policies on all endpoints, wherever they run.
 
-An important advantage of this approach is that route aggregation makes route distribution unnecessary and collapses the number of Linux *iptables* rules required for segment isolation.
+Microsegmentation of the network enables fine-grained access control policies to be applied to all application traffic. Romana uses familiar layer 3 network techniques to build secure, cloud native networks without a virtual network overlay.
 
-Even though Romana uses a layer 3 isolation model, it can run on layer 2 or layer 3 networks, as well as on public cloud networks like Amazon's VPC.
+Romana works in conjunction with cloud orchestration systems and issues IP addresses using an intelligent, topology-aware IP Address Management (IPAM) system. Each microsegment is made up of one or more network CIDRs that define the segment boundary. Romana then installs routes to these segments on hosts and network devices so that they can forward traffic directly to endpoints and enforce network policy without the overhead of encapsulation. 
 
-More details on how Romana works are available [here](/how/romana_details/). 
+Route aggregation makes route distribution unnecessary when new endpoints are added and collapses the number of Linux *iptables* rules required for segment isolation. 
 
-Or jump right to the topic you want to learn more about.
+Romana is network agnostic and runs on layer 2 LANs and VLANs as well as IP fabrics running VXLANs, layer 3 networks and public cloud networks like Amazon's VPC. New network advertisement features automate network configuration of top-of-rack devices as well as VPC route tables.
 
----
-
-### Romana Details  
-
-- [Introduction](/how/romana_details/#introduction)
-- [Romana Tenant Isolation](/how/romana_details/#romana-tenant-isolation)
-- [IP Address Management](/how/romana_details/#ip-address-management)
-- [Route Manager and Host Agent](/how/romana_details/#route-manager-and-host-agent) 
-- [Microservices](/how/romana_details/#microservices) 
-- [Service Insertion](/how/romana_details/#service-insertion) 
-- [Policy Based Control](/how/romana_details/#policy-based-control) 
+For Kubernetes users, Romana is the only CNI provider that lets HA clusters split across zones apply policy to native VPC networks. Route aggregation avoids VPC route limitations, enabling native VPC networking on large clusters.
