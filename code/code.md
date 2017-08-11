@@ -11,7 +11,7 @@ permalink: /code/
 
 All Romana code is available today, [here](http://www.github.com/romana/romana) on GitHub.
 
-The preview release of Romana v2.0 is available [here](/preview) on GitHub.
+The preview release of Romana v2.0 is available [here](https://github.com/romana/romana/tree/romana-2.0) on GitHub.
 
 
 Become a member of the Romana community. Just send an invite request to [slack@romana.io](mailto:slack@romana.io) to join us on Slack.
