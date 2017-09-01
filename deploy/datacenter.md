@@ -13,7 +13,7 @@ Romana is network agnostic and supports a wide range of deployment options inclu
 
 * Flat and segmented layer 2 networks
 * Layer 2 virtual networks
-* Layer 3 CLOS/Spine-leaf Networks
+* Layer 3 CLOS/Spine-leaf networks
 * Routing on the host (RoH) network configurations
 * Amazon VPCs
 
