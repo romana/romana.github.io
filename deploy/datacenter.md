@@ -11,9 +11,10 @@ permalink: /deploy_romana/datacenter/
 
 Romana is network agnostic and supports a wide range of deployment options including:
 
-* Flat and segmented layer 2 networks
+* Flat and split layer 2 networks
 * Layer 2 virtual networks
 * Layer 3 CLOS/Spine-leaf networks
+* Multiple VLAN and multi-segment layer 3 networks
 * Routing on the host (RoH) network configurations
 * Amazon VPCs
 
@@ -47,10 +48,10 @@ Romana supports routed network deployment by advertising the pod network from ea
 ![Routed Layer 3 Networks]({{ site.baseurl }}/images/RoutedL3.png)
 
 
-### Segmented Layer 2 Networks
+### Split Layer 2 Networks
 
-Often, HA clusters are built by splitting hosts across different subnets, creating separate availability zones. This is done by segmenting a layer 2 network with a router, as shown below.
+Often, HA clusters are built by assigning hosts to different subnets, creating separate availability zones. This is done by splitting the layer 2 network with a router, as shown below.
 
-![Segmented Layer 2 Networks]({{ site.baseurl }}/images/SegL2.png)
+![Split Layer 2 Networks]({{ site.baseurl }}/images/SplitL2.png)
 
-For these configurations, the Romana agent will install routes on hosts as it normally would for a layer 2 deployment. In addition, Romana will also advertise the pod network upstream to the router so that traffic can reach the other subnet.
+For these configurations, in each subnet the Romana agent will install routes on hosts as it normally would for a layer 2 deployment. In addition, Romana will also advertise the pod network upstream to the router so that traffic can reach the other subnet.
