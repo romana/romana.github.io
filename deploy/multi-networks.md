@@ -6,7 +6,7 @@ nav_text:
 icon:
 firstnav: 2
 secondnav: 3
-permalink: /deploy_romana/multi-newtork-clusters/
+permalink: /deploy_romana/multi_network_clusters/
 ---
 
 Romana is network agnostic and supports a wide range deployment options including:
