@@ -11,9 +11,10 @@ permalink: /deploy_romana/public_cloud/
 
 Romana is network agnostic and supports a wide range deployment options including:
 
-* Flat and segmented layer 2 networks
+* Flat and split layer 2 networks
 * Layer 2 virtual networks
 * Layer 3 CLOS/Spine-leaf networks
+* Multiple VLAN and multi-segment layer 3 networks
 * Routing on the host (RoH) network configurations
 * Amazon VPCs
 
