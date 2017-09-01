@@ -6,7 +6,7 @@ nav_text:
 icon:
 firstnav: 2
 secondnav: 3
-permalink: /deploy_romana/multi-segment-l3-networks/
+permalink: /deploy_romana/multi-newtork-clusters/
 ---
 
 Romana is network agnostic and supports a wide range deployment options including:
@@ -26,7 +26,7 @@ Topology-aware IPAM supports multiple VLANs and layer 3 network segments to acco
 
 ### Multi-VLAN Deployment
 
-When a cluster is shared by applications that requires VLAN isolation, pods need IP addresses on the proper network and network policy needs to enforce isolation among pods. Traffic between pods, even when both are on a shared host, needs to be forwarded to a gateway device where additional securities can be applied.
+When a cluster is shared by applications that requires VLAN isolation, pods and services need IP addresses on the proper network and network policy needs to enforce isolation among pods. Traffic between different VLANs, even when both pods are on a single shared host, must be forwarded to a gateway device where additional cross-VLAN securities can be applied.
 
 The diagram below shows a cluster where pods are launched on two separate VLANs by assigning pods addresses with the VLAN CIDR. Routes are installed for traffic within a VLAN to reach the proper destination host. For traffic across VLANs, Romana network policy is applied so that traffic is forwarded instead to the gateway device.
 
