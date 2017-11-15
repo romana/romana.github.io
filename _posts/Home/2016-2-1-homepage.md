@@ -9,7 +9,9 @@ secondnav: 0
 ---
 ### Romana v2.0 GA Release Now Available
 
-Romana v2.0 includes important new features for Kubernetes deployments on premises and in the cloud. More details [here](/blog/romana-v2/).
+Romana v2.0 includes important new features for Kubernetes deployments on premises and in the cloud. New [Romana VIPs](/how/romana_vips) let you expose Kubernetes services without an external load balancer.
+
+More details on the new release and Romana VIPs [here](/blog/romana-v2/).
 
 ---
 
