@@ -7,12 +7,11 @@ categories:
 firstnav: 0
 secondnav: 0
 ---
-### New! Preview Romana v2.0 Today
-> A preview release of Romana v2.0 is now available. It provides important new features for simple, scalable, reliable, high-performance deployments.
-<br><br>
-Romana's new topology aware IP address management uses addresses more efficiently and enables multi-network deployments. New HA deployment options are now possible in the datacenter and across EC2 VPC Availability Zones, without the overhead and complexity of a network overlay or route distribution updates.
-<br><br>
-More details [here](/blog/romana-v2-preview/). 
+### Romana v2.0 GA Release Now Available
+
+Romana v2.0 includes important new features for Kubernetes deployments on premises and in the cloud. More details [here](/blog/romana-v2/).
+
+---
 
 ### Welcome to the Romana Project
 
@@ -26,4 +25,4 @@ Applications that run with Romana are easier to operate and deliver higher perfo
 
 Integration with [Kubernetes](http://kubernetes.io) and other cloud orchestration systems lets application developers use their existing tools and workflow to secure their applications with the deployment flexibility they need.
 
-Romana is all open source and is deployed successfully today on servers running thousands of container workloads by operators of some of the largest on-line applications. The [current v1.5 release](/code/) lets you deploy cloud native applications securely on isolated networks with policy based control. Romana runs in any IaaS, so developers running Kubernetes in a public cloud now have a way to apply network and security policies to all pod communications.
+Romana is all open source and is deployed successfully today on servers running thousands of container workloads by operators of some of the largest on-line applications. Romana lets you deploy cloud native applications securely on isolated networks with policy based control. Romana runs in any IaaS, so developers running Kubernetes in a public cloud now have a way to apply network and security policies to all pod communications.
