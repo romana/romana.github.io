@@ -13,7 +13,7 @@ Kubernetes users running on premises that want an easy way to expose their servi
 
 Romana VIPs are defined by an annotation in a [service spec](https://raw.githubusercontent.com/wiki/romana/romana/files/nginx.yml). Romana then automatically brings up that IP on a node. Romana chooses a node with a pod running locally to avoid network latency within the cluster. When a node with a Romana VIP fails, Romana will bring up the VIP on a new node, providing failover for external services.
 
-Romana VIPs are useful for exposing services that only need simple kubeproxy load balancing across pods. Romana VIPs can also be used to expose individual pods when a stable IP is required, such as Cassandra and other Big Data applications. Romana VIPs work in conjunction with [Romana DNS](https://github.com/romana/romanadns), which can be deployed as a service discovery mechanism for individual pods exposed outside of a cluster.
+Romana VIPs are useful for exposing services that only need simple kubeproxy load balancing across pods. Romana VIPs can also be used to expose individual pods when a stable IP is required, such as Cassandra and other Big Data applications. Romana VIPs work in conjunction with [Romana DNS]( https://github.com/romana/romana/wiki/Romana-dns), which can be deployed as a service discovery mechanism for individual pods exposed outside of a cluster.
 
 ### Example configuration and yaml file
 
