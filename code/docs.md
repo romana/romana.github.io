@@ -2,17 +2,16 @@
 layout: page
 title: Join the Effort 
 menu_text: NA
-nav_text: Code
+nav_text: Docs
 icon: code
 firstnav: 7
 secondnav: 9
-permalink: /code/
+permalink: /docs/
 ---
 
+Documentation is available [here](http://docs.romana.io).
+
 All Romana code is available today, [here](http://www.github.com/romana/romana) on GitHub.
-
-The preview release of Romana v2.0 is available [here](https://github.com/romana/romana/tree/romana-2.0) on GitHub.
-
 
 Become a member of the Romana community. Just send an invite request to [slack@romana.io](mailto:slack@romana.io) to join us on Slack.
 
