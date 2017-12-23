@@ -31,12 +31,12 @@ Romana does not need an overlay and can deliver native network performance, even
 
 #### 2. How is Romana Different from Calico?
 
-Romana and Calico are similar in that they both use layer 3 for container networks. However, Romana is network agnostic and does not impose any specific technology or topology.
+Romana and Calico are similar in that they both use layer 3 for container networks. However, Romana is network agnostic and does not impose any specific technology or topology. 
 
 Romana uses IP address management together with route advertisement to eliminate the need for an overlay network, even across VPC subnets.
-Romana's topology-aware IPAM reduces the need for route updates when new endpoints are added and does not require full mesh peering of nodes.
+Romana's topology-aware IPAM reduces the need for route updates when new endpoints are added and does not require distributing full route tables to each node, or full mesh peering.
 
-Romana can be deployed on flat layer 2 network segments as well as IP fabrics running VXLAN as an overlay virtual network. Routed layer 3 networks are also supported with automatic configuration of upstream network devices. See [Datacenter Deployment Options](/deploy_romana/datacenter/) for more details.
+Romana can be deployed on flat layer 2 network segments as well as IP fabrics running VXLAN as an overlay virtual network. Routed layer 3 networks are also supported with automatic configuration of upstream network devices using either BGP or OSPF. See [Datacenter Deployment Options](/deploy_romana/datacenter/) for more details.
 
 ---
 
