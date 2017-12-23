@@ -44,3 +44,8 @@ The diagram below shows two separate networks in two availability zones combined
 
 ![Multi-segment Layer 3 Deployment]({{ site.baseurl }}/images/multi-segment.png)
 
+### Route Filtering
+
+Restrictions on route distribution is a common network security practice to prevent route injection and other network layer attacks. This also restricts the IP address ranges that are allowed within datacenter racks or network availability zones. For example, within a single rack, all endpoints must have IP addresses within a single /22 network.
+
+Romana's topology-aware IPAM supports these more restrictive environments by ensuring all endpoint addresses are within the range, allowing a single aggregated route to all endpoints. More specific routes can be filtering by network devices, avoiding any route injection threats.

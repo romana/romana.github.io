@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Network Policy with Romana
+title: Network Security with Romana
 menu_text: Network Policy
 nav_text: NA
 firstnav: 1
@@ -8,7 +8,7 @@ secondnav: 3
 permalink: /how/network-policy/
 ---
 
-Romana supports Kubernetes Network Policy API for pod isolation and microsegmentation  of namespaces.
+Romana supports Kubernetes Network Policy API for pod isolation and microsegmentation  of namespaces. Topology aware IPAM allows more restrictive route filtering for greater network security.
 
 ### Microsegmentation and Isolation
 
@@ -16,4 +16,9 @@ Romana isolates endpoints with traffic filters applied to network CIDRs. Network
 
 Applying network policy to complete CIDRs v. individual endpoints reduces the number of filter rules that need to be applied, reducing complexity and simplifying operations. 
 
-Romana supports Kubernetes NetworkPolicy APIs for namespace isolation as well as its own expanded network policy enforcement capability for both ingress and egress traffic filtering and host protection policies.
+Romana supports Kubernetes Network Policy APIs for namespace isolation as well as its own expanded network policy enforcement capability for both ingress and egress traffic filtering and host protection policies.
+
+### Route Filtering
+
+Romana allow more restrictive route filters in network devices because topology aware IPAM ensures addresses remain with specific network zone. See [Route Filtering](/deploy_romana/multi_network_clusters/#route-filtering) for more details.
+
