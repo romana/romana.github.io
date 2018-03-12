@@ -13,7 +13,7 @@ Documentation is available [here](http://docs.romana.io).
 
 All Romana code is available today, [here](http://www.github.com/romana/romana) on GitHub.
 
-Become a member of the Romana community. Just send an invite request to [slack@romana.io](mailto:slack@romana.io) to join us on Slack.
+Become a member of the Romana community. Just send an invite request to [info@romana.io](mailto:info@romana.io) to join us on Slack.
 
 * [Romana Slack Channel](http://romana.slack.com)
 
