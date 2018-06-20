@@ -9,7 +9,7 @@ secondnav: 9
 permalink: /docs/
 ---
 
-Documentation is available [here](http://docs.romana.io).
+Documentation is available [here](http://romanadocs.readthedocs.io).
 
 All Romana code is available today, [here](http://www.github.com/romana/romana) on GitHub.
 
